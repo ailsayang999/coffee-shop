@@ -1,32 +1,24 @@
 import "styles/App.scss";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import Header from "components/Header/Header";
-import Home from "components/Home/Home";
-import About from "components/About/About";
-import Features from "components/Features/Features";
-import Menu from "components/Menu/Menu";
-import Stats from "components/Stats/Stats";
-import Gallery from "components/Gallery/Gallery";
-import Offer from "components/Offer/Offer";
-import Reservation from "components/Reservation/Reservation";
-import Testimonial from "components/Testimonial/Testimonial";
-import Footer from "components/Footer/Footer";
+import {
+  HomePage,
+  LoginPage,
+  ProductPage,
+} from "pages";
+
+const basename = process.env.PUBLIC_URL;
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Home />
-      <About />
-      <Features />
-      <Menu />
-      <Stats />
-      <Gallery />
-      <Offer />
-      <Reservation />
-      <Testimonial />
-      <Footer />
+    <div className="app">
+      <BrowserRouter basename={basename}>
+        <Routes>
+          <Route path="*" element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="product_page" element={<ProductPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

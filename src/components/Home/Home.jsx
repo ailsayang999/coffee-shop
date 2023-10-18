@@ -16,10 +16,10 @@ const Home = () => {
           </p>
           <div className="home__btns">
             <a href="#menu" className="btn">
-              Check Menu
+              我們的商品
             </a>
-            <a href="#reservation" className="btn home__btn">
-              Book Table
+            <a href="#offer" className="btn home__btn">
+              優惠活動
             </a>
           </div>
         </div>

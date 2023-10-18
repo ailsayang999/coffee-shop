@@ -32,15 +32,21 @@ import person6 from "assets/images/customers/person6.jpeg";
 import person7 from "assets/images/customers/person7.png";
 import person8 from "assets/images/customers/person8.png";
 
-//For Each section
+//For Each HomePage section
 export const links = [
-  { name: "Home", path: "home" },
-  { name: "About", path: "about" },
-  { name: "Features", path: "features" },
-  { name: "Menu", path: "menu" },
-  { name: "Gallery", path: "gallery" },
-  { name: "Offer", path: "offer" },
-  { name: "Reservation", path: "reservation" },
+  { name: "首頁", path: "home" },
+  { name: "關於我們", path: "about" },
+  { name: "特色", path: "features" },
+  { name: "所有商品", path: "menu" },
+  { name: "相片集", path: "gallery" },
+  { name: "優惠活動", path: "offer" },
+];
+
+//For Each ProductPage section
+export const productLinks = [
+  { name: "咖啡豆、濾掛式咖啡", path: "coffee" },
+  { name: "咖啡器材", path: "equipment" },
+  { name: "優惠活動", path: "offer" },
 ];
 
 // For Features jsx
@@ -276,6 +282,126 @@ export const testimonials = [
     img: person8,
     title: "Jane E Butt",
     service: "Customer",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+];
+
+// For Coffee Product
+export const coffeeBeanProduct = [
+  {
+    id: 1,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/曼特寧巴西.png?fit=540%2C540&ssl=1",
+    title: "曼特寧・巴西",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 2,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/07/巴紐.png?fit=1663%2C1080&ssl=1",
+    title: "巴紐・曼特寧",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 3,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/曼特寧巴西.png?fit=540%2C540&ssl=1",
+    title: "曼特寧・巴西",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 4,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/07/巴紐.png?fit=1663%2C1080&ssl=1",
+    title: "巴紐・曼特寧",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 5,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/曼特寧巴西.png?fit=540%2C540&ssl=1",
+    title: "曼特寧・巴西",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 6,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/07/巴紐.png?fit=1663%2C1080&ssl=1",
+    title: "巴紐・曼特寧",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 7,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/曼特寧巴西.png?fit=540%2C540&ssl=1",
+    title: "曼特寧・巴西",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 8,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/07/巴紐.png?fit=1663%2C1080&ssl=1",
+    title: "巴紐・曼特寧",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+];
+
+// For Equipment Product
+export const coffeeEquipmentProduct = [
+  {
+    id: 1,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 2,
+    img: " https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3094.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 冰瞳玻璃咖啡V型濾杯",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 3,
+    img: " https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3094.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 冰瞳玻璃咖啡V型濾杯",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 4,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 5,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 6,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 7,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
+    description:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
+  },
+  {
+    id: 8,
+    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
+    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
     description:
       "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
   },

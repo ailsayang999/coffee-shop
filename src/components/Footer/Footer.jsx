@@ -90,11 +90,6 @@ const Footer = () => {
               </a>
             </li>
 
-            <li>
-              <a href="#reservation" className="footer__link">
-                <FaCaretRight className="icon" /> Reservation
-              </a>
-            </li>
           </ul>
         </div>
 

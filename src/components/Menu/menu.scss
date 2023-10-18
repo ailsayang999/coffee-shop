@@ -1,63 +1,61 @@
 .menu {
   position: relative;
-  background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover fixed;
+  background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover
+    fixed;
 
-  .menu__grid {
-    display: grid;
-    column-gap: 1.5rem;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-
-    .menu__item {
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--container-color);
-      padding: 1.25rem;
+  .menu__img-wrapper {
+    position: relative;
+    width: 720px;
+    height: 480px;
+    border: 2px dashed var(--first-color);
+    padding: 5px;
+    .menu_btn {
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: var(--large-font-size);
+      font-weight: var(--weight-600);
+      text-align: center;
+      padding:0.75rem 0.95rem ;
       border-radius: var(--radius);
-      // Hover Effect
-      // transition
-      transition: 0.3s var(--transition);
-      cursor: pointer;
-
-      .menu__img-wrapper {
-        width: 80px;
-        height: 80px;
-        border: 2px dashed var(--first-color);
-        padding: 5px;
-      }
-      .menu__img-wrapper,
-      .menu__img {
-        border-radius: 50%;
-      }
-
-      .menu__data {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .menu__title,
-        .menu__price {
-          color: var(--first-color);
-        }
-        .menu__title {
-          font-size: var(--large-font-size);
-          margin-bottom: 0.25rem;
-        }
-        .menu__price {
-          border-left: 2px dashed var(--first-color);
-          padding-left: 1.5rem;
-          font-size: var(--larger-font-size);
-          font-weight: var(--weight-600);
-        }
-      }
+      background-color: var(--container-color);
+      //Hover Effect
+      opacity: 0;
+      transition: 1s var(--transition);
     }
+  }
+
+  .menu__img-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0.7rem; //The inset CSS property is a shorthand that corresponds to the top, right, bottom, and/or left properties.
+    background-color: var(--first-color);
+    border-radius: var(--radius);
+
     // Hover Effect
-    // transition
-    .menu__item:hover {
-      transform: translateY(-0.5rem);
+    transform: scaleY(0);
+    opacity: 0;
+    transition: 0.4s var(--transition);
+  }
+
+  .menu__img-wrapper:hover {
+    .menu_btn {
+      opacity: 1;
     }
+  }
+
+  .menu__img-wrapper:hover::before {
+    transform: scaleY(1);
+    opacity: 0.7;
+  }
+
+  .menu__img-wrapper,
+  .menu__img {
+    border-radius: var(--radius);
+    margin-inline: auto;
+    object-fit: cover;
   }
 }
 
@@ -73,7 +71,7 @@
 }
 
 .menu .section__title,
-.menu__grid {
+.menu__img-wrapper {
   position: relative;
-  z-index: 1; //讓menu__grid裡面的東西和section__title，都移到menu background picture的深色遮罩之上
+  z-index: 1; //讓menu裡面的東西和section__title，都移到menu background picture的深色遮罩之上
 }
