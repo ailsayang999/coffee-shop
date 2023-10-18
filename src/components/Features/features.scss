@@ -1,0 +1,47 @@
+.features__grid {
+  display: grid;
+  column-gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 20px;
+
+  .features__item {
+    position: relative;
+    background-color: var(--container-color);
+    padding: 2rem;
+    border-radius: var(--radius);
+
+    // Hover Effect
+    // transition
+    transition: 0.1s var(--transition);
+    cursor: pointer;
+
+    .feature__img {
+      width: 90px;
+      margin-bottom: 1.25rem;
+    }
+    // 做出浮水印的效果
+    .feature__shape {
+      position: absolute;
+      width: 120px;
+      right: 1.25rem;
+      top: 3rem;
+      opacity: 0.2;
+    }
+  }
+
+  //每個item的外框
+  .features__item::before {
+    content: "";
+    position: absolute; //跟著的是features__item
+    inset: 0.75rem;
+    border: 3px solid var(--first-color);
+    opacity: 0.2;
+    border-radius: inherit;
+  }
+
+  // Hover Effect
+  // transition
+  .features__item:hover {
+    transform: translateY(-0.5rem);
+  }
+}
