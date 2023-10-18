@@ -1,0 +1,76 @@
+.testimonials {
+  // Swiper 自己的css className
+  .swiper-pagination {
+    position: initial;
+    margin-top: 2rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 16px;
+    height: 16px;
+    border: 3px solid var(--title-color);
+    //不要有藍色的background
+    background: transparent;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--first-color);
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #ba9373;
+  }
+
+  .section__title {
+    color: #fff;
+  }
+  .testimonial__item {
+    .testimonial__quote {
+      position: relative;
+      background-color: var(--container-color);
+      padding: 2.5rem 2rem 3rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      .testimonial__icon {
+        // 跟上面的testimonial__quote構成一個對話框
+        position: absolute;
+        bottom: -1.15rem;
+        left: 2.5rem;
+        fill: var(--container-color);
+        font-size: var(--big-font-size);
+      }
+
+      .testimonial__description {
+        color: #fff;
+      }
+    }
+    .testimonial__content {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.25rem;
+
+      .testimonial__img-wrapper {
+        border: 2px dashed var(--first-color);
+        padding: 0.25rem;
+        width: 80px;
+        height: 80px;
+        margin-inline: 1.24rem;
+      }
+      .testimonial__img-wrapper,
+      .testimonial__img {
+        border-radius: 50%;
+      }
+
+      .testimonial__title {
+        font-size: var(--larger-font-size);
+      }
+      .testimonial__rating {
+        display: flex;
+        column-gap: 0.25rem;
+        margin-top: 0.25rem;
+      }
+    }
+  }
+}
