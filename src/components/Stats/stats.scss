@@ -1,0 +1,60 @@
+.stats {
+  background: var(--container-color);
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    .stats__item {
+      // outline: 1px solid salmon;
+      text-align: center;
+
+      .stats__img-wrapper {
+        // outline: 1px solid red;
+        position: relative;
+        width: 100px;
+        height: 100px;
+
+        // 使用 Grid + place-items 來做icon的垂直置中效果
+        display: grid;
+        place-items: center; // place-items 此屬性是 align-items 與 justify-items 的縮寫，簡單的說就是水平跟垂直的對齊方式，想當然的只要都設定為 center 就能做到水平置中跟垂直置中囉。
+
+        margin-inline: auto; // margin-inline is a shorthand property that defines both the logical inline start and end margins of an element
+
+        .stats__img {
+          width: 60px;
+        }
+      }
+      .stats__img-wrapper::before {
+        content: "";
+        position: absolute;
+        // 之後hover的時候定位會變
+        left: -1.25rem;
+        top: -1.25rem;
+
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--first-color);
+        opacity: 0.2;
+        // Hover Effect transition
+        transition: 0.3s var(--transition);
+      }
+
+      .stats__no {
+        color: var(--title-color);
+        font-size: var(--bigger-font-size);
+        font-weight: var(--weight-600);
+        margin-block: 1rem 0.75rem;
+      }
+      .stats__title{
+        color:var(--first-color);
+        font-size: var(--larger-font-size);
+      }
+    }
+    // Hover Effect：當stats__item被hover的時候，其下面的stats__img-wrapper的before偽元素before的定位會變到left 0 top 0的位置
+    .stats__item:hover .stats__img-wrapper::before {
+      left: 0;
+      top: 0;
+      cursor: pointer;
+    }
+  }
+}
