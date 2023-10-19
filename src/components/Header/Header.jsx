@@ -6,6 +6,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
 import logo from "assets/images/CoffeeHouseLogo.png";
+import { BiUserCircle } from "react-icons/bi";
+import { BsFillCartFill } from "react-icons/bs";
 import { links, productLinks } from "Data";
 
 import { ReactComponent as Hamburger } from "assets/icons/menu.svg";
@@ -102,6 +104,12 @@ const Header = () => {
             <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
               <Hamburger fill={"var(--title-color)"} />
             </div>
+            <RouterLink to="/login">
+              <BiUserCircle className="icon" />
+            </RouterLink>
+            {/* <RouterLink to="/cart">
+              <BsFillCartFill className="icon" />
+            </RouterLink> */}
           </>
         )}
       </nav>
