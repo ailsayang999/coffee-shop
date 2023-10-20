@@ -1,8 +1,37 @@
 import React from "react";
 import "./products.scss";
 import { coffeeBeanProduct, coffeeEquipmentProduct } from "Data";
+import { getProductsCoffeeBean, getProductsCoffeeEquipment } from "api/product";
+import { useEffect, useState } from "react";
 
 const Products = () => {
+  const [coffeeBean, setCoffeeBean] = useState("");
+  const [coffeeEquipment, setCoffeeEquipment] = useState("");
+
+  //取得商品資訊
+  useEffect(() => {
+    const getCoffeesBeanAsync = async () => {
+      try {
+        const backendCoffeeBean = await getProductsCoffeeBean();
+        setCoffeeBean(backendCoffeeBean);
+        console.log("backendCoffeeBean", backendCoffeeBean);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const getCoffeesEquipmentAsync = async () => {
+      try {
+        const backendCoffeeEquipment = await getProductsCoffeeEquipment();
+        setCoffeeEquipment(backendCoffeeEquipment);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getCoffeesBeanAsync();
+    getCoffeesEquipmentAsync();
+  }, []);
+
   return (
     <div className="products-page">
       <div className="product-container">
