@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { bean } from "Data";
 
-
 // bean之後要換成get all product的結果
 const YirgacheffeArray = bean.filter((item) => {
   return item.category === "耶加雪夫系列";
@@ -149,7 +148,6 @@ const PremiumContent = () => {
   );
 };
 
-
 const Products = () => {
   const [coffeeBean, setCoffeeBean] = useState("");
   const [coffeeEquipment, setCoffeeEquipment] = useState("");
@@ -248,6 +246,9 @@ const Products = () => {
                 <button
                   value={"grinder"}
                   onClick={(e) => handleChangeProductContent(e.target.value)}
+                  className={`product-filter-btn ${
+                    productShowContent === "grinder" ? "navigate-active" : ""
+                  }`}
                 >
                   磨豆機
                 </button>
@@ -256,6 +257,9 @@ const Products = () => {
                 <button
                   value={"cold-brew"}
                   onClick={(e) => handleChangeProductContent(e.target.value)}
+                  className={`product-filter-btn ${
+                    productShowContent === "cold-brew" ? "navigate-active" : ""
+                  }`}
                 >
                   冷萃壺、冰釀壺
                 </button>
@@ -264,6 +268,11 @@ const Products = () => {
                 <button
                   value={"electronic-scale"}
                   onClick={(e) => handleChangeProductContent(e.target.value)}
+                  className={`product-filter-btn ${
+                    productShowContent === "electronic-scale"
+                      ? "navigate-active"
+                      : ""
+                  }`}
                 >
                   咖啡電子秤
                 </button>
@@ -272,6 +281,11 @@ const Products = () => {
                 <button
                   value={"coffee-dripper"}
                   onClick={(e) => handleChangeProductContent(e.target.value)}
+                  className={`product-filter-btn ${
+                    productShowContent === "coffee-dripper"
+                      ? "navigate-active"
+                      : ""
+                  }`}
                 >
                   咖啡濾杯
                 </button>
@@ -280,6 +294,9 @@ const Products = () => {
                 <button
                   value={"kettle"}
                   onClick={(e) => handleChangeProductContent(e.target.value)}
+                  className={`product-filter-btn ${
+                    productShowContent === "kettle" ? "navigate-active" : ""
+                  }`}
                 >
                   手沖壺
                 </button>
