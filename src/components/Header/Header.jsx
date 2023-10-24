@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { animateScroll } from "react-scroll";
 import "./header.scss";
 import { useLocation } from "react-router-dom";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
 import logo from "assets/images/CoffeeHouseLogo.png";
@@ -24,6 +24,7 @@ const Header = () => {
       setScrollHeader(false);
     }
   };
+  const { productBeanId } = useParams();
 
   useEffect(() => {
     window.addEventListener("scroll", changeHeader);
@@ -95,6 +96,35 @@ const Header = () => {
                       >
                         {name}
                       </ScrollLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {/* hamburger icon */}
+            <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
+              <Hamburger fill={"var(--title-color)"} />
+            </div>
+            <RouterLink to="/login">
+              <BiUserCircle className="icon" />
+            </RouterLink>
+            {/* <RouterLink to="/cart">
+              <BsFillCartFill className="icon" />
+            </RouterLink> */}
+          </>
+        )}
+
+        {location.pathname === `/product_page/${productBeanId}` && (
+          <>
+            {/* menu */}
+            <div className={`${showMenu ? "show-menu" : ""} nav__menu`}>
+              <ul className="nav__list">
+                {productLinks.map(({ name, path }, index) => {
+                  return (
+                    <li className="nav__item" key={index}>
+                      <RouterLink to={`/product_page`} className="nav__link">
+                        {name}
+                      </RouterLink>
                     </li>
                   );
                 })}

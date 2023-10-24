@@ -1,0 +1,261 @@
+/* ProductDetail.scss */
+// Swiper 自己的css className
+.swiper-pagination {
+  position: initial;
+  margin-top: 3rem;
+}
+
+.swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--title-color);
+  //不要有藍色的background
+  background: transparent;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--first-color);
+}
+
+.product-detail-page {
+  position: relative;
+  min-height: calc(100vh + var(--header-height));
+  background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover
+    fixed;
+
+  display: flex;
+  flex-direction: column;
+
+  .product-detail-container {
+    .product-info-container {
+      width: 1300px;
+      margin:0 auto;
+      padding-top: calc(20px + var(--header-height));
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-around;
+      height: 750px;
+      .product-info-left {
+        //outline: 1px solid orange;
+        width: 50%;
+        height: 100%;
+        .product-img {
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--radius);
+        }
+      }
+
+      .product-info-right {
+        width: 50%;
+        height: 100%;
+        padding-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        padding: 100px;
+        backdrop-filter: blur(10px);
+        color: var(--first-color);
+        font-weight: bold;
+
+        h2 {
+          padding-bottom: 10px;
+        }
+        p {
+          font-size: 18px;
+          padding: 10px 0px;
+        }
+        li {
+          font-size: 18px;
+        }
+
+        .buy-it-container {
+          display: column;
+          font-size: 25px;
+          padding: 10px 0px;
+
+          .selection-container {
+            position: relative;
+            width: 200px;
+
+            .product-selection-box {
+              border-radius: 5px;
+              font-weight: bold;
+              border: none;
+              outline: none;
+              appearance: none;
+              padding: 10px 30px 10px 19px;
+              width: 100%;
+              color: white;
+              background-color: var(--first-color);
+              font-size: 18px;
+              transition: 0.3s var(--transition);
+            }
+
+            .product-selection-box:hover {
+              background-color: white;
+              color: var(--first-color);
+            }
+
+            .down-arrow-icon-container {
+              position: absolute;
+              right: 3px;
+              top: 0;
+              height: 100%;
+              width: 25px;
+              color: rgb(255, 255, 255);
+              display: flex;
+              align-items: center;
+              transition: 0.3s var(--transition);
+            }
+            .down-arrow-icon-container:hover {
+              color: var(--first-color);
+            }
+          }
+
+          .quantity-content-container {
+            padding-top: 10px;
+            display: flex;
+
+            .quantity-container {
+              width: 150px;
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+              color: #fff;
+              transition: 0.3s var(--transition);
+              .minus-icon,
+              .plus-icon {
+                transition: 0.3s var(--transition);
+              }
+
+              .minus-icon:hover {
+                color: var(--first-color);
+              }
+
+              .plus-icon:hover {
+                color: var(--first-color);
+              }
+            }
+          }
+        }
+        .add-btn {
+          width: 150px;
+          font-weight: bold;
+          transition: 0.3s var(--transition);
+        }
+      }
+    }
+    .product-description-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-color);
+      padding: 30px;
+      gap: 20px;
+      .product-description-top {
+        border: 3px dashed var(--first-color);
+        width: 400px;
+        height: 400px;
+        padding: 10px;
+        border-radius: var(--radius);
+        .bean-drip-img {
+          border-radius: var(--radius);
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .product-description-bottom {
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        span {
+          color: var(--first-color);
+        }
+        p {
+          color: white;
+        }
+        .product-description {
+          text-align: center;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  .other-relative-product-container {
+    padding: 50px;
+
+    h1 {
+      text-align: center;
+    }
+
+    .other-relative-product {
+      padding: 20px 0px;
+
+      .other-relative-product__item {
+        width: 400px;
+        height: 400px;
+
+        .other-relative-product__img-wrapper {
+          height: 100%;
+          width: 100%;
+          .other-relative-product__img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: var(--radius);
+          }
+        }
+
+        .other-relative-product-title {
+          color: var(--first-color);
+          font-weight: bold;
+          text-align: center;
+          padding-top: 10px;
+        }
+      }
+    }
+
+    .link-back-to-product-page {
+      align-self: center;
+      color: var(--first-color);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .link-back-to-product-page:hover {
+      color: white;
+      .other-relative-product__item {
+        .other-relative-product__img-wrapper {
+          width: 100px;
+          height: 100px;
+        }
+        .other-relative-product-title {
+          color: var(--first-color);
+        }
+      }
+    }
+  }
+}
+
+//product-detail-page background picture的深色遮罩
+.product-detail-page::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--hsla);
+}
+
+.product-detail-page .product-detail-container,
+.other-relative-product-container {
+  position: relative;
+  z-index: 1;
+}

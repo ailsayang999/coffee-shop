@@ -6,6 +6,7 @@ import {
   LoginPage,
   ProductPage,
 } from "pages";
+import ProductBeanDetail from "components/ProductBeanDetail/ProductBeanDetail";
 
 const basename = process.env.PUBLIC_URL;
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="*" element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="product_page" element={<ProductPage />} />
+          <Route path="product_page/:productBeanId" element={<ProductBeanDetail />} />
         </Routes>
       </BrowserRouter>
     </div>
