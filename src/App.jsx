@@ -1,4 +1,3 @@
-import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import {
@@ -7,6 +6,8 @@ import {
   ProductPage,
 } from "pages";
 import ProductBeanDetail from "components/ProductBeanDetail/ProductBeanDetail";
+
+import "./App.scss"; //要在最後才import不然會無法RWD
 
 const basename = process.env.PUBLIC_URL;
 
