@@ -1,6 +1,8 @@
 import React from "react";
 import "./loginContent.scss";
 import { BiSolidUser, BiSolidLockOpen } from "react-icons/bi";
+import { FcGoogle } from "react-icons/fc";
+import { SiFacebook } from "react-icons/si";
 
 const LoginContent = () => {
   return (
@@ -36,6 +38,16 @@ const LoginContent = () => {
               Don't have an account <a href="/">Register</a>
             </p>
           </div>
+
+          <button className="login-google-btn login-account-btn">
+            <FcGoogle className="btn-icon" />
+            Continue with Google
+          </button>
+
+          <button className="login-google-btn login-account-btn">
+            <SiFacebook className="btn-icon fb-btn" />
+            Continue with Facebook
+          </button>
         </form>
       </div>
     </div>
