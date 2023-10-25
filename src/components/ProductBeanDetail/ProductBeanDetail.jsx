@@ -35,8 +35,8 @@ const specificBeanInfo = {
   thickness: 2,
   isCoffee: true,
   viewCount: 0,
-  createdAt: "2023-10-20T10:05:53.000Z",
-  updatedAt: "2023-10-20T10:05:53.000Z",
+  createdAt: "2023-10-23T11:46:05.000Z",
+  updatedAt: "2023-10-23T11:46:05.000Z",
   Images: [
     {
       id: 1,
@@ -47,9 +47,19 @@ const specificBeanInfo = {
   Variants: [
     {
       id: 1,
-      variantName: "30g",
+      variantName: "濾掛",
       variantPrice: 35,
+      variantDescription:
+        "最低購買量5包！\n新鮮的豆子磨成粉後，馬上進行真空包裝，拆開即可沖泡。適合尋求便利，想忙裡偷閒喝杯咖啡的你\n滿15包會用精美紙盒包裝\n最佳賞味期限為1個月",
       discountedPrice: 9,
+    },
+    {
+      id: 2,
+      variantName: "半磅裝",
+      variantPrice: 350,
+      variantDescription:
+        "看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。最佳賞味期限為2個月。",
+      discountedPrice: 88,
     },
   ],
 };
@@ -72,8 +82,9 @@ function ProductDetail() {
   const { productBeanId } = useParams(); //grab parameters from route, you can use the productId in the followings
 
   // const [specificBeanInfo, setSpecificBeanInfo] = useState(null);
-  const [quantity, setQuantity] = useState(0);
-  const [selectedOption, setSelectedOption] = useState("default");
+  const [quantity, setQuantity] = useState(1);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOptionPrice, setSelectedOptionPrice] = useState(specificBeanInfo.Variants[0].variantPrice);
 
   // useEffect(() => {
   //   const getBeansByIdAsync = async () => {
@@ -105,20 +116,24 @@ function ProductDetail() {
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
+    //找出價格
+    const price = specificBeanInfo.Variants.filter(
+      (item) => item.variantName === event.target.value
+    );
+    setSelectedOptionPrice(price[0].variantPrice);
   };
 
   const handleAddToCart = () => {
     if (quantity === 0) {
       alert("請選擇商品數量");
-    } else if (selectedOption === "default") {
-      alert("請選擇商品種類");
-    } else {
+    }  else {
       // 在這裡處理將商品添加到購物車的邏輯
-      console.log(
-        `已將${quantity}個 "${specificBeanInfo.name}" ${selectedOption} 添加到購物車`
-      );
       alert(
-        `已將${quantity}個 "${specificBeanInfo.name}" ${selectedOption} 添加到購物車`
+        `已將${quantity}個 "${
+          specificBeanInfo.name
+        }" ${selectedOption} 添加到購物車 \n 總共是：${
+          selectedOptionPrice * quantity
+        }`
       );
       setQuantity(0);
       setSelectedOption("default");
@@ -152,7 +167,7 @@ function ProductDetail() {
                 <li>濃郁: {specificBeanInfo.thickness}</li>
               </ul>
 
-              <p>價格: {specificBeanInfo.Variants[0].variantPrice}</p>
+              <p>價格: {selectedOptionPrice}</p>
 
               <div className="buy-it-container">
                 <div className="selection-container">
@@ -161,10 +176,17 @@ function ProductDetail() {
                     value={selectedOption}
                     onChange={handleSelectChange}
                   >
-                    <option value="default">請選擇種類</option>
-                    <option value="濾掛">濾掛</option>
-                    <option value="半磅裝">半磅裝</option>
+                    {specificBeanInfo.Variants.map(
+                      ({ id, variantName }, index) => {
+                        return (
+                          <option value={variantName} key={index}>
+                            {variantName}
+                          </option>
+                        );
+                      }
+                    )}
                   </select>
+
                   <div className="down-arrow-icon-container">
                     <BiSolidChevronsDown className="down-arrow-icon" />
                   </div>
