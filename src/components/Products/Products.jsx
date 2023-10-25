@@ -1,30 +1,17 @@
 import React from "react";
 import "./products.scss";
-import { coffeeBeanProduct, coffeeEquipmentProduct } from "Data";
+import { coffeeEquipmentProduct } from "Data";
 import { getProductsCoffeeBean, getProductsCoffeeEquipment } from "api/product";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { bean } from "Data";
 
-// bean之後要換成get all product的結果
-const YirgacheffeArray = bean.filter((item) => {
-  return item.category === "耶加雪夫系列";
-});
-
-const GeishaArray = bean.filter((item) => {
-  return item.category === "藝伎豆";
-});
-
-const SaleArray = bean.filter((item) => {
-  return item.category === "超值精選豆";
-});
-
-const PremiumArray = bean.filter((item) => {
-  return item.category === "嚴選精品豆";
-});
+const ShowEmpty = () => {
+  return <div className="empty-content">尚無資料</div>;
+};
 
 // YirgacheffeContent component
-const YirgacheffeContent = () => {
+const YirgacheffeContent = ({ YirgacheffeArray }) => {
   return (
     <>
       <div className="product-category-subtitle">
@@ -35,27 +22,30 @@ const YirgacheffeContent = () => {
             fontSize: "20px",
           }}
         >
-          {YirgacheffeArray[0].category}
+          {YirgacheffeArray.length === 0 && <ShowEmpty />}
+          {YirgacheffeArray.length > 0 && YirgacheffeArray[0].category}
         </h2>
       </div>
 
       <div className="items">
-        {YirgacheffeArray[0].Products.map(({ Images, name, id }, index) => {
-          return (
-            <div key={index} className="item">
-              <RouterLink to={`/product_page/${id}`}>
-                <img src={Images[0].imgUrl} alt="" className="item-img" />
-                <div className="item-title">{name}</div>
-              </RouterLink>
-            </div>
-          );
-        })}
+        {YirgacheffeArray.length === 0 && <ShowEmpty />}
+        {YirgacheffeArray.length > 0 &&
+          YirgacheffeArray[0].Products.map(({ Images, name, id }, index) => {
+            return (
+              <div key={index} className="item">
+                <RouterLink to={`/product_page/${id}`}>
+                  <img src={Images[0].imgUrl} alt="" className="item-img" />
+                  <div className="item-title">{name}</div>
+                </RouterLink>
+              </div>
+            );
+          })}
       </div>
     </>
   );
 };
 // GeishaContent component
-const GeishaContent = () => {
+const GeishaContent = ({ GeishaArray }) => {
   return (
     <>
       <div className="product-category-subtitle">
@@ -86,7 +76,7 @@ const GeishaContent = () => {
   );
 };
 // SaleContent component
-const SaleContent = () => {
+const SaleContent = ({ SaleArray }) => {
   return (
     <>
       <div className="product-category-subtitle">
@@ -117,7 +107,7 @@ const SaleContent = () => {
   );
 };
 // PremiumContent component
-const PremiumContent = () => {
+const PremiumContent = ({ PremiumArray }) => {
   return (
     <>
       <div className="product-category-subtitle">
@@ -149,8 +139,8 @@ const PremiumContent = () => {
 };
 
 const Products = () => {
-  const [coffeeBean, setCoffeeBean] = useState("");
-  const [coffeeEquipment, setCoffeeEquipment] = useState("");
+  const [coffeeBean, setCoffeeBean] = useState([]);
+  const [coffeeEquipment, setCoffeeEquipment] = useState([]);
 
   //切換商品項目
   const [productShowContent, setProductShowContent] = useState("yirgacheffe");
@@ -159,6 +149,25 @@ const Products = () => {
     setProductShowContent(contentValue);
     // console.log(contentValue);
   };
+
+  // 取得個別咖啡豆種類
+  const YirgacheffeArray = coffeeBean.filter((item) => {
+    return item.category === "耶加雪夫系列";
+  });
+
+  const GeishaArray = coffeeBean.filter((item) => {
+    return item.category === "藝伎豆";
+  });
+
+  const SaleArray = coffeeBean.filter((item) => {
+    return item.category === "超值精選豆";
+  });
+
+  const PremiumArray = coffeeBean.filter((item) => {
+    return item.category === "嚴選精品豆";
+  });
+
+
 
   //取得商品資訊
   useEffect(() => {
@@ -311,10 +320,18 @@ const Products = () => {
               <h1> 咖啡豆、濾掛式咖啡</h1>
             </div>
 
-            {productShowContent === "yirgacheffe" && <YirgacheffeContent />}
-            {productShowContent === "geisha" && <GeishaContent />}
-            {productShowContent === "sale" && <SaleContent />}
-            {productShowContent === "premium" && <PremiumContent />}
+            {productShowContent === "yirgacheffe" && (
+              <YirgacheffeContent YirgacheffeArray={YirgacheffeArray} />
+            )}
+            {productShowContent === "geisha" && (
+              <GeishaContent GeishaArray={GeishaArray} />
+            )}
+            {productShowContent === "sale" && (
+              <SaleContent SaleArray={SaleArray} />
+            )}
+            {productShowContent === "premium" && (
+              <PremiumContent PremiumArray={PremiumArray} />
+            )}
           </section>
 
           <section className="equipment item-container" id="equipment">
