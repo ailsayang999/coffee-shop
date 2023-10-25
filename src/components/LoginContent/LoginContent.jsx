@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./loginContent.scss";
 import { BiSolidUser, BiSolidLockOpen } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 
 const LoginContent = () => {
+  const handleGoogleBtnClick = () => {};
+  const handleFacebookBtnClick = () => {};
+
   return (
     <div className="login-page">
       <div className="login-page-wrapper">
@@ -39,12 +42,18 @@ const LoginContent = () => {
             </p>
           </div>
 
-          <button className="login-google-btn login-account-btn">
+          <button
+            className="login-google-btn login-account-btn"
+            onClick={handleGoogleBtnClick}
+          >
             <FcGoogle className="btn-icon" />
             Continue with Google
           </button>
 
-          <button className="login-google-btn login-account-btn">
+          <button
+            className="login-google-btn login-account-btn"
+            onClick={handleFacebookBtnClick}
+          >
             <SiFacebook className="btn-icon fb-btn" />
             Continue with Facebook
           </button>
