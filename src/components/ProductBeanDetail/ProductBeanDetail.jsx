@@ -63,28 +63,41 @@ const specificBeanInfo = {
     },
   ],
 };
-const categoryNum = specificBeanInfo.categoryId - 1;
 
-// 咖啡種類array
-const beanCategory = bean.map((item) => {
-  return item.category;
-});
-
-// 其他相關商品:
-//先找出otherBean所有Product
-const sameCategoryBackendBean = bean.filter((item) => {
-  return item.category === beanCategory[categoryNum];
-});
-
-const otherRelativeBeanArray = sameCategoryBackendBean[0].Products;
+// 顯示尚無資料
+const ShowEmpty = () => {
+  return <div className="empty-content">尚無資料</div>;
+};
 
 function ProductDetail() {
   const { productBeanId } = useParams(); //grab parameters from route, you can use the productId in the followings
 
-  const [specificBean, setSpecificBean] = useState(specificBeanInfo);
+  const productCategoryArray = [
+    {
+      id: 1,
+      mainCategory: "咖啡豆、濾掛式",
+      subCategory: ["耶加雪夫系列", "藝伎豆", "超值精選豆", "嚴選精品豆"],
+    },
+    {
+      id: 2,
+      mainCategory: "咖啡器材",
+      subCategory: [
+        "磨豆機",
+        "冷萃壺、冰釀壺",
+        "咖啡電子秤",
+        "咖啡濾杯",
+        "手沖壺",
+      ],
+    },
+  ];
+  const beanCategory = productCategoryArray[0].subCategory;
+
+  const [specificBean, setSpecificBean] = useState(false);
+  const [categoryNum, setCategoryNum] = useState(0);
+  const [productCategory, setProductCategory] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState("");
-  const [selectedOptionPrice, setSelectedOptionPrice] = useState(specificBeanInfo.Variants[0].variantPrice);
+  const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
 
   useEffect(() => {
     const getBeansByIdAsync = async () => {
@@ -92,6 +105,11 @@ function ProductDetail() {
         const backendSpecificCoffeeBean = await getBeansById(productBeanId);
         console.log("backendSpecificCoffeeBean", backendSpecificCoffeeBean); //拿到特定咖啡資料
         setSpecificBean(backendSpecificCoffeeBean);
+        //預設價格
+        setSelectedOptionPrice(
+          backendSpecificCoffeeBean.Variants[0].variantPrice
+        );
+        setProductCategory();
       } catch (error) {
         console.error(error);
       }
@@ -99,10 +117,6 @@ function ProductDetail() {
 
     getBeansByIdAsync();
   }, []);
-
-  if (!specificBean) {
-    return <div>商品不存在</div>;
-  }
 
   const handleDecrementQuantity = () => {
     if (quantity > 0) {
@@ -117,7 +131,7 @@ function ProductDetail() {
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
     //找出價格
-    const price = specificBeanInfo.Variants.filter(
+    const price = specificBean.Variants.filter(
       (item) => item.variantName === event.target.value
     );
     setSelectedOptionPrice(price[0].variantPrice);
@@ -126,11 +140,11 @@ function ProductDetail() {
   const handleAddToCart = () => {
     if (quantity === 0) {
       alert("請選擇商品數量");
-    }  else {
+    } else {
       // 在這裡處理將商品添加到購物車的邏輯
       alert(
         `已將${quantity}個 "${
-          specificBeanInfo.name
+          specificBean.name
         }" ${selectedOption} 添加到購物車 \n 總共是：${
           selectedOptionPrice * quantity
         }`
@@ -140,6 +154,20 @@ function ProductDetail() {
     }
   };
 
+  // 咖啡種類array
+
+  const [otherRelativeBeanArray, setOtherRelativeBeanArray] = useState([]);
+
+  // if (specificBean) {
+  //   setCategoryNum(specificBean.categoryId - 1)
+  //   // 其他相關商品:
+  //   //先找出otherBean所有Product
+  //   const sameCategoryBackendBean = bean.filter((item) => {
+  //     return item.category === beanCategory[categoryNum];
+  //   });
+  //   setOtherRelativeBeanArray(sameCategoryBackendBean[0].Products);
+  // }
+
   return (
     <>
       <Header />
@@ -147,73 +175,84 @@ function ProductDetail() {
         <div className="product-detail-container">
           <div className="product-info-container">
             <div className="product-info-left">
-              
-              <img
-                src={specificBean.Images[0].imgUrl}
-                alt={specificBeanInfo.title}
-                className="product-img"
-              />
+              {!specificBean && <ShowEmpty />}
+              {specificBean && (
+                <img
+                  src={specificBean.Images[0].imgUrl}
+                  alt={specificBean.title}
+                  className="product-img"
+                />
+              )}
             </div>
             <div className="product-info-right">
-              <h1>{specificBeanInfo.name}</h1>
-              <h2>{beanCategory[categoryNum]}</h2>
-
-              <p>{specificBeanInfo.description}</p>
-
-              <ul>
-                <li>焙度: {specificBeanInfo.roast}</li>
-                <li>香味: {specificBeanInfo.aroma}</li>
-                <li>酸味: {specificBeanInfo.sour}</li>
-                <li>苦味: {specificBeanInfo.bitter}</li>
-                <li>濃郁: {specificBeanInfo.thickness}</li>
-              </ul>
-
-              <p>價格: {selectedOptionPrice}</p>
-
-              <div className="buy-it-container">
-                <div className="selection-container">
-                  <select
-                    className="product-selection-box"
-                    value={selectedOption}
-                    onChange={handleSelectChange}
-                  >
-                    {specificBeanInfo.Variants.map(
-                      ({ id, variantName }, index) => {
-                        return (
-                          <option value={variantName} key={index}>
-                            {variantName}
-                          </option>
-                        );
-                      }
+              {!specificBean && <ShowEmpty />}
+              {specificBean && (
+                <>
+                  <h2>{specificBean.name}</h2>
+                  {/* <h2>{productCategory}</h2> */}
+                  <p>{specificBean.description}</p>
+                  <ul>
+                    {specificBean.roast !== null && (
+                      <li>焙度: {specificBean.roast}</li>
                     )}
-                  </select>
 
-                  <div className="down-arrow-icon-container">
-                    <BiSolidChevronsDown className="down-arrow-icon" />
+                    {specificBean.aroma !== null && (
+                      <li>香味: {specificBean.aroma}</li>
+                    )}
+                    {specificBean.sour !== null && (
+                      <li>酸味: {specificBean.sour}</li>
+                    )}
+                    {specificBean.sour !== null && (
+                      <li>苦味: {specificBean.bitter}</li>
+                    )}
+                    {specificBean.thickness !== null && (
+                      <li>濃郁: {specificBean.thickness}</li>
+                    )}
+                  </ul>
+                  <p>價格: {selectedOptionPrice}</p>
+                  <div className="buy-it-container">
+                    <div className="selection-container">
+                      <select
+                        className="product-selection-box"
+                        value={selectedOption}
+                        onChange={handleSelectChange}
+                      >
+                        {specificBean.Variants.map(({ variantName }, index) => {
+                          return (
+                            <option value={variantName} key={index}>
+                              {variantName}
+                            </option>
+                          );
+                        })}
+                      </select>
+
+                      <div className="down-arrow-icon-container">
+                        <BiSolidChevronsDown className="down-arrow-icon" />
+                      </div>
+                    </div>
+
+                    <div className="quantity-content-container">
+                      <div>購買數量：</div>
+                      <div className="quantity-container">
+                        <AiFillMinusCircle
+                          className="minus-icon"
+                          onClick={handleDecrementQuantity}
+                        />
+
+                        <span className="item-quantity">{quantity}</span>
+
+                        <AiFillPlusCircle
+                          className="plus-icon"
+                          onClick={handleIncrementQuantity}
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-
-                <div className="quantity-content-container">
-                  <div>購買數量：</div>
-                  <div className="quantity-container">
-                    <AiFillMinusCircle
-                      className="minus-icon"
-                      onClick={handleDecrementQuantity}
-                    />
-
-                    <span className="item-quantity">{quantity}</span>
-
-                    <AiFillPlusCircle
-                      className="plus-icon"
-                      onClick={handleIncrementQuantity}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <button onClick={handleAddToCart} className="add-btn btn">
-                加入購物車
-              </button>
+                  <button onClick={handleAddToCart} className="add-btn btn">
+                    加入購物車
+                  </button>
+                </>
+              )}
             </div>
           </div>
 
@@ -228,8 +267,10 @@ function ProductDetail() {
               />
             </div>
             <div className="product-description-bottom">
+              {!specificBean && <ShowEmpty />}
+              {!specificBean && <></>}
               <span className="product-description">
-                精品咖啡豆：每包½磅
+                {"精品咖啡豆：每包½磅 (藝伎豆為每包¼磅)"}
                 <p>
                   看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。
                   最佳賞味期限為2個月。
@@ -251,45 +292,51 @@ function ProductDetail() {
         <div className="other-relative-product-container">
           <h1>相關商品</h1>
           {/* Swiper Pagination */}
-          <Swiper
-            spaceBetween={30}
-            pagination={{ clickable: true }}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-            }}
-            modules={[Autoplay, Pagination]}
-            className="other-relative-product"
-          >
-            {otherRelativeBeanArray.map(({ name, id, Images }) => {
-              return (
-                <SwiperSlide className="other-relative-product__item" key={id}>
-                  <RouterLink to={`/product_page/${id}`}>
-                    <div className="other-relative-product__img-wrapper">
-                      <img
-                        src={Images[0].imgUrl}
-                        alt=""
-                        className="other-relative-product__img"
-                        loading="lazy"
-                      />
-                    </div>
-                  </RouterLink>
+          {!specificBean && <ShowEmpty />}
+          {specificBean && (
+            <Swiper
+              spaceBetween={30}
+              pagination={{ clickable: true }}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 30,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
+              modules={[Autoplay, Pagination]}
+              className="other-relative-product"
+            >
+              {otherRelativeBeanArray.map(({ name, id, Images }) => {
+                return (
+                  <SwiperSlide
+                    className="other-relative-product__item"
+                    key={id}
+                  >
+                    <RouterLink to={`/product_page/${id}`}>
+                      <div className="other-relative-product__img-wrapper">
+                        <img
+                          src={Images[0].imgUrl}
+                          alt=""
+                          className="other-relative-product__img"
+                          loading="lazy"
+                        />
+                      </div>
+                    </RouterLink>
 
-                  <div className="other-relative-product-title">{name}</div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+                    <div className="other-relative-product-title">{name}</div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          )}
 
           <Link to="/product_page" className="link-back-to-product-page">
             <BsArrowLeftCircleFill className="link-back-to-product-page-icon" />
