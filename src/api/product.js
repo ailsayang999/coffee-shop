@@ -44,8 +44,18 @@ export const getProductsCoffeeBean = async () => {
 export const getProductsCoffeeEquipment = async () => {
   try {
     const res = await instance.get(`${baseUrl}/products?isUtensil=true`);
-    return res.data;
+    return res.data.data;
   } catch (error) {
     console.error("[Get Products Coffee Equipment failed]");
+  }
+};
+
+// 取得特定商品 getBeansById
+export const getBeansById = async (id) => {
+  try {
+    const res = await instance.get(`${baseUrl}/products/${id}`);
+    return res.data.data;
+  } catch (error) {
+    console.error("[Get Specific Product failed]");
   }
 };

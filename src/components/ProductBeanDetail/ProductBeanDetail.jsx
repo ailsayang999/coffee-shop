@@ -81,26 +81,26 @@ const otherRelativeBeanArray = sameCategoryBackendBean[0].Products;
 function ProductDetail() {
   const { productBeanId } = useParams(); //grab parameters from route, you can use the productId in the followings
 
-  // const [specificBeanInfo, setSpecificBeanInfo] = useState(null);
+  const [specificBean, setSpecificBean] = useState(specificBeanInfo);
   const [quantity, setQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedOptionPrice, setSelectedOptionPrice] = useState(specificBeanInfo.Variants[0].variantPrice);
 
-  // useEffect(() => {
-  //   const getBeansByIdAsync = async () => {
-  //     try {
-  //       const backendSpecificCoffeeBean = await getBeansById(productBeanId);
-  //       console.log("backendSpecificCoffeeBean", backendSpecificCoffeeBean); //拿到特定咖啡資料
-  //       setSpecificBeanInfo(backendSpecificCoffeeBean);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  useEffect(() => {
+    const getBeansByIdAsync = async () => {
+      try {
+        const backendSpecificCoffeeBean = await getBeansById(productBeanId);
+        console.log("backendSpecificCoffeeBean", backendSpecificCoffeeBean); //拿到特定咖啡資料
+        setSpecificBean(backendSpecificCoffeeBean);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   getBeansByIdAsync();
-  // }, []);
+    getBeansByIdAsync();
+  }, []);
 
-  if (!specificBeanInfo) {
+  if (!specificBean) {
     return <div>商品不存在</div>;
   }
 
@@ -147,8 +147,9 @@ function ProductDetail() {
         <div className="product-detail-container">
           <div className="product-info-container">
             <div className="product-info-left">
+              
               <img
-                src={specificBeanInfo.Images[0].imgUrl}
+                src={specificBean.Images[0].imgUrl}
                 alt={specificBeanInfo.title}
                 className="product-img"
               />

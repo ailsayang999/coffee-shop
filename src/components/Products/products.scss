@@ -32,7 +32,9 @@
         h2 {
           margin: 20px 0px;
         }
-
+        .filter-icon {
+          margin-right: 10px;
+        }
         .product-filter-btn {
           font-size: 18px;
           font-weight: bold;
@@ -40,6 +42,7 @@
           background: var(--container-color);
           border: none;
           color: var(--first-color);
+          cursor: pointer;
           transition: 0.3s var(--transition);
         }
 

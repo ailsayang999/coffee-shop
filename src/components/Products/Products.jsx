@@ -5,13 +5,15 @@ import { getProductsCoffeeBean, getProductsCoffeeEquipment } from "api/product";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { bean } from "Data";
+import { BiSolidCoffeeBean } from "react-icons/bi";
 
+// 顯示尚無資料
 const ShowEmpty = () => {
   return <div className="empty-content">尚無資料</div>;
 };
 
-// YirgacheffeContent component
-const YirgacheffeContent = ({ YirgacheffeArray }) => {
+// 顯示商品類別項目
+const ShowProductContent = ({ productShowCategory, product }) => {
   return (
     <>
       <div className="product-category-subtitle">
@@ -22,13 +24,34 @@ const YirgacheffeContent = ({ YirgacheffeArray }) => {
             fontSize: "20px",
           }}
         >
-          {YirgacheffeArray.length === 0 && <ShowEmpty />}
-          {YirgacheffeArray.length > 0 && YirgacheffeArray[0].category}
+          {productShowCategory}
         </h2>
       </div>
 
       <div className="items">
-        {YirgacheffeArray.length === 0 && <ShowEmpty />}
+        {product.filter((item) => {
+          return item.category === productShowCategory;
+        }).length === 0 && <ShowEmpty />}
+
+        {product.filter((item) => {
+          return item.category === productShowCategory;
+        }).length > 0 &&
+          product
+            .filter((item) => {
+              return item.category === productShowCategory;
+            })[0]
+            .Products.map(({ Images, name, id }, index) => {
+              return (
+                <div key={index} className="item">
+                  <RouterLink to={`/product_page/${id}`}>
+                    <img src={Images[0].imgUrl} alt="" className="item-img" />
+                    <div className="item-title">{name}</div>
+                  </RouterLink>
+                </div>
+              );
+            })}
+
+        {/* {YirgacheffeArray.length === 0 && <ShowEmpty />}
         {YirgacheffeArray.length > 0 &&
           YirgacheffeArray[0].Products.map(({ Images, name, id }, index) => {
             return (
@@ -39,137 +62,67 @@ const YirgacheffeContent = ({ YirgacheffeArray }) => {
                 </RouterLink>
               </div>
             );
-          })}
+          })} */}
       </div>
     </>
   );
 };
-// GeishaContent component
-const GeishaContent = ({ GeishaArray }) => {
+
+// 顯示商品類別Filter
+const FilterList = ({
+  productShowCategory,
+  handleChangeProductContent,
+  productCategoryArray,
+}) => {
   return (
     <>
-      <div className="product-category-subtitle">
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "10px",
-            fontSize: "20px",
-          }}
-        >
-          {GeishaArray[0].category}
-        </h2>
-      </div>
+      {productCategoryArray.map(({ mainCategory, subCategory },index) => {
+        return (
+          <div key={index}>
+            {/* 主類別 */}
+            <h2>{mainCategory}</h2>
 
-      <div className="items">
-        {GeishaArray[0].Products.map(({ Images, name, id }, index) => {
-          return (
-            <div key={index} className="item">
-              <RouterLink to={`/product_page/${id}`}>
-                <img src={Images[0].imgUrl} alt="" className="item-img" />
-                <div className="item-title">{name}</div>
-              </RouterLink>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-};
-// SaleContent component
-const SaleContent = ({ SaleArray }) => {
-  return (
-    <>
-      <div className="product-category-subtitle">
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "10px",
-            fontSize: "20px",
-          }}
-        >
-          {SaleArray[0].category}
-        </h2>
-      </div>
-
-      <div className="items">
-        {SaleArray[0].Products.map(({ Images, name, id }, index) => {
-          return (
-            <div key={index} className="item">
-              <RouterLink to={`/product_page/${id}`}>
-                <img src={Images[0].imgUrl} alt="" className="item-img" />
-                <div className="item-title">{name}</div>
-              </RouterLink>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-};
-// PremiumContent component
-const PremiumContent = ({ PremiumArray }) => {
-  return (
-    <>
-      <div className="product-category-subtitle">
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "10px",
-            fontSize: "20px",
-          }}
-        >
-          {PremiumArray[0].category}
-        </h2>
-      </div>
-
-      <div className="items">
-        {PremiumArray[0].Products.map(({ Images, name, id }, index) => {
-          return (
-            <div key={index} className="item">
-              <RouterLink to={`/product_page/${id}`}>
-                <img src={Images[0].imgUrl} alt="" className="item-img" />
-                <div className="item-title">{name}</div>
-              </RouterLink>
-            </div>
-          );
-        })}
-      </div>
+            {/* 次類別 (filter按鈕) */}
+            <ul>
+              {subCategory.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <BiSolidCoffeeBean className="filter-icon" />
+                    <button
+                      value={item}
+                      onClick={(e) =>
+                        handleChangeProductContent(e.target.value)
+                      }
+                      className={`product-filter-btn ${
+                        productShowCategory === item ? "navigate-active" : ""
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
     </>
   );
 };
 
 const Products = () => {
-  const [coffeeBean, setCoffeeBean] = useState([]);
-  const [coffeeEquipment, setCoffeeEquipment] = useState([]);
+  const [coffeeBean, setCoffeeBean] = useState([]); //存後端傳來的所有咖啡豆資料
+  const [coffeeEquipment, setCoffeeEquipment] = useState([]); //存後端傳來的所有咖啡周邊資料
 
-  //切換商品項目
-  const [productShowContent, setProductShowContent] = useState("yirgacheffe");
-
+  //商品顯示類別state
+  const [productShowCategory, setProductShowCategory] =
+    useState("耶加雪夫系列"); //初始社
+  //左側切換商品類別state
   const handleChangeProductContent = (contentValue) => {
-    setProductShowContent(contentValue);
-    // console.log(contentValue);
+    setProductShowCategory(contentValue);
   };
 
-  // 取得個別咖啡豆種類
-  const YirgacheffeArray = coffeeBean.filter((item) => {
-    return item.category === "耶加雪夫系列";
-  });
-
-  const GeishaArray = coffeeBean.filter((item) => {
-    return item.category === "藝伎豆";
-  });
-
-  const SaleArray = coffeeBean.filter((item) => {
-    return item.category === "超值精選豆";
-  });
-
-  const PremiumArray = coffeeBean.filter((item) => {
-    return item.category === "嚴選精品豆";
-  });
-
-
-
-  //取得商品資訊
+  // 向後端取得所有商品
   useEffect(() => {
     const getCoffeesBeanAsync = async () => {
       try {
@@ -194,166 +147,124 @@ const Products = () => {
     getCoffeesEquipmentAsync();
   }, []);
 
+  // 左側刪選器元件
+  const productCategoryArray = [
+    {
+      id: 1,
+      mainCategory: "咖啡豆、濾掛式",
+      subCategory: ["耶加雪夫系列", "藝伎豆", "超值精選豆", "嚴選精品豆"],
+    },
+    {
+      id: 2,
+      mainCategory: "咖啡器材",
+      subCategory: [
+        "磨豆機",
+        "冷萃壺、冰釀壺",
+        "咖啡電子秤",
+        "咖啡濾杯",
+        "手沖壺",
+      ],
+    },
+  ];
+
   return (
     <div className="products-page">
       <div className="product-container">
         <div className="product-container-left">
           <div className="category-container">
-            <h2>咖啡豆、濾掛式</h2>
-            <ul>
-              <li>
-                <button
-                  value={"yirgacheffe"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "yirgacheffe"
-                      ? "navigate-active"
-                      : ""
-                  }`}
-                >
-                  耶加雪夫系列
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"geisha"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "geisha" ? "navigate-active" : ""
-                  }`}
-                >
-                  藝伎豆
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"sale"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "sale" ? "navigate-active" : ""
-                  }`}
-                >
-                  超值精選豆
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"premium"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "premium" ? "navigate-active" : ""
-                  }`}
-                >
-                  嚴選精品豆
-                </button>
-              </li>
-            </ul>
-
-            <h2>咖啡器材</h2>
-            <ul>
-              <li>
-                <button
-                  value={"grinder"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "grinder" ? "navigate-active" : ""
-                  }`}
-                >
-                  磨豆機
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"cold-brew"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "cold-brew" ? "navigate-active" : ""
-                  }`}
-                >
-                  冷萃壺、冰釀壺
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"electronic-scale"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "electronic-scale"
-                      ? "navigate-active"
-                      : ""
-                  }`}
-                >
-                  咖啡電子秤
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"coffee-dripper"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "coffee-dripper"
-                      ? "navigate-active"
-                      : ""
-                  }`}
-                >
-                  咖啡濾杯
-                </button>
-              </li>
-              <li>
-                <button
-                  value={"kettle"}
-                  onClick={(e) => handleChangeProductContent(e.target.value)}
-                  className={`product-filter-btn ${
-                    productShowContent === "kettle" ? "navigate-active" : ""
-                  }`}
-                >
-                  手沖壺
-                </button>
-              </li>
-            </ul>
+            <FilterList
+              productShowCategory={productShowCategory}
+              handleChangeProductContent={handleChangeProductContent}
+              productCategoryArray={productCategoryArray}
+            />
           </div>
         </div>
 
         <div className="product-container-right">
-          <section className="coffee item-container" id="coffee">
+
+          <section className="item-container">
             <div className="product-category-title">
               <h1> 咖啡豆、濾掛式咖啡</h1>
             </div>
-
-            {productShowContent === "yirgacheffe" && (
-              <YirgacheffeContent YirgacheffeArray={YirgacheffeArray} />
+            {productCategoryArray.map(({ subCategory },index) => {
+              return (
+                <div key={index}>
+                  {productShowCategory ===
+                    subCategory.filter((item) => {
+                      return item === productShowCategory;
+                    })[0] && (
+                    <ShowProductContent
+                      productShowCategory={productShowCategory}
+                      product={coffeeBean}
+                    />
+                  )}
+                </div>
+              );
+            })}
+            {/* {productShowCategory === "耶加雪夫系列" && (
+              <ShowProductContent
+                productShowCategory={productShowCategory}
+                coffeeBean={coffeeBean}
+              />
             )}
-            {productShowContent === "geisha" && (
-              <GeishaContent GeishaArray={GeishaArray} />
+            {productShowCategory === "藝伎豆" && (
+              <ShowProductContent
+                productShowCategory={productShowCategory}
+                coffeeBean={coffeeBean}
+              />
             )}
-            {productShowContent === "sale" && (
-              <SaleContent SaleArray={SaleArray} />
+            {productShowCategory === "超值精選豆" && (
+              <ShowProductContent
+                productShowCategory={productShowCategory}
+                coffeeBean={coffeeBean}
+              />
             )}
-            {productShowContent === "premium" && (
-              <PremiumContent PremiumArray={PremiumArray} />
-            )}
+            {productShowCategory === "嚴選精品豆" && (
+              <ShowProductContent
+                productShowCategory={productShowCategory}
+                coffeeBean={coffeeBean}
+              />
+            )} */}
           </section>
 
-          <section className="equipment item-container" id="equipment">
+          <section className="item-container">
             <div className="product-category-title">
               <h1> 咖啡器材</h1>
             </div>
             <div className="items">
-              {/* {productShowContent === "grinder" && <GrinderContent />}
-              {productShowContent === "cold-brew" && <ColdBrewContent />}
-              {productShowContent === "electronic-scale" && (
+              {/* {productShowCategory === "grinder" && <GrinderContent />}
+              {productShowCategory === "cold-brew" && <ColdBrewContent />}
+              {productShowCategory === "electronic-scale" && (
                 <ElectronicScaleContent />
               )}
-              {productShowContent === "coffee-dripper" && (
+              {productShowCategory === "coffee-dripper" && (
                 <CoffeeDripperContent />
               )}
-              {productShowContent === "kettle" && <KettleContent />} */}
+              {productShowCategory === "kettle" && <KettleContent />} */}
 
-              {coffeeEquipmentProduct.map(({ img, title, id }, index) => {
+              {productCategoryArray.map(({ subCategory },index) => {
+                return (
+                  <div key={index}>
+                    {productShowCategory ===
+                      subCategory.filter((item) => {
+                        return item === productShowCategory;
+                      })[0] && (
+                      <ShowProductContent
+                        productShowCategory={productShowCategory}
+                        product={coffeeEquipment}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+
+
+
+              {coffeeEquipment.map(({ Images, title, id }, index) => {
                 return (
                   <div key={index} className="item">
                     <RouterLink to={`/product_page/${id}`}>
-                      <img src={img} alt="" className="item-img" />
+                      <img src={Images[0].imgUrl} alt="" className="item-img" />
                       <div className="item-title">{title}</div>
                     </RouterLink>
                   </div>
