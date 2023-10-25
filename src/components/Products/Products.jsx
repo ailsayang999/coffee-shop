@@ -76,7 +76,7 @@ const FilterList = ({
 }) => {
   return (
     <>
-      {productCategoryArray.map(({ mainCategory, subCategory },index) => {
+      {productCategoryArray.map(({ mainCategory, subCategory }, index) => {
         return (
           <div key={index}>
             {/* 主類別 */}
@@ -111,8 +111,8 @@ const FilterList = ({
 };
 
 const Products = () => {
-  const [coffeeBean, setCoffeeBean] = useState([]); //存後端傳來的所有咖啡豆資料
-  const [coffeeEquipment, setCoffeeEquipment] = useState([]); //存後端傳來的所有咖啡周邊資料
+  const [coffeeBean, setCoffeeBean] = useState(false); //存後端傳來的所有咖啡豆資料
+  const [coffeeEquipment, setCoffeeEquipment] = useState(false); //存後端傳來的所有咖啡周邊資料
 
   //商品顯示類別state
   const [productShowCategory, setProductShowCategory] =
@@ -181,26 +181,29 @@ const Products = () => {
         </div>
 
         <div className="product-container-right">
-
           <section className="item-container">
             <div className="product-category-title">
               <h1> 咖啡豆、濾掛式咖啡</h1>
             </div>
-            {productCategoryArray.map(({ subCategory },index) => {
-              return (
-                <div key={index}>
-                  {productShowCategory ===
-                    subCategory.filter((item) => {
-                      return item === productShowCategory;
-                    })[0] && (
-                    <ShowProductContent
-                      productShowCategory={productShowCategory}
-                      product={coffeeBean}
-                    />
-                  )}
-                </div>
-              );
-            })}
+            {!coffeeBean && <ShowEmpty />}
+
+            {coffeeBean &&
+              productCategoryArray.map(({ subCategory }, index) => {
+                return (
+                  <div key={index}>
+                    {productShowCategory ===
+                      subCategory.filter((item) => {
+                        return item === productShowCategory;
+                      })[0] && (
+                      <ShowProductContent
+                        productShowCategory={productShowCategory}
+                        product={coffeeBean}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+
             {/* {productShowCategory === "耶加雪夫系列" && (
               <ShowProductContent
                 productShowCategory={productShowCategory}
@@ -242,34 +245,38 @@ const Products = () => {
               )}
               {productShowCategory === "kettle" && <KettleContent />} */}
 
-              {productCategoryArray.map(({ subCategory },index) => {
-                return (
-                  <div key={index}>
-                    {productShowCategory ===
-                      subCategory.filter((item) => {
-                        return item === productShowCategory;
-                      })[0] && (
-                      <ShowProductContent
-                        productShowCategory={productShowCategory}
-                        product={coffeeEquipment}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-
-
-
-              {coffeeEquipment.map(({ Images, title, id }, index) => {
-                return (
-                  <div key={index} className="item">
-                    <RouterLink to={`/product_page/${id}`}>
-                      <img src={Images[0].imgUrl} alt="" className="item-img" />
-                      <div className="item-title">{title}</div>
-                    </RouterLink>
-                  </div>
-                );
-              })}
+              {!coffeeEquipment && <ShowEmpty />}
+              {coffeeEquipment &&
+                productCategoryArray.map(({ subCategory }, index) => {
+                  return (
+                    <div key={index}>
+                      {productShowCategory ===
+                        subCategory.filter((item) => {
+                          return item === productShowCategory;
+                        })[0] && (
+                        <ShowProductContent
+                          productShowCategory={productShowCategory}
+                          product={coffeeEquipment}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              {coffeeEquipment &&
+                coffeeEquipment.map(({ Images, title, id }, index) => {
+                  return (
+                    <div key={index} className="item">
+                      <RouterLink to={`/product_page/${id}`}>
+                        <img
+                          src={Images[0].imgUrl}
+                          alt=""
+                          className="item-img"
+                        />
+                        <div className="item-title">{title}</div>
+                      </RouterLink>
+                    </div>
+                  );
+                })}
             </div>
           </section>
         </div>
