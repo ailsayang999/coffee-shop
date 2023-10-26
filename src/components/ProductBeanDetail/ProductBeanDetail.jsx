@@ -304,18 +304,31 @@ function ProductDetail() {
             <div className="product-info-left">
               {!singleProduct && <ShowEmpty />}
               {singleProduct && (
-                <>
+                <Swiper
+                  // lazy={true}
+                  spaceBetween={30}
+                  pagination={{ clickable: true }}
+                  autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                  modules={[Autoplay, Pagination]}
+                  className="product-img-container"
+                >
                   {singleProduct.Images.map(({ imgUrl, id }, index) => {
                     return (
-                      <img
-                        src={imgUrl}
-                        alt={id}
-                        className="product-img"
-                        key={index}
-                      />
+                      <SwiperSlide key={index}>
+                        <img
+                          src={imgUrl}
+                          alt={id}
+                          className="product-img"
+                          loading="lazy"
+                          key={index}
+                        />
+                      </SwiperSlide>
                     );
                   })}
-                </>
+                </Swiper>
               )}
             </div>
 

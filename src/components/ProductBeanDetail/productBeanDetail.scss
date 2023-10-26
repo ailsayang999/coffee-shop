@@ -1,14 +1,18 @@
 /* ProductDetail.scss */
 // Swiper 自己的css className
+.swiper {
+  width: 100%;
+  height: 100%;
+}
 .swiper-pagination {
-  position: initial;
-  margin-top: 3rem;
+  position: center;
+  margin-top: 0.1rem;
 }
 
 .swiper-pagination-bullet {
   width: 16px;
   height: 16px;
-  border: 3px solid var(--title-color);
+  border: 3px solid var(--first-color-light);
   //不要有藍色的background
   background: transparent;
   opacity: 1;
@@ -29,8 +33,9 @@
 
   .product-detail-container {
     .product-info-container {
+      //outline: 1px solid red;
       width: 1300px;
-      margin:0 auto;
+      margin: 0 auto;
       padding-top: calc(20px + var(--header-height));
       padding-bottom: 10px;
       display: flex;
@@ -40,10 +45,12 @@
         //outline: 1px solid orange;
         width: 50%;
         height: 100%;
-        .product-img {
-          height: 100%;
-          object-fit: cover;
-          border-radius: var(--radius);
+        .product-img-container {
+          .product-img {
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius);
+          }
         }
       }
 
@@ -146,6 +153,7 @@
         }
       }
     }
+
     .product-description-container {
       display: flex;
       flex-direction: column;
