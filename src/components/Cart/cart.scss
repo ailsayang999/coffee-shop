@@ -1,0 +1,165 @@
+.cart-page {
+  //outline: 2px solid red;
+  color: var(--first-color);
+  font-weight: bold;
+  position: relative;
+  background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover
+    fixed;
+
+  .cart-container {
+    //outline: 2px solid rgb(0, 229, 255);
+    padding-top: var(--header-height);
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-bottom: 20px;
+
+    .cart-content-wrapper {
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      .cart-title {
+        font-weight: 300;
+        text-align: center;
+      }
+      .cart-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        .cart-top-button {
+          padding: 10px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+      }
+      .cart-top-texts {
+        .cart-top-text {
+          text-decoration: underline;
+          cursor: pointer;
+          margin: 0px 10px;
+        }
+      }
+      .cart-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        height: 100%;
+        .cart-info {
+          // outline: 1px solid red;
+          flex: 3;
+          height: 100%;
+
+          .cart-product {
+            //outline: 1px solid rgb(192, 146, 146);
+            display: flex;
+            justify-content: space-between;
+
+            .cart-product-detail {
+              flex: 2;
+              display: flex;
+              .cart-product-img {
+                width: 150px;
+                height: 150px;
+                border-radius: var(--radius);
+              }
+              .cart-product-details {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                .cart-product-name {
+                }
+                .cart-product-id {
+                }
+                .cart-product-selected {
+                }
+              }
+            }
+            .cart-product-price-detail {
+              //outline: 2px solid rgb(103, 134, 107);
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              .cart-product-amount-container {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                .amount-icon {
+                  font-size: 25px;
+                  margin: 0px 5px;
+                  transition: 0.3s var(--transition);
+                }
+                .amount-icon:hover {
+                  cursor: pointer;
+                  color: white;
+                }
+
+                .cart-product-amount {
+                  font-size: 24px;
+                  margin: 5px;
+                }
+              }
+              .cart-product-price {
+                font-size: 30px;
+                font-weight: 200;
+              }
+            }
+          }
+          .cart-product-hr {
+            background-color: var(--first-color);
+            border: none;
+            height: 1px;
+            margin: 15px 0px;
+          }
+        }
+
+        .cart-summary {
+          // outline: 1px solid rgb(24, 91, 158);
+          flex: 1;
+          border: 0.5px dashed var(--first-color);
+          border-radius: 10px;
+          padding: 20px;
+          height: 100%;
+          .cart-summary-title {
+            font-weight: 200;
+          }
+          .cart-summary-item {
+            margin: 30px 0px;
+            display: flex;
+            justify-content: space-between;
+            .cart-summary-item-text {
+            }
+
+            .cart-summary-item-price {
+            }
+          }
+          .total-price-item {
+            font-weight: 500;
+            font-size: 24px;
+          }
+          .cart-summary-btn {
+            width: 100%;
+            padding: 10px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+// background picture的深色遮罩
+.cart-page::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--hsla);
+}
+
+.cart-container {
+  position: relative;
+  z-index: 1;
+}
