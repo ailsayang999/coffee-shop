@@ -296,6 +296,7 @@ function ProductDetail() {
           {!specificBean && <ShowEmpty />}
           {specificBean && (
             <Swiper
+              lazy={true}
               spaceBetween={30}
               pagination={{ clickable: true }}
               autoplay={{

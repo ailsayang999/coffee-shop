@@ -24,6 +24,7 @@ const Testimonial = () => {
 
       {/* Swiper Pagination */}
       <Swiper
+        lazy={true}
         spaceBetween={30}
         pagination={{ clickable: true }}
         autoplay={{

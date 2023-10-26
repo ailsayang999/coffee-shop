@@ -20,13 +20,14 @@ const Offer = () => {
       </h2>
       {/* Swiper Pagination */}
       <Swiper
+        lazy={true}
         spaceBetween={30}
         pagination={{ clickable: true }}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay,Pagination]}
+        modules={[Autoplay, Pagination]}
         className="container"
       >
         {offer.map(({ img, title, discount, description, id }) => {
