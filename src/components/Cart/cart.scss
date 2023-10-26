@@ -31,13 +31,6 @@
           cursor: pointer;
         }
       }
-      .cart-top-texts {
-        .cart-top-text {
-          text-decoration: underline;
-          cursor: pointer;
-          margin: 0px 10px;
-        }
-      }
       .cart-bottom {
         display: flex;
         justify-content: space-between;
@@ -141,6 +134,45 @@
             width: 100%;
             padding: 10px;
             font-weight: 600;
+          }
+        }
+      }
+      .cart-button-wrapper {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+
+        .cart-button {
+          transition: 0.3s var(--transition);
+        }
+
+        .cart-btn-left {
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          .cart-btn-left-arrow {
+            color: white;
+            transition: 0.3s var(--transition);
+            margin-right: 5px;
+          }
+          .cart-btn-left-arrow:hover {
+            color: var(--first-color);
+          }
+        }
+
+        .cart-btn-right {
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          .cart-btn-right-arrow {
+            color: white;
+            transition: 0.3s var(--transition);
+            margin-left: 5px;
+          }
+          .cart-btn-right-arrow:hover {
+            color: var(--first-color);
           }
         }
       }

@@ -3,8 +3,8 @@ import "./cart.scss";
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
-
-
+import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
+import { products } from "Data";
 
 const CartItem = () => {
   return (
@@ -49,10 +49,8 @@ const Cart = () => {
         <div className="cart-container">
           <div className="cart-content-wrapper">
             <h1 className="cart-title">Shopping Cart</h1>
-            <div className="cart-top">
-              <button className="cart-top-button btn">繼續購物</button>
-              <button className="cart-top-button btn">結帳去</button>
-            </div>
+            <div className="cart-top"></div>
+
             <div className="cart-bottom">
               <div className="cart-info">
                 {/* 一個項目 */}
@@ -91,6 +89,7 @@ const Cart = () => {
 
                 {/* <hr className="cart-product-hr" /> */}
               </div>
+
               <div className="cart-summary">
                 <h1 className="cart-summary-title">Oder Summary</h1>
 
@@ -122,6 +121,17 @@ const Cart = () => {
 
                 <button className="cart-summary-btn btn">Checkout now</button>
               </div>
+            </div>
+
+            <div className="cart-button-wrapper">
+              <button className="cart-button cart-btn-left btn">
+                <BiSolidLeftArrow className="cart-btn-left-arrow" />
+                繼續購物
+              </button>
+
+              <button className="cart-button cart-btn-right btn">
+                結帳去 <BiSolidRightArrow className="cart-btn-right-arrow" />
+              </button>
             </div>
           </div>
         </div>
