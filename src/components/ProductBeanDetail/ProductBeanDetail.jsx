@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./productBeanDetail.scss";
 import { Link, useParams } from "react-router-dom";
-import { coffeeBeanProduct, bean } from "Data";
 import { getBeansById } from "api/product";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
@@ -22,7 +21,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 
 //////////Dummy Data
-const specificBeanInfo = {
+const dummySpecificBeanInfo = {
   id: 1,
   name: "利姆季若",
   categoryId: 1,
@@ -35,8 +34,11 @@ const specificBeanInfo = {
   thickness: 2,
   isCoffee: true,
   viewCount: 0,
-  createdAt: "2023-10-23T11:46:05.000Z",
-  updatedAt: "2023-10-23T11:46:05.000Z",
+  createdAt: "2023-10-25T08:06:35.000Z",
+  updatedAt: "2023-10-25T08:06:35.000Z",
+  Category: {
+    category: "耶加雪夫系列",
+  },
   Images: [
     {
       id: 1,
@@ -60,6 +62,108 @@ const specificBeanInfo = {
       variantDescription:
         "看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。最佳賞味期限為2個月。",
       discountedPrice: 88,
+    },
+  ],
+};
+
+const dummySpecificEpuipmentInfo = {
+  id: 33,
+  name: "TIMEMORE 泰摩 栗子 C2 MAX 手搖磨豆機",
+  categoryId: 9,
+  description:
+    "經典栗子C2加大磨豆倉，更適合家庭多人使用。CNC全鋁機身雙軸成設計，多檔為控制研磨粗細，升級版本金屬粉桶，磨豆倉容量：30-35 g。",
+  stock: 0,
+  roast: null,
+  aroma: null,
+  sour: null,
+  bitter: null,
+  thickness: null,
+  isCoffee: false,
+  viewCount: 0,
+  createdAt: "2023-10-26T05:46:06.000Z",
+  updatedAt: "2023-10-26T05:46:06.000Z",
+  Category: { category: "磨豆機" },
+  Images: [
+    {
+      id: 144,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3028.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 145,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3040.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 146,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3041.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 147,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3019.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 148,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3029.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 149,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3030.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 150,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3032.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 151,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3033.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 152,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3034.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 153,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3036.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 154,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3037.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 155,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3038.jpeg?fit=1000%2C1000&ssl=1",
+    },
+    {
+      id: 156,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3039.jpeg?fit=1000%2C1000&ssl=1",
+    },
+  ],
+  Variants: [
+    {
+      id: 68,
+      variantName: "黑色",
+      variantPrice: 1980,
+      variantDescription: null,
+      discountedPrice: 495,
+    },
+    {
+      id: 69,
+      variantName: "白色",
+      variantPrice: 1980,
+      variantDescription: null,
+      discountedPrice: 495,
     },
   ],
 };
@@ -103,6 +207,7 @@ function ProductDetail() {
     const getBeansByIdAsync = async () => {
       try {
         const backendSpecificCoffeeBean = await getBeansById(productBeanId);
+        //const stringEp = JSON.stringify(backendSpecificCoffeeBean);
         console.log("backendSpecificCoffeeBean", backendSpecificCoffeeBean); //拿到特定咖啡資料
         setSpecificBean(backendSpecificCoffeeBean);
         //預設價格
@@ -296,7 +401,7 @@ function ProductDetail() {
           {!specificBean && <ShowEmpty />}
           {specificBean && (
             <Swiper
-              lazy={true}
+              // lazy={true}
               spaceBetween={30}
               pagination={{ clickable: true }}
               autoplay={{

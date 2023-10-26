@@ -4,7 +4,7 @@ import { coffeeEquipmentProduct } from "Data";
 import { getProductsCoffeeBean, getProductsCoffeeEquipment } from "api/product";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { bean } from "Data";
+import { AllProductDummyData } from "Data";
 import { BiSolidCoffeeBean } from "react-icons/bi";
 
 // 顯示尚無資料

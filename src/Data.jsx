@@ -287,67 +287,8 @@ export const testimonials = [
   },
 ];
 
-// For Equipment Product
-export const coffeeEquipmentProduct = [
-  {
-    id: 1,
-    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 2,
-    img: " https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3094.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 冰瞳玻璃咖啡V型濾杯",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 3,
-    img: " https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3094.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 冰瞳玻璃咖啡V型濾杯",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 4,
-    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 5,
-    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 6,
-    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 7,
-    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-  {
-    id: 8,
-    img: "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3068.jpeg?fit=1000%2C1000&ssl=1",
-    title: "TIMEMORE 泰摩 魚youth 細口手沖壺 (700 ml)",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium aliquam beatae similique numquam reiciendis magnam quia aut dignissimos incidunt molestiae.",
-  },
-];
-
-export const products = [
+// get all AllProductDummyDataArray
+export const AllProductDummyData = [
   {
     id: 1,
     superCategoryName: "咖啡豆、濾掛式",

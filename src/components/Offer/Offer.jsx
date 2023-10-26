@@ -20,7 +20,7 @@ const Offer = () => {
       </h2>
       {/* Swiper Pagination */}
       <Swiper
-        lazy={true}
+        // lazy={true}
         spaceBetween={30}
         pagination={{ clickable: true }}
         autoplay={{
