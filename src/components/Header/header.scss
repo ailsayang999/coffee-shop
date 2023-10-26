@@ -34,7 +34,7 @@
             color: var(--first-color);
           }
           .active {
-            color:var(--first-color);
+            color: var(--first-color);
           }
         }
       }
@@ -47,10 +47,29 @@
       cursor: pointer;
     }
 
-    .icon{
-      width: 30px;
-      height: 30px;
-      color:#fff;
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 90px;
+      .user-icon {
+        width: 20px;
+        height: 20px;
+        color: #fff;
+        transition: 0.3s var(--transition);
+      }
+
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+        color: #fff;
+        transition: 0.3s var(--transition);
+      }
+      .user-icon:hover,
+      .cart-icon:hover {
+        color: var(--first-color);
+        cursor: pointer;
+      }
     }
   }
 }

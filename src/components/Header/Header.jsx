@@ -8,6 +8,7 @@ import { Link as ScrollLink } from "react-scroll";
 import logo from "assets/images/CoffeeHouseLogo.png";
 import { BiUserCircle } from "react-icons/bi";
 import { BsFillCartFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
 import { links, productLinks } from "Data";
 
 import { ReactComponent as Hamburger } from "assets/icons/menu.svg";
@@ -43,7 +44,6 @@ const Header = () => {
         </RouterLink>
 
         {/* 如果頁面停留在主頁，Header顯示以下訊息 */}
-
         {location.pathname === "/" && (
           <>
             {/* menu */}
@@ -72,6 +72,18 @@ const Header = () => {
             {/* hamburger icon */}
             <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
               <Hamburger fill={"var(--title-color)"} />
+            </div>
+
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink>
             </div>
           </>
         )}
@@ -105,12 +117,18 @@ const Header = () => {
             <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
               <Hamburger fill={"var(--title-color)"} />
             </div>
-            <RouterLink to="/login">
-              <BiUserCircle className="icon" />
-            </RouterLink>
-            {/* <RouterLink to="/cart">
-              <BsFillCartFill className="icon" />
-            </RouterLink> */}
+
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink>
+            </div>
           </>
         )}
 
@@ -134,12 +152,33 @@ const Header = () => {
             <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
               <Hamburger fill={"var(--title-color)"} />
             </div>
-            <RouterLink to="/login">
-              <BiUserCircle className="icon" />
-            </RouterLink>
-            {/* <RouterLink to="/cart">
-              <BsFillCartFill className="icon" />
-            </RouterLink> */}
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink>
+            </div>
+          </>
+        )}
+
+        {location.pathname === "/cart" && (
+          <>
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink>
+            </div>
           </>
         )}
       </nav>
