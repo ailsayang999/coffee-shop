@@ -3,7 +3,6 @@ import axios from "axios";
 
 const baseUrl = "https://a9e2-111-241-97-237.ngrok-free.app/api";
 
-
 // const axiosInstance = axios.create({
 //   baseURL: baseUrl,
 // });
@@ -21,32 +20,20 @@ const baseUrl = "https://a9e2-111-241-97-237.ngrok-free.app/api";
 //   }
 // );
 
-
 const instance = axios.create({
   baseURL: baseUrl,
   headers: {
-    'ngrok-skip-browser-warning': 'false',
+    "ngrok-skip-browser-warning": "false",
   },
 });
 
-
 //取得咖啡豆商品
-export const getProductsCoffeeBean = async () => {
+export const getAllProduct = async () => {
   try {
     const res = await instance.get(`${baseUrl}/products`);
     return res.data.data;
   } catch (error) {
-    console.error("[Get Products Coffee Bean failed]");
-  }
-};
-
-//取得咖啡周邊商品
-export const getProductsCoffeeEquipment = async () => {
-  try {
-    const res = await instance.get(`${baseUrl}/products?isUtensil=true`);
-    return res.data.data;
-  } catch (error) {
-    console.error("[Get Products Coffee Equipment failed]");
+    console.error("[Get All Products failed]");
   }
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./productBeanDetail.scss";
 import { Link, useParams } from "react-router-dom";
-import { getBeansById } from "api/product";
+import { getBeansById, getAllProduct } from "api/product";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
 import beanAndDrip from "assets/images/beanAndDrip.png";
@@ -21,7 +21,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 
 //////////Dummy Data
-const dummySpecificBeanInfo = {
+const dummysingleProductInfo = {
   id: 1,
   name: "利姆季若",
   categoryId: 1,
@@ -196,7 +196,8 @@ function ProductDetail() {
   ];
   const beanCategory = productCategoryArray[0].subCategory;
 
-  const [specificBean, setSpecificBean] = useState(false);
+  const [singleProduct, setSingleProduct] = useState(false);
+  const [allProduct, setAllProduct] = useState(false);
   const [categoryNum, setCategoryNum] = useState(0);
   const [productCategory, setProductCategory] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -204,44 +205,57 @@ function ProductDetail() {
   const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
 
   useEffect(() => {
-    const getBeansByIdAsync = async () => {
+    const getSingleProductByIdAsync = async () => {
       try {
-        const backendSpecificCoffeeBean = await getBeansById(productBeanId);
-        //const stringEp = JSON.stringify(backendSpecificCoffeeBean);
-        console.log("backendSpecificCoffeeBean", backendSpecificCoffeeBean); //拿到特定咖啡資料
-        setSpecificBean(backendSpecificCoffeeBean);
+        const backendSingleProduct = await getBeansById(productBeanId); //拿到特定產品資料
+        //const stringEp = JSON.stringify(backendSingleProduct);
+        console.log("backendSingleProduct", backendSingleProduct);
+        // 更新 singleProduct
+
+        setSingleProduct(backendSingleProduct);
         //預設價格
-        setSelectedOptionPrice(
-          backendSpecificCoffeeBean.Variants[0].variantPrice
-        );
-        setProductCategory();
+        setSelectedOptionPrice(backendSingleProduct.Variants[0].variantPrice);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getBeansByIdAsync();
+    const getAllProductAsync = async () => {
+      try {
+        const backendAllProduct = await getAllProduct(); //拿到所有產品資料
+        console.log("backendAllProduct", backendAllProduct);
+        setAllProduct(backendAllProduct);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getSingleProductByIdAsync();
+    getAllProductAsync();
   }, []);
 
+  //增加數量
   const handleDecrementQuantity = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
   };
-
+  //減少數量
   const handleIncrementQuantity = () => {
     setQuantity(quantity + 1);
   };
 
+  // 消費者選擇不同variant
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
     //找出價格
-    const price = specificBean.Variants.filter(
+    const price = singleProduct.Variants.filter(
       (item) => item.variantName === event.target.value
     );
     setSelectedOptionPrice(price[0].variantPrice);
   };
 
+  // 點擊加入購物車
   const handleAddToCart = () => {
     if (quantity === 0) {
       alert("請選擇商品數量");
@@ -249,7 +263,7 @@ function ProductDetail() {
       // 在這裡處理將商品添加到購物車的邏輯
       alert(
         `已將${quantity}個 "${
-          specificBean.name
+          singleProduct.name
         }" ${selectedOption} 添加到購物車 \n 總共是：${
           selectedOptionPrice * quantity
         }`
@@ -260,18 +274,26 @@ function ProductDetail() {
   };
 
   // 咖啡種類array
-
   const [otherRelativeBeanArray, setOtherRelativeBeanArray] = useState([]);
 
-  // if (specificBean) {
-  //   setCategoryNum(specificBean.categoryId - 1)
-  //   // 其他相關商品:
-  //   //先找出otherBean所有Product
-  //   const sameCategoryBackendBean = bean.filter((item) => {
-  //     return item.category === beanCategory[categoryNum];
-  //   });
-  //   setOtherRelativeBeanArray(sameCategoryBackendBean[0].Products);
-  // }
+  if (singleProduct && allProduct) {
+    const otherSameCategoryProductArr = allProduct.filter(({ Categories }) => {
+      return Categories.filter((i) => {
+        return i.subCategory === singleProduct.Category.category;
+      });
+    });
+
+    console.log("otherSameCategoryProductArr", otherSameCategoryProductArr);
+
+    // if (singleProduct.Category) {
+    //   // 其他相關商品:
+    //   //先找出otherBean所有Product
+    //   const sameCategoryProduct = allProduct.filter((item) => {
+    //     return item.category === beanCategory[categoryNum];
+    //   });
+    //   setOtherRelativeBeanArray(sameCategoryProduct[0].Products);
+    // }
+  }
 
   return (
     <>
@@ -280,40 +302,49 @@ function ProductDetail() {
         <div className="product-detail-container">
           <div className="product-info-container">
             <div className="product-info-left">
-              {!specificBean && <ShowEmpty />}
-              {specificBean && (
-                <img
-                  src={specificBean.Images[0].imgUrl}
-                  alt={specificBean.title}
-                  className="product-img"
-                />
+              {!singleProduct && <ShowEmpty />}
+              {singleProduct && (
+                <>
+                  {singleProduct.Images.map(({ imgUrl, id }, index) => {
+                    return (
+                      <img
+                        src={imgUrl}
+                        alt={id}
+                        className="product-img"
+                        key={index}
+                      />
+                    );
+                  })}
+                </>
               )}
             </div>
+
             <div className="product-info-right">
-              {!specificBean && <ShowEmpty />}
-              {specificBean && (
+              {!singleProduct && <ShowEmpty />}
+              {singleProduct && (
                 <>
-                  <h2>{specificBean.name}</h2>
+                  <h2>{singleProduct.name}</h2>
                   {/* <h2>{productCategory}</h2> */}
-                  <p>{specificBean.description}</p>
+                  <p>{singleProduct.description}</p>
                   <ul>
-                    {specificBean.roast !== null && (
-                      <li>焙度: {specificBean.roast}</li>
+                    {singleProduct.roast !== null && (
+                      <li>焙度: {singleProduct.roast}</li>
                     )}
 
-                    {specificBean.aroma !== null && (
-                      <li>香味: {specificBean.aroma}</li>
+                    {singleProduct.aroma !== null && (
+                      <li>香味: {singleProduct.aroma}</li>
                     )}
-                    {specificBean.sour !== null && (
-                      <li>酸味: {specificBean.sour}</li>
+                    {singleProduct.sour !== null && (
+                      <li>酸味: {singleProduct.sour}</li>
                     )}
-                    {specificBean.sour !== null && (
-                      <li>苦味: {specificBean.bitter}</li>
+                    {singleProduct.sour !== null && (
+                      <li>苦味: {singleProduct.bitter}</li>
                     )}
-                    {specificBean.thickness !== null && (
-                      <li>濃郁: {specificBean.thickness}</li>
+                    {singleProduct.thickness !== null && (
+                      <li>濃郁: {singleProduct.thickness}</li>
                     )}
                   </ul>
+
                   <p>價格: {selectedOptionPrice}</p>
                   <div className="buy-it-container">
                     <div className="selection-container">
@@ -322,13 +353,15 @@ function ProductDetail() {
                         value={selectedOption}
                         onChange={handleSelectChange}
                       >
-                        {specificBean.Variants.map(({ variantName }, index) => {
-                          return (
-                            <option value={variantName} key={index}>
-                              {variantName}
-                            </option>
-                          );
-                        })}
+                        {singleProduct.Variants.map(
+                          ({ variantName }, index) => {
+                            return (
+                              <option value={variantName} key={index}>
+                                {variantName}
+                              </option>
+                            );
+                          }
+                        )}
                       </select>
 
                       <div className="down-arrow-icon-container">
@@ -361,8 +394,10 @@ function ProductDetail() {
             </div>
           </div>
 
-          {!specificBean && <ShowEmpty />}
-          {specificBean && (
+          {!singleProduct && <ShowEmpty />}
+          {/* 如果是咖啡豆就有商品描述 */}
+          {singleProduct.Category ===
+            ("耶加雪夫系列" || "藝伎豆" || "超值精選豆" || "嚴選精品豆") && (
             <div className="product-description-container">
               <h1 className="product-description-title">商品描述</h1>
               <div className="product-description-top">
@@ -398,8 +433,8 @@ function ProductDetail() {
         <div className="other-relative-product-container">
           <h1>相關商品</h1>
           {/* Swiper Pagination */}
-          {!specificBean && <ShowEmpty />}
-          {specificBean && (
+          {!singleProduct && <ShowEmpty />}
+          {singleProduct && (
             <Swiper
               // lazy={true}
               spaceBetween={30}

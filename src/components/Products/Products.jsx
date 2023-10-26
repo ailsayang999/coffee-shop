@@ -1,7 +1,7 @@
 import React from "react";
 import "./products.scss";
 import { coffeeEquipmentProduct } from "Data";
-import { getProductsCoffeeBean, getProductsCoffeeEquipment } from "api/product";
+import { getAllProduct } from "api/product";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { AllProductDummyData } from "Data";
@@ -126,7 +126,7 @@ const Products = () => {
   useEffect(() => {
     const getCoffeesBeanAsync = async () => {
       try {
-        const backendCoffeeBean = await getProductsCoffeeBean();
+        const backendCoffeeBean = await getAllProduct();
         setCoffeeBean(backendCoffeeBean);
         console.log("backendCoffeeBean", backendCoffeeBean);
       } catch (error) {
@@ -135,7 +135,7 @@ const Products = () => {
     };
     const getCoffeesEquipmentAsync = async () => {
       try {
-        const backendCoffeeEquipment = await getProductsCoffeeEquipment();
+        const backendCoffeeEquipment = await getAllProduct();
         setCoffeeEquipment(backendCoffeeEquipment);
         console.log("backendCoffeeEquipment", backendCoffeeEquipment);
       } catch (error) {
