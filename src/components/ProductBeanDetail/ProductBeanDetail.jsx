@@ -256,40 +256,38 @@ function ProductDetail() {
             </div>
           </div>
 
-          <div className="product-description-container">
-            <h1 className="product-description-title">商品描述</h1>
-            <div className="product-description-top">
-              <img
-                src={beanAndDrip}
-                alt="bean-drip-img"
-                className="bean-drip-img"
-                loading="lazy"
-              />
+          {!specificBean && <ShowEmpty />}
+          {specificBean && (
+            <div className="product-description-container">
+              <h1 className="product-description-title">商品描述</h1>
+              <div className="product-description-top">
+                <img
+                  src={beanAndDrip}
+                  alt="bean-drip-img"
+                  className="bean-drip-img"
+                  loading="lazy"
+                />
+              </div>
+              <div className="product-description-bottom">
+                <span className="product-description">
+                  {"精品咖啡豆：每包½磅 (藝伎豆為每包¼磅)"}
+                  <p>
+                    看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。
+                    最佳賞味期限為2個月。
+                  </p>
+                </span>
+                <span className="product-description">
+                  濾掛式咖啡：每包11g
+                  <p>
+                    低購買量5包！
+                    新鮮的豆子磨成粉後，馬上進行真空包裝，拆開即可沖泡。
+                    適合尋求便利，想忙裡偷閒喝杯咖啡的你。
+                    滿15包會用精美紙盒包裝 最佳賞味期限為1個月。
+                  </p>
+                </span>
+              </div>
             </div>
-            <div className="product-description-bottom">
-              {!specificBean && <ShowEmpty />}
-              {!specificBean && (
-                <>
-                  <span className="product-description">
-                    {"精品咖啡豆：每包½磅 (藝伎豆為每包¼磅)"}
-                    <p>
-                      看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。
-                      最佳賞味期限為2個月。
-                    </p>
-                  </span>
-                  <span className="product-description">
-                    濾掛式咖啡：每包11g
-                    <p>
-                      低購買量5包！
-                      新鮮的豆子磨成粉後，馬上進行真空包裝，拆開即可沖泡。
-                      適合尋求便利，想忙裡偷閒喝杯咖啡的你。
-                      滿15包會用精美紙盒包裝 最佳賞味期限為1個月。
-                    </p>
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
+          )}
         </div>
 
         <div className="other-relative-product-container">
