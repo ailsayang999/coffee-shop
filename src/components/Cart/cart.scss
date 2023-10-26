@@ -17,7 +17,7 @@
       backdrop-filter: blur(10px);
       padding: 20px;
       .cart-title {
-        font-weight: 300;
+        font-weight: 400;
         text-align: center;
       }
       .cart-top {
@@ -44,16 +44,24 @@
           .cart-product {
             //outline: 1px solid rgb(192, 146, 146);
             display: flex;
+            border: 1px dashed var(--first-color);
             justify-content: space-between;
+            background: var(--bg-color);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
 
             .cart-product-detail {
               flex: 2;
               display: flex;
-              .cart-product-img {
+              .cart-product-img-wrapper {
                 width: 150px;
                 height: 150px;
-                border-radius: var(--radius);
+                .cart-product-img {
+                  object-fit: cover;
+                  border-radius: var(--radius);
+                }
               }
+
               .cart-product-details {
                 padding: 20px;
                 display: flex;
@@ -105,11 +113,13 @@
               flex: 1;
               display: flex;
               flex-direction: column;
+              justify-content: center;
               align-items: center;
+              height: 150px;
               .cart-product-amount-container {
                 display: flex;
                 align-items: center;
-                margin-bottom: 20px;
+                // margin-bottom: 20px;
                 .amount-icon {
                   font-size: 25px;
                   margin: 0px 5px;
@@ -126,8 +136,8 @@
                 }
               }
               .cart-product-price {
-                font-size: 30px;
-                font-weight: 200;
+                font-size: 20px;
+                font-weight: 500;
               }
             }
           }
@@ -154,6 +164,7 @@
             display: flex;
             justify-content: space-between;
             .cart-summary-item-text {
+              color:white;
             }
 
             .cart-summary-item-price {
@@ -167,6 +178,7 @@
             width: 100%;
             padding: 10px;
             font-weight: 600;
+            transition: 0.3s var(--transition);
           }
         }
       }
@@ -180,6 +192,7 @@
         }
 
         .cart-btn-left {
+          font-weight: 600;
           position: relative;
           display: flex;
           align-items: center;
@@ -198,6 +211,7 @@
           position: relative;
           display: flex;
           align-items: center;
+          font-weight: 600;
 
           .cart-btn-right-arrow {
             color: white;

@@ -14,11 +14,14 @@ const CartItem = () => {
   return (
     <div className="cart-product">
       <div className="cart-product-detail">
-        <img
-          src="https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/%E5%B7%B4%E8%A5%BF%E5%B0%8F%E4%B8%B8%E5%AD%90.png?fit=540%2C540&ssl=1"
-          alt=""
-          className="cart-product-img"
-        />
+        <div className="cart-product-img-wrapper">
+          <img
+            src="https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/%E5%B7%B4%E8%A5%BF%E5%B0%8F%E4%B8%B8%E5%AD%90.png?fit=540%2C540&ssl=1"
+            alt=""
+            className="cart-product-img"
+          />
+        </div>
+
         <div className="cart-product-details">
           <span className="cart-product-name">
             <b>產品名稱: </b> 巴西小丸子
@@ -46,7 +49,7 @@ const CartItem = () => {
           <div className="cart-product-amount">2</div>
           <AiFillPlusCircle className="amount-icon" />
         </div>
-        <div className="cart-product-price">$200</div>
+        <div className="cart-product-price">小計：200元</div>
       </div>
     </div>
   );
@@ -59,8 +62,7 @@ const Cart = () => {
       <div className="cart-page">
         <div className="cart-container">
           <div className="cart-content-wrapper">
-            
-            <h1 className="cart-title">Shopping Cart</h1>
+            <h1 className="cart-title">您的購物車 Shopping Cart</h1>
             <div className="cart-top"></div>
 
             <div className="cart-bottom">
@@ -98,40 +100,41 @@ const Cart = () => {
                 </div> */}
 
                 <CartItem />
+                <CartItem />
 
                 {/* <hr className="cart-product-hr" /> */}
               </div>
 
               <div className="cart-summary">
-                <h1 className="cart-summary-title">Oder Summary</h1>
+                <h1 className="cart-summary-title">購物車總計</h1>
 
                 <div className="cart-summary-item">
-                  <span className="cart-summary-item-text">Subtotal</span>
+                  <span className="cart-summary-item-text">小計</span>
                   <span className="cart-summary-item-price">$ 600</span>
                 </div>
 
                 <div className="cart-summary-item">
                   <div className="cart-summary-item-text">
-                    Estimated Shipping
+                    運費
                   </div>
                   <div className="cart-summary-item-price">$ 60</div>
                 </div>
 
                 <div className="cart-summary-item">
                   <div className="cart-summary-item-text">
-                    Shipping Discount
+                    運費折抵
                   </div>
                   <div className="cart-summary-item-price">$ -10</div>
                 </div>
 
                 <div className="cart-summary-item total-price-item">
-                  <div className="cart-summary-item-text" type="total">
-                    Total
+                  <div className="cart-summary-item-text">
+                    總計
                   </div>
                   <div className="cart-summary-item-price">$ 550</div>
                 </div>
 
-                <button className="cart-summary-btn btn">Checkout now</button>
+                <button className="cart-summary-btn btn">結帳</button>
               </div>
             </div>
 
@@ -145,7 +148,6 @@ const Cart = () => {
                 結帳去 <BiSolidRightArrow className="cart-btn-right-arrow" />
               </button>
             </div>
-
           </div>
         </div>
       </div>
