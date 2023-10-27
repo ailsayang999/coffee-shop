@@ -276,24 +276,33 @@ function ProductDetail() {
   // 咖啡種類array
   const [otherRelativeBeanArray, setOtherRelativeBeanArray] = useState([]);
 
-  if (singleProduct && allProduct) {
-    const otherSameCategoryProductArr = allProduct.filter(({ Categories }) => {
-      return Categories.filter((i) => {
-        return i.subCategory === singleProduct.Category.category;
-      });
-    });
+  // if (singleProduct && allProduct) {
+  //   // const otherSameCategoryProductArr = allProduct.filter(({ Categories }) => {
+  //   //   return Categories.filter((i) => {
+  //   //     return i.subCategory === singleProduct.Category.category;
+  //   //   });
+  //   // });
+  //   // console.log("otherSameCategoryProductArr", otherSameCategoryProductArr);
+  // }
 
-    console.log("otherSameCategoryProductArr", otherSameCategoryProductArr);
+  // if (singleProduct && allProduct) {
+  //   let otherSameCategoryProductArray;
 
-    // if (singleProduct.Category) {
-    //   // 其他相關商品:
-    //   //先找出otherBean所有Product
-    //   const sameCategoryProduct = allProduct.filter((item) => {
-    //     return item.category === beanCategory[categoryNum];
-    //   });
-    //   setOtherRelativeBeanArray(sameCategoryProduct[0].Products);
-    // }
-  }
+  //   for (let productType of allProduct) {
+  //     for (let category of productType.Categories) {
+  //       if (
+  //         category.some(
+  //           (i) => i.subCategory === singleProduct.Category.category
+  //         )
+  //       ) {
+  //         otherSameCategoryProductArray = category;
+  //         break;
+  //       }
+  //     }
+  //   }
+
+  //   console.log("otherSameCategoryProductArr", otherSameCategoryProductArray);
+  // }
 
   return (
     <>
@@ -409,7 +418,7 @@ function ProductDetail() {
 
           {!singleProduct && <ShowEmpty />}
           {/* 如果是咖啡豆就有商品描述 */}
-          {singleProduct.Category ===
+          {singleProduct.Category?.category ===
             ("耶加雪夫系列" || "藝伎豆" || "超值精選豆" || "嚴選精品豆") && (
             <div className="product-description-container">
               <h1 className="product-description-title">商品描述</h1>

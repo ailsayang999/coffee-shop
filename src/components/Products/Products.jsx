@@ -12,7 +12,7 @@ const ShowEmpty = () => {
   return <div className="empty-content">尚無資料</div>;
 };
 
-// 顯示商品類別項目
+// 右側顯示商品類別項目
 const ShowProductContent = ({ productShowCategory, product }) => {
   return (
     <>
@@ -30,15 +30,15 @@ const ShowProductContent = ({ productShowCategory, product }) => {
 
       <div className="items">
         {product.filter((item) => {
-          return item.category === productShowCategory;
+          return item.subCategory === productShowCategory;
         }).length === 0 && <ShowEmpty />}
 
         {product.filter((item) => {
-          return item.category === productShowCategory;
+          return item.subCategory === productShowCategory;
         }).length > 0 &&
           product
             .filter((item) => {
-              return item.category === productShowCategory;
+              return item.subCategory === productShowCategory;
             })[0]
             .Products.map(({ Images, name, id }, index) => {
               return (
@@ -68,7 +68,7 @@ const ShowProductContent = ({ productShowCategory, product }) => {
   );
 };
 
-// 顯示商品類別Filter
+// 左側顯示商品類別Filter
 const FilterList = ({
   productShowCategory,
   handleChangeProductContent,
@@ -124,30 +124,34 @@ const Products = () => {
 
   // 向後端取得所有商品
   useEffect(() => {
-    const getCoffeesBeanAsync = async () => {
+    const getAllProductAsync = async () => {
       try {
-        const backendCoffeeBean = await getAllProduct();
-        setCoffeeBean(backendCoffeeBean);
-        console.log("backendCoffeeBean", backendCoffeeBean);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const getCoffeesEquipmentAsync = async () => {
-      try {
-        const backendCoffeeEquipment = await getAllProduct();
-        setCoffeeEquipment(backendCoffeeEquipment);
-        console.log("backendCoffeeEquipment", backendCoffeeEquipment);
+        //拿到所有產品資訊
+        const backendAllProduct = await getAllProduct();
+        console.log("backendAllProduct", backendAllProduct);
+
+        //分類商品
+        //分出咖啡Arr
+        const backendCoffeeBean = backendAllProduct.filter((item) => {
+          return item.superCategoryName === "咖啡豆、濾掛式";
+        });
+        // 更新coffeeBean
+        setCoffeeBean(backendCoffeeBean[0].Categories); //會是一個 Arr
+
+        const backendCoffeeEquipment = backendAllProduct.filter((item) => {
+          return item.superCategoryName === "咖啡器材";
+        });
+        // 更新coffeeEquipment
+        setCoffeeEquipment(backendCoffeeEquipment[0].Categories); //會是一個 Arr
       } catch (error) {
         console.error(error);
       }
     };
 
-    getCoffeesBeanAsync();
-    getCoffeesEquipmentAsync();
+    getAllProductAsync();
   }, []);
 
-  // 左側刪選器元件
+  // 左側刪選器元件 商品種類分類
   const productCategoryArray = [
     {
       id: 1,
@@ -181,104 +185,41 @@ const Products = () => {
         </div>
 
         <div className="product-container-right">
-          <section className="item-container">
-            <div className="product-category-title">
-              <h1> 咖啡豆、濾掛式咖啡</h1>
-            </div>
-            {!coffeeBean && <ShowEmpty />}
-
-            {coffeeBean &&
-              productCategoryArray.map(({ subCategory }, index) => {
-                return (
-                  <div key={index}>
-                    {productShowCategory ===
-                      subCategory.filter((item) => {
-                        return item === productShowCategory;
-                      })[0] && (
-                      <ShowProductContent
-                        productShowCategory={productShowCategory}
-                        product={coffeeBean}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-
-            {/* {productShowCategory === "耶加雪夫系列" && (
-              <ShowProductContent
-                productShowCategory={productShowCategory}
-                coffeeBean={coffeeBean}
-              />
+          {!coffeeBean && <ShowEmpty />}
+          {coffeeBean &&
+            coffeeBean?.filter((i) => i.subCategory === productShowCategory)
+              .length > 0 && (
+              <section className="item-container" id="coffee">
+                <div className="product-category-title">
+                  <h1> 咖啡豆、濾掛式咖啡</h1>
+                </div>
+                {!coffeeBean && <ShowEmpty />}
+                {coffeeBean && (
+                  <ShowProductContent
+                    productShowCategory={productShowCategory}
+                    product={coffeeBean}
+                  />
+                )}
+              </section>
             )}
-            {productShowCategory === "藝伎豆" && (
-              <ShowProductContent
-                productShowCategory={productShowCategory}
-                coffeeBean={coffeeBean}
-              />
-            )}
-            {productShowCategory === "超值精選豆" && (
-              <ShowProductContent
-                productShowCategory={productShowCategory}
-                coffeeBean={coffeeBean}
-              />
-            )}
-            {productShowCategory === "嚴選精品豆" && (
-              <ShowProductContent
-                productShowCategory={productShowCategory}
-                coffeeBean={coffeeBean}
-              />
-            )} */}
-          </section>
 
-          <section className="item-container">
-            <div className="product-category-title">
-              <h1> 咖啡器材</h1>
-            </div>
-            <div className="items">
-              {/* {productShowCategory === "grinder" && <GrinderContent />}
-              {productShowCategory === "cold-brew" && <ColdBrewContent />}
-              {productShowCategory === "electronic-scale" && (
-                <ElectronicScaleContent />
-              )}
-              {productShowCategory === "coffee-dripper" && (
-                <CoffeeDripperContent />
-              )}
-              {productShowCategory === "kettle" && <KettleContent />} */}
-
-              {!coffeeEquipment && <ShowEmpty />}
-              {coffeeEquipment &&
-                productCategoryArray.map(({ subCategory }, index) => {
-                  return (
-                    <div key={index}>
-                      {productShowCategory ===
-                        subCategory.filter((item) => {
-                          return item === productShowCategory;
-                        })[0] && (
-                        <ShowProductContent
-                          productShowCategory={productShowCategory}
-                          product={coffeeEquipment}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-              {coffeeEquipment &&
-                coffeeEquipment.map(({ Images, title, id }, index) => {
-                  return (
-                    <div key={index} className="item">
-                      <RouterLink to={`/product_page/${id}`}>
-                        <img
-                          src={Images[0].imgUrl}
-                          alt=""
-                          className="item-img"
-                        />
-                        <div className="item-title">{title}</div>
-                      </RouterLink>
-                    </div>
-                  );
-                })}
-            </div>
-          </section>
+          {coffeeEquipment &&
+            coffeeEquipment?.filter(
+              (i) => i.subCategory === productShowCategory
+            ).length > 0 && (
+              <section className="item-container" id="equipment">
+                <div className="product-category-title">
+                  <h1> 咖啡器材</h1>
+                </div>
+                {!coffeeEquipment && <ShowEmpty />}
+                {coffeeEquipment && (
+                  <ShowProductContent
+                    productShowCategory={productShowCategory}
+                    product={coffeeEquipment}
+                  />
+                )}
+              </section>
+            )}
         </div>
       </div>
     </div>
