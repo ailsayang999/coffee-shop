@@ -184,7 +184,9 @@ const Header = () => {
               <div onClick={toggleCart}>
                 {/* showing amount of product order */}
                 <BsFillCartFill className="cart-icon" />
-                <div className="cart-amount">{cartQuantity}</div>
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
               </div>
             </div>
           </>
