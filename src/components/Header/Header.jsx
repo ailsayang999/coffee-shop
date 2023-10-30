@@ -10,6 +10,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { links, productLinks } from "Data";
+import { useShoppingCart } from "context/ShoppingCartContext";
 
 import { ReactComponent as Hamburger } from "assets/icons/menu.svg";
 const Header = () => {
@@ -35,6 +36,8 @@ const Header = () => {
     animateScroll.scrollToTop();
   };
 
+  const { toggleCart, cartQuantity } = useShoppingCart();
+
   return (
     <header className={`${scrollHeader ? "scrollHeader" : ""} header`}>
       <nav className="nav container">
@@ -43,7 +46,7 @@ const Header = () => {
           <img src={logo} alt="" className="nav__logo-img" loading="lazy" />
         </RouterLink>
 
-        {/* 如果頁面停留在主頁，Header顯示以下訊息 */}
+        {/* 如果頁面停留在產品頁，Header顯示以下訊息 */}
         {location.pathname === "/" && (
           <>
             {/* menu */}
@@ -81,13 +84,19 @@ const Header = () => {
               </RouterLink>
 
               {/* cart icon */}
-              <RouterLink to="/cart">
+              {/* <RouterLink to="/cart">
                 <BsFillCartFill className="cart-icon" />
-              </RouterLink>
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                <div className="cart-amount">{cartQuantity}</div>
+              </div>
             </div>
           </>
         )}
 
+        {/* 如果頁面停留在產品頁Detail，Header顯示以下訊息 */}
         {location.pathname === "/product_page" && (
           <>
             {/* menu */}
@@ -125,13 +134,19 @@ const Header = () => {
               </RouterLink>
 
               {/* cart icon */}
-              <RouterLink to="/cart">
+              {/* <RouterLink to="/cart">
                 <BsFillCartFill className="cart-icon" />
-              </RouterLink>
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                <div className="cart-amount">{cartQuantity}</div>
+              </div>
             </div>
           </>
         )}
 
+        {/* 如果頁面停留在產品頁購物車，Header顯示以下訊息 */}
         {location.pathname === `/product_page/${productBeanId}` && (
           <>
             {/* menu */}
@@ -159,9 +174,14 @@ const Header = () => {
               </RouterLink>
 
               {/* cart icon */}
-              <RouterLink to="/cart">
+              {/* <RouterLink to="/cart">
                 <BsFillCartFill className="cart-icon" />
-              </RouterLink>
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                <div className="cart-amount">{cartQuantity}</div>
+              </div>
             </div>
           </>
         )}
@@ -175,9 +195,14 @@ const Header = () => {
               </RouterLink>
 
               {/* cart icon */}
-              <RouterLink to="/cart">
+              {/* <RouterLink to="/cart">
                 <BsFillCartFill className="cart-icon" />
-              </RouterLink>
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                <div className="cart-amount">{cartQuantity}</div>
+              </div>
             </div>
           </>
         )}
