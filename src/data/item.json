@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "利姆季若",
+    "price": 35,
+    "imgUrl": "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/利姆.png?fit=540%2C540&ssl=1"
+  },
+  {
+    "id": 2,
+    "name": "手搖磨豆機",
+    "price": 1980,
+    "imgUrl": "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/IMG_3028.jpeg?fit=1000%2C1000&ssl=1"
+  },
+  {
+    "id": 3,
+    "name": "特級藍山",
+    "price": 30,
+    "imgUrl": "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/%E7%89%B9%E7%B4%9A%E8%97%8D%E5%B1%B1.png?fit=540%2C540&ssl=1"
+  },
+  {
+    "id": 4,
+    "name": "薩爾瓦多",
+    "price": 40,
+    "imgUrl": "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/%E8%96%A9%E7%88%BE%E7%93%A6%E5%A4%9A%E5%B8%95%E5%8D%A1%E7%91%AA%E6%8B%89.png?fit=540%2C540&ssl=1"
+  }
+]
