@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import { HomePage, LoginPage, ProductPage, CartPage } from "pages";
 import ProductBeanDetail from "components/ProductBeanDetail/ProductBeanDetail";
-import { ShoppingCartProvider } from "context/ShoppingCartContext";
+import { ShoppingCartProvider } from "contexts/ShoppingCartContext";
 
 import "./App.scss"; //要在最後才import不然會無法RWD
 

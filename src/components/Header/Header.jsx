@@ -10,7 +10,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { links, productLinks } from "Data";
-import { useShoppingCart } from "context/ShoppingCartContext";
+import { useShoppingCart } from "contexts/ShoppingCartContext";
 
 import { ReactComponent as Hamburger } from "assets/icons/menu.svg";
 const Header = () => {
@@ -90,7 +90,9 @@ const Header = () => {
               <div onClick={toggleCart}>
                 {/* showing amount of product order */}
                 <BsFillCartFill className="cart-icon" />
-                <div className="cart-amount">{cartQuantity}</div>
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
               </div>
             </div>
           </>
@@ -140,7 +142,9 @@ const Header = () => {
               <div onClick={toggleCart}>
                 {/* showing amount of product order */}
                 <BsFillCartFill className="cart-icon" />
-                <div className="cart-amount">{cartQuantity}</div>
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
               </div>
             </div>
           </>
@@ -201,7 +205,9 @@ const Header = () => {
               <div onClick={toggleCart}>
                 {/* showing amount of product order */}
                 <BsFillCartFill className="cart-icon" />
-                <div className="cart-amount">{cartQuantity}</div>
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
               </div>
             </div>
           </>

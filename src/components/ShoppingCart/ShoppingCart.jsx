@@ -1,9 +1,9 @@
 import React from "react";
 import "./shoppingCart.scss";
-import { useShoppingCart } from "context/ShoppingCartContext";
+import { useShoppingCart } from "contexts/ShoppingCartContext";
 // import CartItem from "components/CartItem/CartItem";
 import { formatCurrency } from "utilities/formatCurrency";
-import storeItems from "data/items.json";
+import storeItems from "data/item";
 
 const CartItem = ({ id, quantity }) => {
   const { removeFromCart } = useShoppingCart();
