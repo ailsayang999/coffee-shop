@@ -262,7 +262,7 @@ function ProductDetail() {
   }, []);
   
 
-  const productQuantity = getItemQuantity(singleProduct.id, selectedOption);
+ const productQuantity = getItemQuantity(singleProduct?.id, selectedOption)
  
 
   // //增加數量
@@ -445,6 +445,7 @@ function ProductDetail() {
                             // handleIncrementQuantity();
                             increaseCartQuantity(
                               singleProduct.id,
+                              singleProduct.name,
                               selectedOption,
                               selectedOptionPrice
                             );
@@ -463,10 +464,10 @@ function ProductDetail() {
 
           {!singleProduct && <ShowEmpty />}
           {/* 如果是咖啡豆就有商品描述 */}
-          {(singleProduct.Category?.category === "耶加雪夫系列" ||
-            singleProduct.Category?.category === "藝伎豆" ||
-            singleProduct.Category?.category === "超值精選豆" ||
-            singleProduct.Category?.category === "嚴選精品豆") && (
+          {(singleProduct?.Category?.category === "耶加雪夫系列" ||
+            singleProduct?.Category?.category === "藝伎豆" ||
+            singleProduct?.Category?.category === "超值精選豆" ||
+            singleProduct?.Category?.category === "嚴選精品豆") && (
             <div className="product-description-container">
               <h1 className="product-description-title">商品描述</h1>
               <div className="product-description-top">

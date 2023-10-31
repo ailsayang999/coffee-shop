@@ -30,13 +30,16 @@ export function ShoppingCartProvider({ children }) {
     return foundItem ? foundItem.quantity : 0;
   }
 
-  function increaseCartQuantity(id, variantName, variantPrice) {
+  function increaseCartQuantity(id, name, variantName, variantPrice) {
     const foundItem = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     );
     setCartItems((currItems) => {
       if (foundItem == null) {
-        return [...currItems, { id, quantity: 1, variantName, variantPrice }];
+        return [
+          ...currItems,
+          { id, name, quantity: 1, variantName, variantPrice },
+        ];
       } else if (foundItem) {
         //更新同variant的quantity
         return currItems.map((item) => {
@@ -71,9 +74,11 @@ export function ShoppingCartProvider({ children }) {
     });
   }
 
-  function removeFromCart(id) {
+  function removeFromCart(id, variantName) {
     setCartItems((currItems) => {
-      return currItems.filter((item) => item.id !== id);
+      return currItems.filter(
+        (item) => !(item.id === id && item.variantName === variantName)
+      );
     });
   }
 

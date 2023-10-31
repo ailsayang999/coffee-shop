@@ -1,22 +1,17 @@
 import React from "react";
 import "./shoppingCart.scss";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
-// import CartItem from "components/CartItem/CartItem";
 import { formatCurrency } from "utilities/formatCurrency";
-import storeItems from "data/item";
 
-const CartItem = ({ id, quantity }) => {
+
+const CartItem = ({ id, name, variantName, quantity, variantPrice }) => {
   const { removeFromCart } = useShoppingCart();
-  const item = storeItems.find((i) => i.id === id);
-  if (item == null) {
-    return null;
-  }
 
   return (
     <div className="order-item">
       {/* item的圖 */}
       <img
-        src={item.imgUrl}
+        src={""}
         alt=""
         style={{ width: "75px", height: "75px", objectFit: "cover" }}
       />
@@ -24,7 +19,7 @@ const CartItem = ({ id, quantity }) => {
       <div className="cart-item-info-container">
         <div className="cart-item-name-container">
           <span className="cart-item-name" style={{ color: "black" }}>
-            {item.name}
+            {name}
           </span>
 
           {quantity > 1 && (
@@ -38,16 +33,16 @@ const CartItem = ({ id, quantity }) => {
           className="test-muted"
           style={{ fontSize: "0.75rem", color: "black" }}
         >
-          {formatCurrency(item.price)}
+          {formatCurrency(variantPrice)}
         </div>
         {/* item的total price */}
         <div className="cart-item-total-price" style={{ color: "black" }}>
-          {formatCurrency(item.price * quantity)}
+          {formatCurrency(variantPrice * quantity)}
         </div>
       </div>
 
       <button
-        onClick={() => removeFromCart(item.id)}
+        onClick={() => removeFromCart(id, variantName)}
         style={{ backgroundColor: "white", width: "20px", height: "20px" }}
       >
         &times;
@@ -64,7 +59,7 @@ const ShoppingCart = ({ isOpen }) => {
     <div className={`shopping-cart-modal ${isOpen ? "show-cart" : ""}`}>
       {/* 中間品項 */}
       <div className="shopping-cart-items-container">
-        {cartItems.map((item, index) => (
+        {cartItems?.map((item, index) => (
           <CartItem key={index} {...item} />
         ))}
 
@@ -73,10 +68,9 @@ const ShoppingCart = ({ isOpen }) => {
           className="cart-subtotal-price"
           style={{ fontSize: "30px", color: "black" }}
         >
-          {formatCurrency(
-            cartItems.reduce((total, cartItem) => {
-              const item = storeItems.find((i) => i.id === cartItem.id);
-              return total + (item?.price || 0) * cartItem.quantity;
+          小計：{formatCurrency(
+            cartItems?.reduce((total, cartItem) => {
+              return total + (cartItem.variantPrice || 0) * cartItem.quantity;
             }, 0)
           )}
         </div>
