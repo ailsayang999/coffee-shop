@@ -58,6 +58,8 @@ const CartItem = ({ id, quantity }) => {
 
 const ShoppingCart = ({ isOpen }) => {
   const { cartItems } = useShoppingCart();
+  
+
   return (
     <div className={`shopping-cart-modal ${isOpen ? "show-cart" : ""}`}>
       {/* 中間品項 */}

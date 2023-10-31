@@ -6,7 +6,7 @@
   width: 400px;
   display: none;
   border-radius: 10px;
-
+  z-index: 100;
   .shopping-cart-close-btn {
     outline: 1px solid red;
     background-color: white;
@@ -17,6 +17,7 @@
     align-items: center;
     cursor: pointer;
   }
+
   .shopping-cart-items-container {
     //outline: 1px solid rgb(8, 144, 161);
     display: flex;

@@ -21,17 +21,26 @@ export function ShoppingCartProvider({ children }) {
 
   const toggleCart = () => setIsOpen(!isOpen);
 
-  function getItemQuantity(id) {
-    return cartItems.find((item) => item.id === id)?.quantity || 0;
+  function getItemQuantity(id, variantName) {
+    //如果有找到產品，要繼續找是不是同一個variant
+    const foundItem = cartItems.find(
+      (item) => item.variantName === variantName && item.id === id
+    );
+
+    return foundItem ? foundItem.quantity : 0;
   }
 
-  function increaseCartQuantity(id) {
+  function increaseCartQuantity(id, variantName, variantPrice) {
+    const foundItem = cartItems.find(
+      (item) => item.variantName === variantName && item.id === id
+    );
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 1 }];
-      } else {
+      if (foundItem == null) {
+        return [...currItems, { id, quantity: 1, variantName, variantPrice }];
+      } else if (foundItem) {
+        //更新同variant的quantity
         return currItems.map((item) => {
-          if (item.id === id) {
+          if (item.variantName === variantName && item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
             return item;
@@ -41,13 +50,18 @@ export function ShoppingCartProvider({ children }) {
     });
   }
 
-  function decreaseCartQuantity(id) {
+  function decreaseCartQuantity(id, variantName) {
+    const foundItemQuantity = cartItems.find(
+      (item) => item.variantName === variantName && item.id === id
+    )?.quantity;
     setCartItems((currItems) => {
-      if (currItems.find((item) => item.id === id)?.quantity === 1) {
-        return currItems.filter((item) => item.id !== id); //remove the item from the rest of the items
+      if (foundItemQuantity === 1) {
+        return currItems.filter(
+          (item) => item.id !== id || item.variantName !== variantName
+        ); //remove the item from the rest of the items
       } else {
         return currItems.map((item) => {
-          if (item.id === id) {
+          if (item.variantName === variantName && item.id === id) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
             return item;

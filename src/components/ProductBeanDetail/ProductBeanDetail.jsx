@@ -9,6 +9,8 @@ import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BiSolidChevronsDown } from "react-icons/bi";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { Link as RouterLink } from "react-router-dom";
+import { useShoppingCart } from "contexts/ShoppingCartContext";
+import { AllProductDummyData } from "Data";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,7 +23,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 
 //////////Dummy Data
-const dummysingleProductInfo = {
+const dummySingleProductInfo = {
   id: 1,
   name: "利姆季若",
   categoryId: 1,
@@ -198,11 +200,34 @@ function ProductDetail() {
 
   const [singleProduct, setSingleProduct] = useState(false);
   const [allProduct, setAllProduct] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(
+    ""
+  );
+  const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
+  const [selectedVariantId, setSelectedVariantId] = useState(false);
   const [categoryNum, setCategoryNum] = useState(0);
   const [productCategory, setProductCategory] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-  const [selectedOption, setSelectedOption] = useState("");
-  const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
+
+  //const [productQuantity, setProductQuantity] = useState(0);
+
+  /////////for Dummy Data (串接成功請刪掉)
+  // const [singleProduct, setSingleProduct] = useState(dummySingleProductInfo);
+  // const [allProduct, setAllProduct] = useState(AllProductDummyData);
+  // const [selectedOption, setSelectedOption] = useState(
+  //   singleProduct?.Variants[0].variantName
+  // );
+  // const [selectedOptionPrice, setSelectedOptionPrice] = useState(
+  //   dummySingleProductInfo.Variants[0].variantPrice
+  // );
+  /////////for Dummy Data (串接成功請刪掉)
+
+  const {
+    cartItems,
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
 
   useEffect(() => {
     const getSingleProductByIdAsync = async () => {
@@ -214,7 +239,9 @@ function ProductDetail() {
 
         setSingleProduct(backendSingleProduct);
         //預設價格
-        setSelectedOptionPrice(backendSingleProduct.Variants[0].variantPrice);
+        setSelectedOptionPrice(backendSingleProduct?.Variants[0].variantPrice);
+        // 預設購買種類
+        setSelectedOption(backendSingleProduct?.Variants[0].variantName);
       } catch (error) {
         console.error(error);
       }
@@ -233,17 +260,21 @@ function ProductDetail() {
     getSingleProductByIdAsync();
     getAllProductAsync();
   }, []);
+  
 
-  //增加數量
-  const handleDecrementQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const productQuantity = getItemQuantity(singleProduct.id, selectedOption);
+ 
+
+  // //增加數量
+  // const handleDecrementQuantity = () => {
+  //   if (productQuantity > 0) {
+  //     setProductQuantity(productQuantity - 1);
+  //   }
+  // };
   //減少數量
-  const handleIncrementQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+  // const handleIncrementQuantity = () => {
+  //   setProductQuantity(productQuantity + 1);
+  // };
 
   // 消費者選擇不同variant
   const handleSelectChange = (event) => {
@@ -257,18 +288,18 @@ function ProductDetail() {
 
   // 點擊加入購物車
   const handleAddToCart = () => {
-    if (quantity === 0) {
+    if (productQuantity === 0) {
       alert("請選擇商品數量");
     } else {
       // 在這裡處理將商品添加到購物車的邏輯
       alert(
-        `已將${quantity}個 "${
+        `已將${productQuantity}個 "${
           singleProduct.name
         }" ${selectedOption} 添加到購物車 \n 總共是：${
-          selectedOptionPrice * quantity
+          selectedOptionPrice * productQuantity
         }`
       );
-      setQuantity(0);
+      // setProductQuantity(0);
       setSelectedOption("default");
     }
   };
@@ -396,14 +427,28 @@ function ProductDetail() {
                       <div className="quantity-container">
                         <AiFillMinusCircle
                           className="minus-icon"
-                          onClick={handleDecrementQuantity}
+                          // onClick={handleDecrementQuantity}
+                          onClick={() => {
+                            // handleIncrementQuantity();
+                            decreaseCartQuantity(
+                              singleProduct.id,
+                              selectedOption,
+                            );
+                          }}
                         />
 
-                        <span className="item-quantity">{quantity}</span>
+                        <span className="item-quantity">{productQuantity}</span>
 
                         <AiFillPlusCircle
                           className="plus-icon"
-                          onClick={handleIncrementQuantity}
+                          onClick={() => {
+                            // handleIncrementQuantity();
+                            increaseCartQuantity(
+                              singleProduct.id,
+                              selectedOption,
+                              selectedOptionPrice
+                            );
+                          }}
                         />
                       </div>
                     </div>

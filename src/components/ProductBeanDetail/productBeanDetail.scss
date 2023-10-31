@@ -34,11 +34,12 @@
   .product-detail-container {
     .product-info-container {
       //outline: 1px solid red;
-      width: 1300px;
+      width: 0 auto;
       margin: 0 auto;
       padding-top: calc(20px + var(--header-height));
       padding-bottom: 10px;
       display: flex;
+      //flex-direction: column;
       justify-content: space-around;
       height: 750px;
       .product-info-left {
@@ -78,7 +79,7 @@
 
         .buy-it-container {
           display: column;
-          font-size: 25px;
+          font-size: 20px;
           padding: 10px 0px;
 
           .selection-container {
@@ -267,3 +268,5 @@
   position: relative;
   z-index: 1;
 }
+
+
