@@ -34,8 +34,7 @@ function Radio({
         <div className="description-price">
           <div className="text">{description}</div>
           <div className="price">
-            {shippingFee === 60 ? 60 : shippingFee}
-            {/* {shippingFee === 60 ? "免運" : shippingFee} */}
+            {shippingFee === 0 ? "免運" : shippingFee}
           </div>
         </div>
         <div className="period col col-12">{duration}</div>
@@ -56,7 +55,7 @@ const FormStep2 = () => {
 
       <section className="form-body col col-12">
         <Radio
-          shippingFee={60}
+          shippingFee={0}
           className={"shipping-standard"}
           id={"shipping-dhl"}
           value="standard"

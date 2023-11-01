@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import "./checkout.scss";
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 
-import { useContext } from "react";
 import FormDataContext from "contexts/FormDataContext";
 import CartContext from "contexts/CartContext";
 import { Link as RouterLink } from "react-router-dom";
@@ -13,6 +12,7 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import FormPanel from "components/FormPanel/FormPanel";
 import StepperPanel from "components/FormPanel/StepperPanel";
+import { useShoppingCart } from "contexts/ShoppingCartContext";
 
 //下一步
 function RightArrowBtn() {
@@ -59,7 +59,7 @@ function LeftArrowBtn() {
   );
 }
 
-const ProgressControl = () => {
+const ProgressControl = ({ handleSubmit }) => {
   //Context
   const { step, formData } = useContext(FormDataContext);
   const { totalPrice } = useContext(CartContext);
@@ -87,23 +87,7 @@ const ProgressControl = () => {
         >
           <LeftArrowBtn />
 
-          <button
-            className="next"
-            onClick={() => {
-              alert(
-                "FORM SUBMITTED!! \nCheck out console to see formData object~"
-              );
-              // 通常會把這筆資料給sending to an API
-              console.log(
-                `以下為表單資訊：
-                購物車總金額 (小計): ${totalPrice}
-                持卡人姓名: ${formData.cardUserName}
-                卡號: ${formData.cardNumber}
-                有效期限:${formData.cardExpirationDate}
-                CCV: ${formData.CardCVCCCV}`
-              );
-            }}
-          >
+          <button className="next" onClick={handleSubmit}>
             確認下單
           </button>
         </section>
@@ -121,6 +105,29 @@ const ProgressControl = () => {
 };
 
 const Checkout = () => {
+  //Context
+  const { cartItems, totalPrice, setTotalPrice } = useShoppingCart();
+  const { formData } = useContext(FormDataContext);
+  //取shipping fee的資料
+  const { shippingFeeData } = useContext(FormDataContext);
+
+  //按下確認下單後要做的事
+  const handleSubmit = () => {
+    alert("已成功下訂!! \n 記得到填寫的信箱收取訂單通知");
+    console.log(formData.name);
+    console.log(formData.email);
+    console.log(formData.address);
+    console.log(cartItems);
+  };
+
+  useEffect(() => {
+    //先算cartItemsArray裡面的總金，accumulator預設是0
+    const itemTotalPrice = cartItems.reduce((accumulator, obj) => {
+      return accumulator + obj.variantPrice * obj.quantity;
+    }, 0);
+    setTotalPrice(shippingFeeData + itemTotalPrice);
+  }, [cartItems, shippingFeeData, setTotalPrice]);
+
   return (
     <div>
       <Header />
@@ -138,7 +145,7 @@ const Checkout = () => {
                 </section>
               </div>
               {/* progress-control-panel */}
-              <ProgressControl />
+              <ProgressControl handleSubmit={handleSubmit} />
             </div>
 
             <div className="right-panel">
@@ -151,36 +158,46 @@ const Checkout = () => {
                 </div>
 
                 <hr />
-                <div className="checkout-cart-item summary-container">
-                  <div className="checkout-cart-item-name">
-                    巴西小丸子 - 濾掛 × 1
-                  </div>
-                  <div className="checkout-cart-item-subtotal-price">NT$30</div>
-                </div>
+                {cartItems?.map(
+                  ({ name, variantName, quantity, variantPrice }) => {
+                    return (
+                      <div className="checkout-cart-item summary-container">
+                        <div className="checkout-cart-item-name">
+                          {name} - {variantName} × {quantity}
+                        </div>
+                        <div className="checkout-cart-item-subtotal-price">
+                          NT${variantPrice * quantity}
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
 
                 <hr />
                 <div className="checkout-subtotal summary-container">
                   <div>小計</div>
-                  <div>NT$30</div>
+                  <div>
+                    NT$
+                    {cartItems.reduce((accumulator, obj) => {
+                      return accumulator + obj.variantPrice * obj.quantity;
+                    }, 0)}
+                  </div>
                 </div>
                 <hr />
                 <div className="checkout-shipping-price summary-container">
                   <div>運費</div>
-                  <div>NT$500</div>
+                  <div>NT${shippingFeeData}</div>
                 </div>
                 <hr />
                 <div className="checkout-total-price summary-container">
                   <div>總計</div>
-                  <div> NT$530</div>
+                  <div> NT$ {totalPrice}</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <RouterLink
-            to="/cart"
-            style={{ color: "#ba9373", margin: "50px" }}
-          >
+          <RouterLink to="/cart" style={{ color: "#ba9373", margin: "50px" }}>
             <BsArrowLeftCircleFill style={{ marginRight: "10px" }} />
             返回購物車
           </RouterLink>

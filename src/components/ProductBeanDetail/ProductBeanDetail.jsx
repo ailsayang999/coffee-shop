@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./productBeanDetail.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, Router, useParams } from "react-router-dom";
 import { getBeansById, getAllProduct } from "api/product";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
@@ -200,10 +200,9 @@ function ProductDetail() {
 
   const [singleProduct, setSingleProduct] = useState(false);
   const [allProduct, setAllProduct] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(
-    ""
-  );
+  const [selectedOption, setSelectedOption] = useState("");
   const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
+
   const [selectedVariantId, setSelectedVariantId] = useState(false);
   const [categoryNum, setCategoryNum] = useState(0);
   const [productCategory, setProductCategory] = useState(false);
@@ -222,7 +221,6 @@ function ProductDetail() {
   /////////for Dummy Data (串接成功請刪掉)
 
   const {
-    cartItems,
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
@@ -259,21 +257,10 @@ function ProductDetail() {
     getSingleProductByIdAsync();
     getAllProductAsync();
   }, []);
-  
 
- const productQuantity = getItemQuantity(singleProduct?.id, selectedOption)
- 
+  const productQuantity = getItemQuantity(singleProduct?.id, selectedOption);
 
-  // //增加數量
-  // const handleDecrementQuantity = () => {
-  //   if (productQuantity > 0) {
-  //     setProductQuantity(productQuantity - 1);
-  //   }
-  // };
-  //減少數量
-  // const handleIncrementQuantity = () => {
-  //   setProductQuantity(productQuantity + 1);
-  // };
+
 
   // 消費者選擇不同variant
   const handleSelectChange = (event) => {
@@ -431,7 +418,7 @@ function ProductDetail() {
                             // handleIncrementQuantity();
                             decreaseCartQuantity(
                               singleProduct.id,
-                              selectedOption,
+                              selectedOption
                             );
                           }}
                         />
@@ -454,9 +441,15 @@ function ProductDetail() {
                       </div>
                     </div>
                   </div>
-                  <button onClick={handleAddToCart} className="add-btn btn">
-                    加入購物車
-                  </button>
+                  <Router to="/cart">
+                    <button onClick={handleAddToCart} className="add-btn btn">
+                      查看購物車
+                    </button>
+                  </Router>
+
+                  {/* <button onClick={handleAddToCart} className="add-btn btn">
+                    查看購物車
+                  </button> */}
                 </>
               )}
             </div>

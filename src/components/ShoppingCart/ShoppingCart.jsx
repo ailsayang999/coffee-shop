@@ -64,7 +64,7 @@ const ShoppingCart = ({ isOpen }) => {
         {cartItems?.map((item, index) => (
           <CartItem key={index} {...item} />
         ))}
-        {/* 小記 Subtotal */}
+        {/* 小計 Subtotal */}
         <div
           className="cart-subtotal-price"
           style={{ fontSize: "30px", color: "black" }}

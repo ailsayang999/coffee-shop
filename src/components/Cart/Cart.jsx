@@ -74,11 +74,10 @@ const CartItem = ({
 
 const Cart = () => {
   const { cartItems } = useShoppingCart();
-  const shippingPrice = 60;
   const totalPrice = formatCurrency(
     cartItems?.reduce((total, cartItem) => {
       return total + (cartItem.variantPrice || 0) * cartItem.quantity;
-    }, 0) + shippingPrice
+    }, 0)
   );
   return (
     <>
@@ -119,7 +118,7 @@ const Cart = () => {
                 <div className="cart-summary-item">
                   <div className="cart-summary-item-text">運費</div>
                   <div className="cart-summary-item-price">
-                    {formatCurrency(shippingPrice)}
+                    依照運送方式而定
                   </div>
                 </div>
 

@@ -13,10 +13,9 @@ export function ShoppingCartProvider({ children }) {
   const [cartItems, setCartItems] = useLocalStorage("shopping-cart", []); // key, initialValue
   const [isOpen, setIsOpen] = useState(false);
 
-  // const cartQuantity = cartItems.reduce(
-  //   (quantity, item) => quantity+ item.quantity ,
-  //   0 //default start at zero 初始值是0
-  // );
+  //setTotalPrice
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const cartQuantity = cartItems.length;
 
   const toggleCart = () => setIsOpen(!isOpen);
@@ -30,7 +29,13 @@ export function ShoppingCartProvider({ children }) {
     return foundItem ? foundItem.quantity : 0;
   }
 
-  function increaseCartQuantity(id, name, variantName, variantPrice, singleProductImg) {
+  function increaseCartQuantity(
+    id,
+    name,
+    variantName,
+    variantPrice,
+    singleProductImg
+  ) {
     const foundItem = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     );
@@ -99,6 +104,8 @@ export function ShoppingCartProvider({ children }) {
         toggleCart,
         cartQuantity,
         cartItems,
+        totalPrice,
+        setTotalPrice,
       }}
     >
       {children}
