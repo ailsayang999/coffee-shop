@@ -132,8 +132,9 @@ const Cart = () => {
                   <div className="cart-summary-item-text">總計</div>
                   <div className="cart-summary-item-price">{totalPrice}</div>
                 </div>
-
-                <button className="cart-summary-btn btn">結帳</button>
+                <RouterLink to="/checkout">
+                  <button className="cart-summary-btn btn">結帳</button>
+                </RouterLink>
               </div>
             </div>
 

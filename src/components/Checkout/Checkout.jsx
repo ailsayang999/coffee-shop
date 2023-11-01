@@ -6,6 +6,8 @@ import Footer from "components/Footer/Footer";
 import { useContext } from "react";
 import FormDataContext from "contexts/FormDataContext";
 import CartContext from "contexts/CartContext";
+import { Link as RouterLink } from "react-router-dom";
+import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -174,8 +176,17 @@ const Checkout = () => {
               </div>
             </div>
           </div>
+
+          <RouterLink
+            to="/product_page"
+            style={{ color: "#ba9373", margin: "50px" }}
+          >
+            <BsArrowLeftCircleFill style={{ marginRight: "10px" }} />
+            返回商品列表
+          </RouterLink>
         </main>
       </div>
+
       <Footer />
     </div>
   );

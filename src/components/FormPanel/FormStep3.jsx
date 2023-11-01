@@ -6,7 +6,7 @@ export default function FormStep3() {
   const { formData, setFormData } = useContext(FormDataContext);
   return (
     <form className="credit-card-part form-part3" data-phase="credit-card">
-      <h3 className="form-title">付款資訊</h3>
+      <h3 className="form-title">信用卡付款</h3>
       <section className="form-body col col-12">
         <div className="col col-12">
           <div className="input-group">
@@ -67,6 +67,7 @@ export default function FormStep3() {
             ></input>
           </div>
         </div>
+        {/* <button className="btn">綠界信用卡付款</button> */}
       </section>
     </form>
   );
