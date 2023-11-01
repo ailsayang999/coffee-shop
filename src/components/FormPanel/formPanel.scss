@@ -9,20 +9,20 @@
     width: 400px;
     &:hover,
     &:focus {
-      border: 1px solid #f67599;
-      box-shadow: 0 0 5px 1px #f67599;
+      border: 1px solid var(--first-color);
+      box-shadow: 0 0 5px 1px var(--first-color);
     }
   }
   select {
     color: #121212;
     border: 1px solid #121212;
     border-radius: 5px;
-    padding: 9px;
+    padding: 10px;
     width: 100px;
     &:hover,
     &:focus {
-      border: 1px solid #f67599;
-      box-shadow: 0 0 5px 1px #f67599;
+      border: 1px solid var(--first-color);
+      box-shadow: 0 0 5px 1px var(--first-color);
     }
   }
   .input-group {

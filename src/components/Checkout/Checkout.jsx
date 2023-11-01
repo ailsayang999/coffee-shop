@@ -10,6 +10,7 @@ import CartContext from "contexts/CartContext";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import FormPanel from "components/FormPanel/FormPanel";
+import StepperPanel from "components/FormPanel/StepperPanel";
 
 //下一步
 function RightArrowBtn() {
@@ -131,7 +132,7 @@ const Checkout = () => {
               <div className="register-panel">
                 <section className="register-container">
                   <h2 className="register-title">結帳</h2>
-                  {/* <StepperPanel /> */}
+                  <StepperPanel/>
                   <FormPanel />
                 </section>
               </div>
@@ -139,7 +140,7 @@ const Checkout = () => {
               <ProgressControl />
             </div>
 
-            
+
             <div className="right-panel">{/* <Cart /> */}</div>
           </div>
         </main>
