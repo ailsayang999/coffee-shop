@@ -1,61 +1,84 @@
-import { useState } from "react";
 import "./cart.scss";
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
-import {
-  BiSolidRightArrow,
-  BiSolidLeftArrow,
-  BiSolidChevronsDown,
-} from "react-icons/bi";
-import { products } from "Data";
+import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
+import { useShoppingCart } from "contexts/ShoppingCartContext";
+import { formatCurrency } from "utilities/formatCurrency";
 
-const CartItem = () => {
+const CartItem = ({
+  id,
+  name,
+  variantName,
+  quantity,
+  variantPrice,
+  singleProductImg,
+}) => {
+  const { increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
+    useShoppingCart();
   return (
     <div className="cart-product">
       <div className="cart-product-detail">
         <div className="cart-product-img-wrapper">
-          <img
-            src="https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/%E5%B7%B4%E8%A5%BF%E5%B0%8F%E4%B8%B8%E5%AD%90.png?fit=540%2C540&ssl=1"
-            alt=""
-            className="cart-product-img"
-          />
+          <img src={singleProductImg} alt={name} className="cart-product-img" />
         </div>
 
         <div className="cart-product-details">
           <span className="cart-product-name">
-            <b>產品名稱: </b> 巴西小丸子
+            <b>產品名稱: </b> {name}-{variantName}
           </span>
 
           <span className="cart-product-id">
-            <b>價格: </b> 35 元
+            <b>價格: </b> {formatCurrency(variantPrice)} 元
           </span>
-
-          <div className="cart-selection-container">
-            <select className="cart-product-selection-box">
-              <option value={"濾掛式"}>濾掛式</option>
-              <option value={"半磅"}>半磅</option>
-            </select>
-
-            <div className="down-arrow-icon-container">
-              <BiSolidChevronsDown className="down-arrow-icon" />
-            </div>
-          </div>
         </div>
       </div>
       <div className="cart-product-price-detail">
         <div className="cart-product-amount-container">
-          <AiFillMinusCircle className="amount-icon" />
-          <div className="cart-product-amount">2</div>
-          <AiFillPlusCircle className="amount-icon" />
+          <AiFillMinusCircle
+            className="amount-icon"
+            onClick={() => {
+              decreaseCartQuantity(id, variantName);
+            }}
+          />
+          <div className="cart-product-amount">{quantity}</div>
+          <AiFillPlusCircle
+            className="amount-icon"
+            onClick={() => {
+              increaseCartQuantity(
+                id,
+                name,
+                variantName,
+                variantPrice,
+                singleProductImg
+              );
+            }}
+          />
         </div>
-        <div className="cart-product-price">小計：200元</div>
+        <div className="cart-product-price">
+          小計：{formatCurrency(variantPrice * quantity)}元
+        </div>
+      </div>
+      <div className="remove-button-container">
+        <button
+          onClick={() => removeFromCart(id, variantName)}
+          className="cart-remove-item-btn"
+        >
+          移除
+        </button>
       </div>
     </div>
   );
 };
 
 const Cart = () => {
+  const { cartItems } = useShoppingCart();
+  const shippingPrice = 60
+  const totalPrice = formatCurrency(
+    cartItems?.reduce((total, cartItem) => {
+      return total + (cartItem.variantPrice || 0) * cartItem.quantity;
+    }, 0) + shippingPrice
+  );
   return (
     <>
       <Header />
@@ -67,42 +90,12 @@ const Cart = () => {
 
             <div className="cart-bottom">
               <div className="cart-info">
-                {/* 一個項目 */}
-                {/* <div className="cart-product">
-                  <div className="cart-product-detail">
-                    <img
-                      src="https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/%E5%B7%B4%E8%A5%BF%E5%B0%8F%E4%B8%B8%E5%AD%90.png?fit=540%2C540&ssl=1"
-                      alt=""
-                      className="cart-product-img"
-                    />
-                    <div className="cart-product-details">
-                      <span className="cart-product-name">
-                        <b>Product: </b> 巴西小丸子
-                      </span>
-
-                      <span className="cart-product-id">
-                        <b>ID: </b> 10051
-                      </span>
-
-                      <span className="cart-product-selected">
-                        <b>項目: </b> 濾掛
-                      </span>
-                    </div>
-                  </div>
-                  <div className="cart-product-price-detail">
-                    <div className="cart-product-amount-container">
-                      <AiFillMinusCircle className="amount-icon" />
-                      <div className="cart-product-amount">2</div>
-                      <AiFillPlusCircle className="amount-icon" />
-                    </div>
-                    <div className="cart-product-price">$200</div>
-                  </div>
-                </div> */}
-
-                <CartItem />
-                <CartItem />
-
-                {/* <hr className="cart-product-hr" /> */}
+                {cartItems.length === 0 && (
+                  <div>您的購物車裡還沒有任何商品</div>
+                )}
+                {cartItems?.map((item, index) => (
+                  <CartItem key={index} {...item} />
+                ))}
               </div>
 
               <div className="cart-summary">
@@ -110,28 +103,33 @@ const Cart = () => {
 
                 <div className="cart-summary-item">
                   <span className="cart-summary-item-text">小計</span>
-                  <span className="cart-summary-item-price">$ 600</span>
+                  <span className="cart-summary-item-price">
+                    {formatCurrency(
+                      cartItems?.reduce((total, cartItem) => {
+                        return (
+                          total +
+                          (cartItem.variantPrice || 0) * cartItem.quantity
+                        );
+                      }, 0)
+                    )}
+                  </span>
                 </div>
 
                 <div className="cart-summary-item">
-                  <div className="cart-summary-item-text">
-                    運費
+                  <div className="cart-summary-item-text">運費</div>
+                  <div className="cart-summary-item-price">
+                    {formatCurrency(shippingPrice)}
                   </div>
-                  <div className="cart-summary-item-price">$ 60</div>
                 </div>
 
-                <div className="cart-summary-item">
-                  <div className="cart-summary-item-text">
-                    運費折抵
-                  </div>
+                {/* <div className="cart-summary-item">
+                  <div className="cart-summary-item-text">運費折抵</div>
                   <div className="cart-summary-item-price">$ -10</div>
-                </div>
+                </div> */}
 
                 <div className="cart-summary-item total-price-item">
-                  <div className="cart-summary-item-text">
-                    總計
-                  </div>
-                  <div className="cart-summary-item-price">$ 550</div>
+                  <div className="cart-summary-item-text">總計</div>
+                  <div className="cart-summary-item-price">{totalPrice}</div>
                 </div>
 
                 <button className="cart-summary-btn btn">結帳</button>

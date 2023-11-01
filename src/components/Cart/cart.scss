@@ -37,7 +37,7 @@
         gap: 10px;
         height: 100%;
         .cart-info {
-          // outline: 1px solid red;
+          //outline: 1px solid red;
           flex: 3;
           height: 100%;
 
@@ -51,7 +51,8 @@
             margin-bottom: 10px;
 
             .cart-product-detail {
-              flex: 2;
+              //outline: 5px solid rgb(146, 146, 192);
+              flex: 5;
               display: flex;
               .cart-product-img-wrapper {
                 width: 150px;
@@ -108,15 +109,16 @@
                 }
               }
             }
+
             .cart-product-price-detail {
-              //outline: 2px solid rgb(103, 134, 107);
-              flex: 1;
+              //outline: 3px solid rgb(103, 134, 107);
+              flex: 2;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
               height: 130px;
-              margin-block:10px;
+              margin-block: 10px;
               .cart-product-amount-container {
                 display: flex;
                 align-items: center;
@@ -141,12 +143,32 @@
                 font-weight: 500;
               }
             }
-          }
-          .cart-product-hr {
-            background-color: var(--first-color);
-            border: none;
-            height: 1px;
-            margin: 15px 0px;
+
+            .remove-button-container {
+              flex:1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding:10px;
+             
+              .cart-remove-item-btn {
+                    width: 60px;
+                height: 35px;
+                background: var(--first-color);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius:25px;
+                cursor: pointer;
+                border: none;
+                transition: 0.3s var(--transition);
+              }
+              .cart-remove-item-btn:hover {
+                background: red;
+                color: white;
+              }
+            }
           }
         }
 
@@ -165,7 +187,7 @@
             display: flex;
             justify-content: space-between;
             .cart-summary-item-text {
-              color:white;
+              color: white;
             }
 
             .cart-summary-item-price {

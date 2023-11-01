@@ -34,19 +34,21 @@
   .product-detail-container {
     .product-info-container {
       //outline: 1px solid red;
-      width: 0 auto;
+      width: 1200px;
       margin: 0 auto;
       padding-top: calc(20px + var(--header-height));
       padding-bottom: 10px;
       display: flex;
       //flex-direction: column;
-      justify-content: space-around;
+      justify-content: center;
       height: 750px;
       .product-info-left {
+        flex:1;
         //outline: 1px solid orange;
         width: 50%;
         height: 100%;
         .product-img-container {
+          width: 100%;
           .product-img {
             height: 100%;
             object-fit: cover;
@@ -56,6 +58,7 @@
       }
 
       .product-info-right {
+        //outline: 1px solid rgb(0, 242, 255);
         width: 50%;
         height: 100%;
         padding-bottom: 30px;
@@ -269,5 +272,3 @@
   position: relative;
   z-index: 1;
 }
-
-

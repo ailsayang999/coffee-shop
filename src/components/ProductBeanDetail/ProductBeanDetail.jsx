@@ -198,12 +198,12 @@ function ProductDetail() {
   ];
   const beanCategory = productCategoryArray[0].subCategory;
 
-  // const [singleProduct, setSingleProduct] = useState(false);
-  // const [allProduct, setAllProduct] = useState(false);
-  // const [selectedOption, setSelectedOption] = useState(
-  //   ""
-  // );
-  // const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
+  const [singleProduct, setSingleProduct] = useState(false);
+  const [allProduct, setAllProduct] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(
+    ""
+  );
+  const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
   const [selectedVariantId, setSelectedVariantId] = useState(false);
   const [categoryNum, setCategoryNum] = useState(0);
   const [productCategory, setProductCategory] = useState(false);
@@ -211,14 +211,14 @@ function ProductDetail() {
   //const [productQuantity, setProductQuantity] = useState(0);
 
   /////////for Dummy Data (串接成功請刪掉)
-  const [singleProduct, setSingleProduct] = useState(dummySingleProductInfo);
-  const [allProduct, setAllProduct] = useState(AllProductDummyData);
-  const [selectedOption, setSelectedOption] = useState(
-    singleProduct?.Variants[0].variantName
-  );
-  const [selectedOptionPrice, setSelectedOptionPrice] = useState(
-    dummySingleProductInfo.Variants[0].variantPrice
-  );
+  // const [singleProduct, setSingleProduct] = useState(dummySingleProductInfo);
+  // const [allProduct, setAllProduct] = useState(AllProductDummyData);
+  // const [selectedOption, setSelectedOption] = useState(
+  //   singleProduct?.Variants[0].variantName
+  // );
+  // const [selectedOptionPrice, setSelectedOptionPrice] = useState(
+  //   dummySingleProductInfo.Variants[0].variantPrice
+  // );
   /////////for Dummy Data (串接成功請刪掉)
 
   const {
@@ -226,40 +226,39 @@ function ProductDetail() {
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
-    removeFromCart,
   } = useShoppingCart();
 
-  // useEffect(() => {
-  //   const getSingleProductByIdAsync = async () => {
-  //     try {
-  //       const backendSingleProduct = await getBeansById(productBeanId); //拿到特定產品資料
-  //       //const stringEp = JSON.stringify(backendSingleProduct);
-  //       console.log("backendSingleProduct", backendSingleProduct);
-  //       // 更新 singleProduct
+  useEffect(() => {
+    const getSingleProductByIdAsync = async () => {
+      try {
+        const backendSingleProduct = await getBeansById(productBeanId); //拿到特定產品資料
+        //const stringEp = JSON.stringify(backendSingleProduct);
+        console.log("backendSingleProduct", backendSingleProduct);
+        // 更新 singleProduct
 
-  //       setSingleProduct(backendSingleProduct);
-  //       //預設價格
-  //       setSelectedOptionPrice(backendSingleProduct?.Variants[0].variantPrice);
-  //       // 預設購買種類
-  //       setSelectedOption(backendSingleProduct?.Variants[0].variantName);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+        setSingleProduct(backendSingleProduct);
+        //預設價格
+        setSelectedOptionPrice(backendSingleProduct?.Variants[0].variantPrice);
+        // 預設購買種類
+        setSelectedOption(backendSingleProduct?.Variants[0].variantName);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   const getAllProductAsync = async () => {
-  //     try {
-  //       const backendAllProduct = await getAllProduct(); //拿到所有產品資料
-  //       console.log("backendAllProduct", backendAllProduct);
-  //       setAllProduct(backendAllProduct);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+    const getAllProductAsync = async () => {
+      try {
+        const backendAllProduct = await getAllProduct(); //拿到所有產品資料
+        console.log("backendAllProduct", backendAllProduct);
+        setAllProduct(backendAllProduct);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   getSingleProductByIdAsync();
-  //   getAllProductAsync();
-  // }, []);
+    getSingleProductByIdAsync();
+    getAllProductAsync();
+  }, []);
   
 
  const productQuantity = getItemQuantity(singleProduct?.id, selectedOption)
