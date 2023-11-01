@@ -2,6 +2,7 @@ import React from "react";
 import "./shoppingCart.scss";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { formatCurrency } from "utilities/formatCurrency";
+import { Link as RouterLink } from "react-router-dom";
 
 const CartItem = ({
   id,
@@ -12,47 +13,35 @@ const CartItem = ({
   singleProductImg,
 }) => {
   const { removeFromCart } = useShoppingCart();
-  
+
   return (
-    <div className="order-item">
+    <div className="shopping-cart-order-item">
       {/* item的圖 */}
-      <img
-        src={singleProductImg}
-        alt=""
-        style={{ width: "75px", height: "75px", objectFit: "cover" }}
-      />
+      <div className="shopping-cart-img-container">
+        <img src={singleProductImg} alt={name} className="shopping-cart-img" />
+      </div>
+
       {/* item的info */}
       <div className="cart-item-info-container">
         <div className="cart-item-name-container">
-          <span className="cart-item-name" style={{ color: "black" }}>
-            {name}
-          </span>
-          <span className="cart-item-variant-name" style={{ color: "black" }}>
-            {variantName}
-          </span>
+          <span className="cart-item-name">{name}</span>
+          <span className="cart-item-variant-name">{variantName}</span>
 
-          {quantity > 1 && (
-            <span className="test-muted" style={{ color: "black" }}>
-              X {quantity}
-            </span>
-          )}
+          {quantity > 1 && <span className="test-muted">X {quantity}</span>}
         </div>
         {/* item的price */}
-        <div
-          className="test-muted"
-          style={{ fontSize: "0.75rem", color: "black" }}
-        >
-          {formatCurrency(variantPrice)}
+        <div className="test-muted shopping-cart-variant-price">
+          單價：{formatCurrency(variantPrice)}
         </div>
         {/* item的total price */}
-        <div className="cart-item-total-price" style={{ color: "black" }}>
-          {formatCurrency(variantPrice * quantity)}
+        <div className="cart-item-total-price">
+          小計：{formatCurrency(variantPrice * quantity)}
         </div>
       </div>
 
       <button
         onClick={() => removeFromCart(id, variantName)}
-        style={{ backgroundColor: "white", width: "20px", height: "20px" }}
+        className="shopping-cart-remove-item-btn"
       >
         &times;
       </button>
@@ -61,29 +50,35 @@ const CartItem = ({
 };
 
 const ShoppingCart = ({ isOpen }) => {
-  const { cartItems } = useShoppingCart();
-  
+  const { cartItems, toggleCart } = useShoppingCart();
 
   return (
     <div className={`shopping-cart-modal ${isOpen ? "show-cart" : ""}`}>
+      <div className="shopping-cart-close-btn-container">
+        <button className="shopping-cart-close-btn" onClick={toggleCart}>
+          &times;
+        </button>
+      </div>
       {/* 中間品項 */}
       <div className="shopping-cart-items-container">
         {cartItems?.map((item, index) => (
           <CartItem key={index} {...item} />
         ))}
-
         {/* 小記 Subtotal */}
         <div
           className="cart-subtotal-price"
           style={{ fontSize: "30px", color: "black" }}
         >
-          小計：{formatCurrency(
+          小計：
+          {formatCurrency(
             cartItems?.reduce((total, cartItem) => {
               return total + (cartItem.variantPrice || 0) * cartItem.quantity;
             }, 0)
           )}
         </div>
-        <button className="checkout-cart-button">查看購物車</button>
+        <RouterLink to="/cart" onClick={toggleCart}>
+          <button className="checkout-cart-button">查看購物車</button>
+        </RouterLink>
       </div>
     </div>
   );

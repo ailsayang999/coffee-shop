@@ -12,7 +12,9 @@ import { FaUser } from "react-icons/fa";
 import { links, productLinks } from "Data";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 
+
 import { ReactComponent as Hamburger } from "assets/icons/menu.svg";
+
 const Header = () => {
   const location = useLocation(); //確認當前停留頁面
 

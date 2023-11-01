@@ -135,6 +135,7 @@
               .minus-icon,
               .plus-icon {
                 transition: 0.3s var(--transition);
+                cursor: pointer;
               }
 
               .minus-icon:hover {
