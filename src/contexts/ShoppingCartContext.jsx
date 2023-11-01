@@ -30,7 +30,7 @@ export function ShoppingCartProvider({ children }) {
     return foundItem ? foundItem.quantity : 0;
   }
 
-  function increaseCartQuantity(id, name, variantName, variantPrice) {
+  function increaseCartQuantity(id, name, variantName, variantPrice, singleProductImg) {
     const foundItem = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     );
@@ -38,7 +38,14 @@ export function ShoppingCartProvider({ children }) {
       if (foundItem == null) {
         return [
           ...currItems,
-          { id, name, quantity: 1, variantName, variantPrice },
+          {
+            id,
+            name,
+            quantity: 1,
+            variantName,
+            variantPrice,
+            singleProductImg,
+          },
         ];
       } else if (foundItem) {
         //更新同variant的quantity

@@ -447,7 +447,8 @@ function ProductDetail() {
                               singleProduct.id,
                               singleProduct.name,
                               selectedOption,
-                              selectedOptionPrice
+                              selectedOptionPrice,
+                              singleProduct.Images
                             );
                           }}
                         />

@@ -128,21 +128,21 @@ const Products = () => {
       try {
         //拿到所有產品資訊
         const backendAllProduct = await getAllProduct();
-        console.log("backendAllProduct", backendAllProduct);
+        //console.log("backendAllProduct", backendAllProduct);
 
         //分類商品
         //分出咖啡Arr
-        const backendCoffeeBean = backendAllProduct.filter((item) => {
+        const backendCoffeeBean = backendAllProduct?.filter((item) => {
           return item.superCategoryName === "咖啡豆、濾掛式";
         });
         // 更新coffeeBean
-        setCoffeeBean(backendCoffeeBean[0].Categories); //會是一個 Arr
+        setCoffeeBean(backendCoffeeBean[0]?.Categories); //會是一個 Arr
 
-        const backendCoffeeEquipment = backendAllProduct.filter((item) => {
+        const backendCoffeeEquipment = backendAllProduct?.filter((item) => {
           return item.superCategoryName === "咖啡器材";
         });
         // 更新coffeeEquipment
-        setCoffeeEquipment(backendCoffeeEquipment[0].Categories); //會是一個 Arr
+        setCoffeeEquipment(backendCoffeeEquipment[0]?.Categories); //會是一個 Arr
       } catch (error) {
         console.error(error);
       }
