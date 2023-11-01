@@ -34,11 +34,18 @@ export function ShoppingCartProvider({ children }) {
     name,
     variantName,
     variantPrice,
-    singleProductImg
+    singleProductImg,
+    singleProductVariantArr
   ) {
     const foundItem = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     );
+    
+    //找到所選的variantName所對應到的id
+    const variantId = singleProductVariantArr.find(
+      (item) => item.variantName === variantName
+    ).id;
+
     setCartItems((currItems) => {
       if (foundItem == null) {
         return [
@@ -50,6 +57,7 @@ export function ShoppingCartProvider({ children }) {
             variantName,
             variantPrice,
             singleProductImg,
+            variantId,
           },
         ];
       } else if (foundItem) {
@@ -106,6 +114,8 @@ export function ShoppingCartProvider({ children }) {
         cartItems,
         totalPrice,
         setTotalPrice,
+        setCartItems,
+        setIsOpen,
       }}
     >
       {children}

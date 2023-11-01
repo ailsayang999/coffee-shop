@@ -46,6 +46,7 @@ function FormDataProvider({ children }) {
     setFormData,
     shippingFeeData,
     handleShippingMethodChange,
+    setShippingFeeData,
   };
 
   return (

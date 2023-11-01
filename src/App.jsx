@@ -12,10 +12,8 @@ import ProductBeanDetail from "components/ProductBeanDetail/ProductBeanDetail";
 import { ShoppingCartProvider } from "contexts/ShoppingCartContext";
 //Context
 import { FormDataProvider } from "contexts/FormDataContext";
-import { CartContextProvider } from "contexts/CartContext";
 
 import "./App.scss"; //要在最後才import不然會無法RWD
-
 
 const basename = process.env.PUBLIC_URL;
 
@@ -25,19 +23,17 @@ function App() {
       <BrowserRouter basename={basename}>
         <ShoppingCartProvider>
           <FormDataProvider>
-            <CartContextProvider>
-              <Routes>
-                <Route path="*" element={<HomePage />} />
-                <Route path="login" element={<LoginPage />} />
-                <Route path="product_page" element={<ProductPage />} />
-                <Route
-                  path="product_page/:productBeanId"
-                  element={<ProductBeanDetail />}
-                />
-                <Route path="cart" element={<CartPage />} />
-                <Route path="checkout" element={<CheckoutPage />} />
-              </Routes>
-            </CartContextProvider>
+            <Routes>
+              <Route path="*" element={<HomePage />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="product_page" element={<ProductPage />} />
+              <Route
+                path="product_page/:productBeanId"
+                element={<ProductBeanDetail />}
+              />
+              <Route path="cart" element={<CartPage />} />
+              <Route path="checkout" element={<CheckoutPage />} />
+            </Routes>
           </FormDataProvider>
         </ShoppingCartProvider>
       </BrowserRouter>

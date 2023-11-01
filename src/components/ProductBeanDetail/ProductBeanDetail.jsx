@@ -285,8 +285,6 @@ function ProductDetail() {
           selectedOptionPrice * productQuantity
         }`
       );
-      // setProductQuantity(0);
-      setSelectedOption("default");
     }
   };
 
@@ -434,18 +432,19 @@ function ProductDetail() {
                               singleProduct.name,
                               selectedOption,
                               selectedOptionPrice,
-                              singleProduct.Images[0].imgUrl
+                              singleProduct.Images[0].imgUrl,
+                              singleProduct.Variants
                             );
                           }}
                         />
                       </div>
                     </div>
                   </div>
-                  <Router to="/cart">
+                  <RouterLink to="/cart">
                     <button onClick={handleAddToCart} className="add-btn btn">
                       查看購物車
                     </button>
-                  </Router>
+                  </RouterLink>
 
                   {/* <button onClick={handleAddToCart} className="add-btn btn">
                     查看購物車

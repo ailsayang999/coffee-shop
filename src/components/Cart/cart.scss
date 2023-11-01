@@ -55,9 +55,12 @@
               flex: 5;
               display: flex;
               .cart-product-img-wrapper {
-                width: 150px;
+                //outline: 5px solid rgb(146, 181, 192);
                 height: 150px;
+                width: 150px;
                 .cart-product-img {
+                  height: 100%;
+                  width: 100%;
                   object-fit: cover;
                   border-radius: var(--radius);
                 }
@@ -145,21 +148,21 @@
             }
 
             .remove-button-container {
-              flex:1;
+              flex: 1;
               display: flex;
               justify-content: center;
               align-items: center;
-              padding:10px;
-             
+              padding: 10px;
+
               .cart-remove-item-btn {
-                    width: 60px;
+                width: 60px;
                 height: 35px;
                 background: var(--first-color);
                 color: white;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-radius:25px;
+                border-radius: 25px;
                 cursor: pointer;
                 border: none;
                 transition: 0.3s var(--transition);

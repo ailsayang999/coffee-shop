@@ -4,7 +4,6 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 
 import FormDataContext from "contexts/FormDataContext";
-import CartContext from "contexts/CartContext";
 import { Link as RouterLink } from "react-router-dom";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 
@@ -13,6 +12,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import FormPanel from "components/FormPanel/FormPanel";
 import StepperPanel from "components/FormPanel/StepperPanel";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
+import { postNewOrder } from "api/order";
 
 //下一步
 function RightArrowBtn() {
@@ -61,8 +61,7 @@ function LeftArrowBtn() {
 
 const ProgressControl = ({ handleSubmit }) => {
   //Context
-  const { step, formData } = useContext(FormDataContext);
-  const { totalPrice } = useContext(CartContext);
+  const { step } = useContext(FormDataContext);
 
   const buttonDisplay = () => {
     if (step === 0) {
@@ -106,18 +105,73 @@ const ProgressControl = ({ handleSubmit }) => {
 
 const Checkout = () => {
   //Context
-  const { cartItems, totalPrice, setTotalPrice } = useShoppingCart();
-  const { formData } = useContext(FormDataContext);
+  const { cartItems, totalPrice, setCartItems, setIsOpen, setTotalPrice } =
+    useShoppingCart();
+  const {
+    formData,
+    setFormData,
+    setChecked,
+    setStep,
+    setActive,
+    setShippingFeeData,
+  } = useContext(FormDataContext);
   //取shipping fee的資料
   const { shippingFeeData } = useContext(FormDataContext);
 
+  const payloadOrdersInfoArr = cartItems.map((item) => {
+    let newItem = new Object();
+    newItem.productId = item.id;
+    newItem.variantId = item.variantId;
+    newItem.quantity = item.quantity;
+    return newItem;
+  });
+
+  const orderPayload = {
+    email: formData.email,
+    orders: payloadOrdersInfoArr,
+  };
+
   //按下確認下單後要做的事
-  const handleSubmit = () => {
-    alert("已成功下訂!! \n 記得到填寫的信箱收取訂單通知");
-    console.log(formData.name);
-    console.log(formData.email);
-    console.log(formData.address);
-    console.log(cartItems);
+  // function handleSubmit() {
+  //   console.log("submit");
+  // }
+  const handleSubmit = async () => {
+    const res = await postNewOrder(orderPayload);
+    if (res) {
+      if (res.data.status === "success") {
+        //更新
+        alert("已成功下訂!! \n 記得到填寫的信箱收取訂單通知");
+
+        // 重置所有state
+        setFormData({
+          title: "",
+          name: "",
+          phone: "",
+          email: "",
+          county: "",
+          address: "",
+          shippingMethod: "",
+          cardUserName: "",
+          cardNumber: "",
+          cardExpirationDate: "",
+          CardCVCCCV: "",
+        });
+        setChecked(0);
+        setStep(0);
+        setActive(1);
+        setShippingFeeData(0);
+        setCartItems([]);
+        setIsOpen(false);
+        setTotalPrice(0);
+       
+        alert(res.data.data);
+
+      }
+      if (res.data.status === "error") {
+        alert(res.data.message);
+        alert("訂單未成功");
+      }
+    }
   };
 
   useEffect(() => {
