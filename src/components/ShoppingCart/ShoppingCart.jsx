@@ -2,8 +2,6 @@ import React from "react";
 import "./shoppingCart.scss";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { formatCurrency } from "utilities/formatCurrency";
-import { AllProductDummyData } from "Data";
-
 
 const CartItem = ({
   id,
@@ -14,8 +12,7 @@ const CartItem = ({
   singleProductImg,
 }) => {
   const { removeFromCart } = useShoppingCart();
-  const itemImg = AllProductDummyData;
-
+  
   return (
     <div className="order-item">
       {/* item的圖 */}
@@ -29,6 +26,9 @@ const CartItem = ({
         <div className="cart-item-name-container">
           <span className="cart-item-name" style={{ color: "black" }}>
             {name}
+          </span>
+          <span className="cart-item-variant-name" style={{ color: "black" }}>
+            {variantName}
           </span>
 
           {quantity > 1 && (
