@@ -6,12 +6,15 @@ import {
   ProductPage,
   CartPage,
   CheckoutPage,
+  OrderManageMent,
 } from "pages";
 import ProductBeanDetail from "components/ProductBeanDetail/ProductBeanDetail";
 
-import { ShoppingCartProvider } from "contexts/ShoppingCartContext";
 //Context
+import { ShoppingCartProvider } from "contexts/ShoppingCartContext";
+
 import { FormDataProvider } from "contexts/FormDataContext";
+import { OrderContextProvider } from "contexts/OrderContext";
 
 import "./App.scss"; //要在最後才import不然會無法RWD
 
@@ -23,17 +26,20 @@ function App() {
       <BrowserRouter basename={basename}>
         <ShoppingCartProvider>
           <FormDataProvider>
-            <Routes>
-              <Route path="*" element={<HomePage />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="product_page" element={<ProductPage />} />
-              <Route
-                path="product_page/:productBeanId"
-                element={<ProductBeanDetail />}
-              />
-              <Route path="cart" element={<CartPage />} />
-              <Route path="checkout" element={<CheckoutPage />} />
-            </Routes>
+            <OrderContextProvider>
+              <Routes>
+                <Route path="*" element={<HomePage />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="product_page" element={<ProductPage />} />
+                <Route
+                  path="product_page/:productBeanId"
+                  element={<ProductBeanDetail />}
+                />
+                <Route path="cart" element={<CartPage />} />
+                <Route path="checkout" element={<CheckoutPage />} />
+                <Route path="order-management" element={<OrderManageMent />} />
+              </Routes>
+            </OrderContextProvider>
           </FormDataProvider>
         </ShoppingCartProvider>
       </BrowserRouter>

@@ -9,12 +9,22 @@ const instance = axios.create({
   },
 });
 
-//取得咖啡豆商品
+//送出商品訂單
 export const postNewOrder = async (orderPayload) => {
   try {
     const res = await instance.post(`${baseUrl}/order`, orderPayload);
     return res;
   } catch (error) {
     console.error("[Post New Order failed]");
+  }
+};
+
+//取得訂單
+export const postAllOrder = async (userEmailPayload) => {
+  try {
+    const res = await instance.post(`${baseUrl}/order/check`, userEmailPayload);
+    return res;
+  } catch (error) {
+    console.error("[Post All Order failed]");
   }
 };
