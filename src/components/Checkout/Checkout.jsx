@@ -178,11 +178,11 @@ const Checkout = () => {
           </div>
 
           <RouterLink
-            to="/product_page"
+            to="/cart"
             style={{ color: "#ba9373", margin: "50px" }}
           >
             <BsArrowLeftCircleFill style={{ marginRight: "10px" }} />
-            返回商品列表
+            返回購物車
           </RouterLink>
         </main>
       </div>
