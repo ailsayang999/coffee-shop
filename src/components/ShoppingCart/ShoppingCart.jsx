@@ -25,7 +25,7 @@ const CartItem = ({
       <div className="cart-item-info-container">
         <div className="cart-item-name-container">
           <span className="cart-item-name">{name}</span>
-          <span className="cart-item-variant-name">{variantName}</span>
+          <span className="cart-item-variant-name">-{variantName}</span>
 
           {quantity > 1 && <span className="test-muted">X {quantity}</span>}
         </div>

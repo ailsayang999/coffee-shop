@@ -5,6 +5,7 @@ import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { formatCurrency } from "utilities/formatCurrency";
+import { Link as RouterLink } from "react-router-dom";
 
 const CartItem = ({
   id,
@@ -73,7 +74,7 @@ const CartItem = ({
 
 const Cart = () => {
   const { cartItems } = useShoppingCart();
-  const shippingPrice = 60
+  const shippingPrice = 60;
   const totalPrice = formatCurrency(
     cartItems?.reduce((total, cartItem) => {
       return total + (cartItem.variantPrice || 0) * cartItem.quantity;
@@ -137,14 +138,18 @@ const Cart = () => {
             </div>
 
             <div className="cart-button-wrapper">
-              <button className="cart-button cart-btn-left btn">
-                <BiSolidLeftArrow className="cart-btn-left-arrow" />
-                繼續購物
-              </button>
+              <RouterLink to="/product_page">
+                <button className="cart-button cart-btn-left btn">
+                  <BiSolidLeftArrow className="cart-btn-left-arrow" />
+                  繼續購物
+                </button>
+              </RouterLink>
 
-              <button className="cart-button cart-btn-right btn">
-                結帳去 <BiSolidRightArrow className="cart-btn-right-arrow" />
-              </button>
+              <RouterLink to="/checkout">
+                <button className="cart-button cart-btn-right btn">
+                  結帳去 <BiSolidRightArrow className="cart-btn-right-arrow" />
+                </button>
+              </RouterLink>
             </div>
           </div>
         </div>

@@ -125,14 +125,13 @@ const Checkout = () => {
       <div className="checkout-page">
         <main className="site-main">
           <div className="main-container">
-
             {/* left-panel */}
             <div className="left-panel">
               {/* register-panel */}
               <div className="register-panel">
                 <section className="register-container">
                   <h2 className="register-title">結帳</h2>
-                  <StepperPanel/>
+                  <StepperPanel />
                   <FormPanel />
                 </section>
               </div>
@@ -140,8 +139,40 @@ const Checkout = () => {
               <ProgressControl />
             </div>
 
+            <div className="right-panel">
+              <div className="checkout-cart-container">
+                <h1>您的訂單</h1>
 
-            <div className="right-panel">{/* <Cart /> */}</div>
+                <div className="title summary-container">
+                  <div>商品</div>
+                  <div>小計</div>
+                </div>
+
+                <hr />
+                <div className="checkout-cart-item summary-container">
+                  <div className="checkout-cart-item-name">
+                    巴西小丸子 - 濾掛 × 1
+                  </div>
+                  <div className="checkout-cart-item-subtotal-price">NT$30</div>
+                </div>
+
+                <hr />
+                <div className="checkout-subtotal summary-container">
+                  <div>小計</div>
+                  <div>NT$30</div>
+                </div>
+                <hr />
+                <div className="checkout-shipping-price summary-container">
+                  <div>運費</div>
+                  <div>NT$500</div>
+                </div>
+                <hr />
+                <div className="checkout-total-price summary-container">
+                  <div>總計</div>
+                  <div> NT$530</div>
+                </div>
+              </div>
+            </div>
           </div>
         </main>
       </div>

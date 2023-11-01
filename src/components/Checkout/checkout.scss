@@ -96,6 +96,28 @@
     flex: 1 1;
     margin-top: 130px;
     margin-left: 60px;
+    .checkout-cart-container {
+      border: 3px dashed var(--first-color);
+      border-radius: var(--radius);
+      padding: 30px;
+      color: white;
+      font-size: 17px;
+      height:100%;
+      .summary-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top:20px;
+      }
+      .title,
+      .checkout-total-price {
+        font-weight: 700;
+        font-size: 20px;
+      }
+       .checkout-total-price{
+        color:var(--first-color);
+       }
+     
+    }
   }
   section {
     margin-bottom: 20px;
