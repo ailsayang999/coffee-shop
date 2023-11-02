@@ -38,6 +38,8 @@ const Order = () => {
 
   const handleLogout = () => {
     setOrderItem(false);
+    setEmail("")
+
   };
 
   const orderItemDummyData = [
