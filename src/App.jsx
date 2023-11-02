@@ -18,7 +18,7 @@ import { OrderContextProvider } from "contexts/OrderContext";
 
 import "./App.scss"; //要在最後才import不然會無法RWD
 
-const basename = process.env.PUBLIC_URL;
+const basename = process.env.REACT_APP_PUBLIC_URL;
 
 function App() {
   return (
