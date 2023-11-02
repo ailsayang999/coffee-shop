@@ -13,6 +13,7 @@ import FormPanel from "components/FormPanel/FormPanel";
 import StepperPanel from "components/FormPanel/StepperPanel";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { postNewOrder } from "api/order";
+import { useNavigate } from "react-router-dom";
 
 //下一步
 function RightArrowBtn() {
@@ -135,6 +136,9 @@ const Checkout = () => {
   // function handleSubmit() {
   //   console.log("submit");
   // }
+
+  const navigate = useNavigate();
+
   const handleSubmit = async () => {
     const res = await postNewOrder(orderPayload);
     if (res) {
@@ -163,7 +167,7 @@ const Checkout = () => {
         setCartItems([]);
         setIsOpen(false);
         setTotalPrice(0);
-        
+         navigate("/order-management");
       }
       if (res.data.status === "error") {
         alert(res.data.message);
