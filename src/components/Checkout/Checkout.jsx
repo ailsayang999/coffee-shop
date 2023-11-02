@@ -163,9 +163,7 @@ const Checkout = () => {
         setCartItems([]);
         setIsOpen(false);
         setTotalPrice(0);
-       
-        alert(res.data.data);
-
+        
       }
       if (res.data.status === "error") {
         alert(res.data.message);

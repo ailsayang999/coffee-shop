@@ -27,13 +27,17 @@ const Order = () => {
     const res = await deleteSingleOrder(orderId);
     if (res) {
       if (res.data.status === "success") {
+        alert(res.data.message);
         setOrderItem(orderItem.filter((order) => order.orderId !== orderId));
       }
       if (res.data.status === "error") {
         alert(res.data.message);
       }
     }
+    console.log("res is not true console.log res", res)
   };
+
+  console.log(JSON.stringify(orderItem))
 
   const handleLogout = () => {
     setOrderItem(false);

@@ -278,13 +278,14 @@ function ProductDetail() {
       alert("請選擇商品數量");
     } else {
       // 在這裡處理將商品添加到購物車的邏輯
-      alert(
-        `已將${productQuantity}個 "${
-          singleProduct.name
-        }" ${selectedOption} 添加到購物車 \n 總共是：${
-          selectedOptionPrice * productQuantity
-        }`
-      );
+      // alert(
+      //   `已將${productQuantity}個 "${
+      //     singleProduct.name
+      //   }" ${selectedOption} 添加到購物車 \n 總共是：${
+      //     selectedOptionPrice * productQuantity
+      //   }`
+      // );
+      alert("加入購物車成功")
     }
   };
 

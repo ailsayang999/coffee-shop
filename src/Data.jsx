@@ -2783,3 +2783,64 @@ const dummySpecificEpuipmentInfo = {
     },
   ],
 };
+
+const orderItem = [
+  {
+    orderId: 11,
+    orderItem: [
+      {
+        productId: 24,
+        productName: "TIMEMORE 泰摩 冷泡咖啡冰錐瓶",
+        productDescription:
+          "泡咖啡泡茶皆可用，兩層式開瓶設計，300細目過濾網防污染，內容量：600 ml",
+        productVariant: "黑色",
+        productPrice: 1080,
+        productQuantity: 1,
+        createdTime: "2023-11-02T05:32:58.000Z",
+        discountedPrice: 1080,
+      },
+      {
+        productId: 12,
+        productName: "新幾內亞高山精選",
+        productDescription: "風味：酸味感佳，散發熱帶水果的風味與甜味",
+        productVariant: "濾掛",
+        productPrice: 25,
+        productQuantity: 2,
+        createdTime: "2023-11-02T05:32:58.000Z",
+        discountedPrice: 13,
+      },
+    ],
+  },
+  {
+    orderId: 12,
+    orderItem: [
+      {
+        productId: 24,
+        productName: "TIMEMORE 泰摩 冷泡咖啡冰錐瓶",
+        productDescription:
+          "泡咖啡泡茶皆可用，兩層式開瓶設計，300細目過濾網防污染，內容量：600 ml",
+        productVariant: "黑色",
+        productPrice: 1080,
+        productQuantity: 2,
+        createdTime: "2023-11-02T05:33:24.000Z",
+        discountedPrice: 1080,
+      },
+    ],
+  },
+  {
+    orderId: 13,
+    orderItem: [
+      {
+        productId: 9,
+        productName: "曼特寧・巴西",
+        productDescription:
+          "風味：成熟熱帶水果的香甜風味，剛好的苦味，奶油般的質感",
+        productVariant: "濾掛",
+        productPrice: 22,
+        productQuantity: 2,
+        createdTime: "2023-11-02T05:33:49.000Z",
+        discountedPrice: 22,
+      },
+    ],
+  },
+];
