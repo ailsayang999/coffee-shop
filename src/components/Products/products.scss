@@ -1,0 +1,125 @@
+.products-page {
+  color: var(--first-color);
+  font-weight: bold;
+  position: relative;
+  min-height: calc(100vh + var(--header-height));
+  background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover
+    fixed;
+
+  .product-container {
+    padding-top: var(--header-height);
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 0.9rem;
+    padding-top: calc(20px + var(--header-height));
+    display: flex;
+    flex-direction: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    gap: 30px;
+
+    .product-container-left {
+      width: 30%;
+      height: 100%;
+      border-radius: var(--radius);
+      border: 2px dashed var(--first-color);
+      background-color: var(--container-color);
+      padding: 25px;
+      margin-bottom: 30px;
+      .category-container {
+        height: 100%;
+        h2 {
+          margin: 20px 0px;
+        }
+        .filter-icon {
+          margin-right: 10px;
+        }
+        .product-filter-btn {
+          font-size: 18px;
+          font-weight: bold;
+          transition: 0.3s var(--transition);
+          background: var(--container-color);
+          border: none;
+          color: var(--first-color);
+          cursor: pointer;
+          transition: 0.3s var(--transition);
+        }
+
+        .product-filter-btn:hover {
+          color: white;
+        }
+        .navigate-active {
+          color: white;
+        }
+      }
+    }
+    .product-container-right {
+      width: 70%;
+      height: 100%;
+      .item-container {
+        border-radius: var(--radius);
+        border: 2px dashed var(--first-color);
+        background-color: var(--container-color);
+        height: 100%;
+        width: 100%;
+        padding: 25px;
+        margin-bottom: 30px;
+        .product-category-title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-bottom: 20px;
+        }
+        .items {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 30px;
+          justify-content: space-around;
+          align-items: center;
+
+          .item {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+
+            .item-img {
+              width: 300px;
+              height: 300px;
+              object-fit: cover;
+              border-radius: var(--radius);
+            }
+            .item-title {
+              text-align: center;
+              color: var(--first-color);
+              transition: 0.3s var(--transition);
+            }
+
+            .item-title:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// background picture的深色遮罩
+.products-page::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--hsla);
+}
+
+.product-container {
+  position: relative;
+  z-index: 1;
+}

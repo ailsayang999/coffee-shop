@@ -111,11 +111,13 @@ img {
   border: 2px solid var(--first-color);
   padding: 1rem 1.5rem;
   border-radius: var(--radius);
+  transition:0.3s var(--transition);
 }
 
 .btn:hover {
   background-color: transparent;
   color: var(--first-color);
+  cursor: pointer;
 }
 
 .section {
@@ -155,6 +157,15 @@ img {
     .footer__grid {
       grid-template-columns: repeat(2, 1fr);
       row-gap: 3rem;
+    }
+  }
+  .cart-page {
+    .cart-container {
+      .cart-content-wrapper {
+        .cart-bottom {
+          flex-direction: flex;
+        }
+      }
     }
   }
 }
@@ -199,7 +210,7 @@ img {
           }
         }
       }
-      .show-menu{
+      .show-menu {
         max-height: 220px;
       }
 
@@ -259,6 +270,15 @@ img {
       }
     }
   }
+  .cart-page {
+    .cart-container {
+      .cart-content-wrapper {
+        .cart-bottom {
+          flex-direction: flex;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -294,6 +314,20 @@ img {
       }
     }
   }
+  .cart-page {
+    .cart-container {
+      .cart-content-wrapper {
+        .cart-bottom {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+  // .product-detail-page {
+  //   .product-detail-container {
+  //     flex-direction: column;
+  //   }
+  // }
 }
 
 @media screen and (max-width: 576px) {
@@ -336,6 +370,20 @@ img {
       grid-template-columns: 1fr;
     }
   }
+  .cart-page {
+    .cart-container {
+      .cart-content-wrapper {
+        .cart-bottom {
+          flex-direction: column;
+          .cart-info {
+            .cart-product {
+              flex-direction: column;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 350px) {
@@ -347,12 +395,26 @@ img {
       .testimonial__quote {
         padding: 1.5rem 1.25rem 2rem;
       }
-      .testimonial__content{
-         .testimonial__img-wrapper{
+      .testimonial__content {
+        .testimonial__img-wrapper {
           width: 70px;
-          height:70px;
-          margin-inline:1rem;
-         }
+          height: 70px;
+          margin-inline: 1rem;
+        }
+      }
+    }
+  }
+  .cart-page {
+    .cart-container {
+      .cart-content-wrapper {
+        .cart-bottom {
+          flex-direction: column;
+          .cart-info {
+            .cart-product {
+              flex-direction: column;
+            }
+          }
+        }
       }
     }
   }

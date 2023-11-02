@@ -1,0 +1,87 @@
+.stepper-panel {
+  height: 120px;
+  .stepper-container {
+    //outline: 1px solid red;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.circle {
+  background-color: var(--bg-color);
+  position: relative;
+  z-index: 5;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .circle-number-container {
+    position: relative;
+    background-color: var(--bg-color);
+    color: white;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #e0e0e0;
+    transition: 0.4s ease;
+  }
+
+  .label-content {
+    width: 70px;
+    color: #999;
+    font-weight: bold;
+  }
+}
+
+.circle.checked.active .circle-number-container::after {
+  content: "\2714"; //「勾勾」的 CSS 代號是 \2714：
+  color: #fff;
+  position: absolute;
+  background-color: var(--first-color);
+  // border: 1px solid black;
+  font-size: 14px;
+}
+
+.circle.active .circle-number-container {
+  background-color:var(--first-color);
+  border: 3px solid var(--first-color);
+  color: #fff;
+}
+
+.circle.active .label-content {
+  color: var(--first-color);
+}
+
+.stepper-container::before {
+  content: "";
+  position: absolute;
+  background-color: var(--bg-color);
+  top: 52%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 5px;
+  height: 4px;
+  width: 100%;
+  z-index: 1;
+  transition: 0.4s ease;
+}
+
+.progress {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  background-color: var(--first-color);
+  z-index: 2;
+}

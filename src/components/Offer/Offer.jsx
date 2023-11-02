@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Autoplay,Pagination } from "swiper/modules";
 
 const Offer = () => {
   return (
@@ -20,9 +20,14 @@ const Offer = () => {
       </h2>
       {/* Swiper Pagination */}
       <Swiper
+        // lazy={true}
         spaceBetween={30}
         pagination={{ clickable: true }}
-        modules={[Pagination]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, Pagination]}
         className="container"
       >
         {offer.map(({ img, title, discount, description, id }) => {

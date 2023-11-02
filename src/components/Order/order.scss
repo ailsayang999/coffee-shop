@@ -1,0 +1,92 @@
+.order-management-page {
+  position: relative;
+  min-height: calc(100vh + var(--header-height));
+  background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover
+    fixed;
+
+  display: flex;
+  flex-direction: column;
+
+  .order-management-container {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: calc(20px + var(--header-height));
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 750px;
+    .check-in-email-container {
+      //outline: 1px solid lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+
+      .email-input-box {
+        padding: 10px;
+        border-radius: 25px;
+        width: 700px;
+      }
+    }
+
+    .order-management-items-show {
+        overflow: hidden;
+        max-height: 900px;
+      .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 1rem;
+        min-width: 800px;
+
+        thead tr {
+          background-color: var(--bg-color);
+          color: white;
+          text-align: left;
+          font-weight: bold;
+        }
+
+        th,
+        td {
+          padding: 5px 11px;
+        }
+
+        tbody tr {
+          border-bottom: 1px solid #dddddd;
+        }
+
+        tbody tr:nth-of-type(even) {
+          background-color: #f3f3f3;
+        }
+        tbody tr:last-of-type {
+          border-bottom: 3px solid var(--first-color);
+        }
+
+        // .product-td{
+        //   display: flex;
+        //   flex-direction: column;
+        // }
+      }
+
+     
+    }
+  }
+}
+
+// order-management-page background picture的深色遮罩
+.order-management-page::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--hsla);
+}
+
+.order-management-page .product-detail-container,
+.order-management-container {
+  position: relative;
+  z-index: 1;
+}

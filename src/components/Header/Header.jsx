@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import { animateScroll } from "react-scroll";
 import "./header.scss";
-// import { ReactComponent as Logo } from "assets/icons/logo.svg";
+import { useLocation } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 import logo from "assets/images/CoffeeHouseLogo.png";
-import { links } from "Data";
+import { BiUserCircle } from "react-icons/bi";
+import { BsFillCartFill } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
+import { links, productLinks } from "Data";
+import { useShoppingCart } from "contexts/ShoppingCartContext";
+
+
 import { ReactComponent as Hamburger } from "assets/icons/menu.svg";
+
 const Header = () => {
+  const location = useLocation(); //確認當前停留頁面
+
+  //HomePage scrolling
   const [scrollHeader, setScrollHeader] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const changeHeader = () => {
@@ -17,6 +28,7 @@ const Header = () => {
       setScrollHeader(false);
     }
   };
+  const { productBeanId } = useParams();
 
   useEffect(() => {
     window.addEventListener("scroll", changeHeader);
@@ -26,41 +38,184 @@ const Header = () => {
     animateScroll.scrollToTop();
   };
 
+  const { toggleCart, cartQuantity } = useShoppingCart();
+
   return (
     <header className={`${scrollHeader ? "scrollHeader" : ""} header`}>
       <nav className="nav container">
         {/* logo */}
-        <Link to="/" onClick={handleScrollTop} className="nav__logo">
+        <RouterLink to="/" onClick={handleScrollTop} className="nav__logo">
           <img src={logo} alt="" className="nav__logo-img" loading="lazy" />
-        </Link>
-        {/* menu */}
-        <div className={`${showMenu ? "show-menu" : ""} nav__menu`}>
-          <ul className="nav__list">
-            {links.map(({ name, path }, index) => {
-              return (
-                <li className="nav__item" key={index}>
-                  <Link
-                    hashSpy={true}
-                    spy={true}
-                    smooth={true}
-                    offset={-60}
-                    duration={300}
-                    to={path}
-                    className="nav__link"
-                    onClick={() => setShowMenu(!showMenu)}
-                  >
-                    {name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        </RouterLink>
 
-        {/* hamburger icon */}
-        <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
-          <Hamburger fill={"var(--title-color)"} />
-        </div>
+        {/* 如果頁面停留在產品頁，Header顯示以下訊息 */}
+        {location.pathname === "/" && (
+          <>
+            {/* menu */}
+            <div className={`${showMenu ? "show-menu" : ""} nav__menu`}>
+              <ul className="nav__list">
+                {links.map(({ name, path }, index) => {
+                  return (
+                    <li className="nav__item" key={index}>
+                      <ScrollLink
+                        hashSpy={true}
+                        spy={true}
+                        smooth={true}
+                        offset={-60}
+                        duration={300}
+                        to={path}
+                        className="nav__link"
+                        onClick={() => setShowMenu(!showMenu)}
+                      >
+                        {name}
+                      </ScrollLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {/* hamburger icon */}
+            <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
+              <Hamburger fill={"var(--title-color)"} />
+            </div>
+
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              {/* <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* 如果頁面停留在產品頁Detail，Header顯示以下訊息 */}
+        {location.pathname === "/product_page" && (
+          <>
+            {/* menu */}
+            <div className={`${showMenu ? "show-menu" : ""} nav__menu`}>
+              <ul className="nav__list">
+                {productLinks.map(({ name, path }, index) => {
+                  return (
+                    <li className="nav__item" key={index}>
+                      <ScrollLink
+                        hashSpy={true}
+                        spy={true}
+                        smooth={true}
+                        offset={-60}
+                        duration={300}
+                        to={path}
+                        className="nav__link"
+                        onClick={() => setShowMenu(!showMenu)}
+                      >
+                        {name}
+                      </ScrollLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {/* hamburger icon */}
+            <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
+              <Hamburger fill={"var(--title-color)"} />
+            </div>
+
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              {/* <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* 如果頁面停留在產品頁購物車，Header顯示以下訊息 */}
+        {location.pathname === `/product_page/${productBeanId}` && (
+          <>
+            {/* menu */}
+            <div className={`${showMenu ? "show-menu" : ""} nav__menu`}>
+              <ul className="nav__list">
+                {productLinks.map(({ name, path }, index) => {
+                  return (
+                    <li className="nav__item" key={index}>
+                      <RouterLink to={`/product_page`} className="nav__link">
+                        {name}
+                      </RouterLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {/* hamburger icon */}
+            <div className="nav__toggle" onClick={() => setShowMenu(!showMenu)}>
+              <Hamburger fill={"var(--title-color)"} />
+            </div>
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              {/* <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        {location.pathname === "/cart" && (
+          <>
+            <div className="icon-container">
+              {/* user icon */}
+              <RouterLink to="/login">
+                <FaUser className="user-icon" />
+              </RouterLink>
+
+              {/* cart icon */}
+              {/* <RouterLink to="/cart">
+                <BsFillCartFill className="cart-icon" />
+              </RouterLink> */}
+              <div onClick={toggleCart}>
+                {/* showing amount of product order */}
+                <BsFillCartFill className="cart-icon" />
+                {cartQuantity > 0 && (
+                  <div className="cart-amount">{cartQuantity}</div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </nav>
     </header>
   );
