@@ -40,14 +40,13 @@ export function ShoppingCartProvider({ children }) {
     const foundItem = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     );
-    
-    //找到所選的variantName所對應到的id
-    const variantId = singleProductVariantArr.find(
-      (item) => item.variantName === variantName
-    ).id;
 
     setCartItems((currItems) => {
       if (foundItem == null) {
+        //找到所選的variantName所對應到的id
+        const variantId = singleProductVariantArr.find(
+          (item) => item.variantName === variantName
+        ).id;
         return [
           ...currItems,
           {
