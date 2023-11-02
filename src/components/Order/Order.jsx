@@ -23,6 +23,10 @@ const Order = () => {
     }
   };
 
+  const handleDeleteOrderItem = (productId) => {
+    console.log(productId);
+  };
+
   const handleLogout = ()=>{
     setOrderItem(false)
   }
@@ -152,6 +156,7 @@ const Order = () => {
                         productPrice,
                         productQuantity,
                         discountedPrice,
+                        productId,
                       },
                       index
                     ) => {
@@ -163,7 +168,9 @@ const Order = () => {
                           <td>{productPrice}</td>
                           <td>{discountedPrice}</td>
                           <td>{discountedPrice * productQuantity}</td>
-                          <td><button className="">刪除</button></td>
+                          <td><button className="" onClick={()=>{
+                            handleDeleteOrderItem(productId);
+                          }}>刪除</button></td>
                         </tr>
                       );
                     }
