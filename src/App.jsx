@@ -18,12 +18,10 @@ import { OrderContextProvider } from "contexts/OrderContext";
 
 import "./App.scss"; //要在最後才import不然會無法RWD
 
-const basename = process.env.REACT_APP_PUBLIC_URL;
-
 function App() {
   return (
     <div className="app">
-      <BrowserRouter basename={basename}>
+      <BrowserRouter>
         <ShoppingCartProvider>
           <FormDataProvider>
             <OrderContextProvider>
