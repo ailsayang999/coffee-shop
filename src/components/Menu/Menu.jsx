@@ -13,7 +13,7 @@ const Menu = () => {
       <div className="menu__img-wrapper">
         <img src={menuBanner} alt="" className="menu__img" loading="lazy" />
         <RouterLink to="/product_page" className="menu_btn btn">
-          查看商品總覽
+          Check Our Products
         </RouterLink>
       </div>
 

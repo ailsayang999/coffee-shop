@@ -8,18 +8,18 @@ const Home = () => {
         <div className="home__content">
           <span className="home__subtitle"> Welcome To Coffee House</span>
           <h1 className="home__title">
-            Discover Amazing Coffee House and Get Energy
+            Explore Our Coffee Sanctuary for an Energizing Experience
           </h1>
           <p className="home__description">
-            There are many variations of passages available but the majority
-            have suffered alteration in some form by injected humour.
+            Welcome to our cozy coffee haven, where every sip is a moment of
+            warmth and delight.
           </p>
           <div className="home__btns">
             <a href="#menu" className="btn">
-              我們的商品
+              Our Products
             </a>
             <a href="#offer" className="btn home__btn">
-              優惠活動
+              Special offer
             </a>
           </div>
         </div>

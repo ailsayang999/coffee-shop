@@ -34,12 +34,12 @@ import person8 from "assets/images/customers/person8.png";
 
 //For Each HomePage section
 export const links = [
-  { name: "首頁", path: "home" },
-  { name: "關於我們", path: "about" },
-  { name: "特色", path: "features" },
-  { name: "所有商品", path: "menu" },
-  { name: "相片集", path: "gallery" },
-  { name: "優惠活動", path: "offer" },
+  { name: "Home", path: "home" },
+  { name: "About", path: "about" },
+  { name: "Features", path: "features" },
+  { name: "Products", path: "menu" },
+  { name: "Gallery", path: "gallery" },
+  { name: "Offer", path: "offer" },
 ];
 
 //For Each ProductPage section
@@ -56,28 +56,28 @@ export const features = [
     img: freeDelivery,
     title: "Free Shipping",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Enjoy the convenience of free shipping on all orders, making it even easier to access our premium organic coffee beans and equipment from the comfort of your home.",
   },
   {
     id: 2,
     img: certified,
     title: "Organic Certified",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "We are committed to offering only organic-certified coffee beans, ensuring that your favorite brews are not only exceptional in taste but also environmentally conscious and free from harmful chemicals.",
   },
   {
     id: 3,
     img: highQuality,
-    title: "High Quality",
+    title: "Commitment to Quality",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "We are dedicated to providing the highest standards of quality in every product we offer, from the beans we source to the equipment we sell, guaranteeing an exceptional coffee experience.",
   },
   {
     id: 4,
     img: roastedCoffee,
-    title: "Proper Roasting",
+    title: "Expertise in Brewing",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Our team of coffee enthusiasts brings a wealth of knowledge and expertise to help you choose the right equipment and accessories, offering guidance on perfecting your brewing techniques.",
   },
 ];
 

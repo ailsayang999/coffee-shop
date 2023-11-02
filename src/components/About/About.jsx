@@ -19,28 +19,31 @@ const About = () => {
         {/* About Content grid的右欄 */}
         <div className="about__content">
           <h2 className="section__title title-left" data-title="About Us">
-            Fresh Quality And Organic Tasty Coffee House for You
+            Your Ultimate Source for Premium Organic Coffee Beans and Equipment
           </h2>
 
           <p className="about__description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde
-            sapiente officiis, explicabo deleniti nam est assumenda cum corrupti
-            maxime accusamus. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Blanditiis, sit?
+            The Coffee Shop is a passionate coffee destination founded by
+            dedicated connoisseurs. Our mission is to curate and deliver the
+            highest quality coffee beans and equipment, so you can savor the
+            perfect brew every day. Discover our story and join us on a
+            flavorful journey through the world of coffee.
           </p>
 
           <div className="about__details gird">
             <p className="about__details-description">
               <Checked fill={"var(--title-color)"} />
-              At Lorem ipsum dolor sit amet consectetur adipisicing adipisci?
+              Handpicked, globally sourced, expertly roasted for exquisite
+              flavor profiles.
             </p>
             <p className="about__details-description">
               <Checked fill={"var(--title-color)"} />
-              At Lorem ipsum dolor sit amet consectetur adipisicing adipisci?
+              Committed to sustainability and eco-friendly farming practices.
             </p>
             <p className="about__details-description">
               <Checked fill={"var(--title-color)"} />
-              At Lorem ipsum dolor sit amet consectetur adipisicing adipisci?
+              Curated coffee gear, top-quality accessories, expert advice for
+              your brews.
             </p>
           </div>
 

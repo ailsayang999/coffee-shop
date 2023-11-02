@@ -12,7 +12,7 @@ import {
 
 import { AiOutlinePhone } from "react-icons/ai";
 import { MdOutlineLocationOn } from "react-icons/md";
-import {Link as RouterLink} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -31,9 +31,7 @@ const Footer = () => {
           </a>
 
           <p className="footer__description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident
-            consequuntur amet voluptas placeat illo rerum veniam consectetur
-            praesentium totam corrupti.
+            Thank you for choosing The Coffee Shop. With a passion for excellence, we're here to elevate your coffee experience with top-quality beans and equipment. Cheers to great coffee!
           </p>
 
           <ul className="footer__contact">
@@ -90,7 +88,6 @@ const Footer = () => {
                 <FaCaretRight className="icon" /> Offer
               </a>
             </li>
-
           </ul>
         </div>
 
