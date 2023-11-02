@@ -28,3 +28,14 @@ export const postAllOrder = async (userEmailPayload) => {
     console.error("[Post All Order failed]");
   }
 };
+
+
+//刪除一筆訂單
+export const deleteSingleOrder = async (orderId) => {
+  try {
+    const res = await instance.delete(`${baseUrl}/order/${orderId}`);
+    return res;
+  } catch (error) {
+    console.error("[Delete Single Order failed]");
+  }
+};
