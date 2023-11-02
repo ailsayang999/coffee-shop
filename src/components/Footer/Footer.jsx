@@ -12,6 +12,7 @@ import {
 
 import { AiOutlinePhone } from "react-icons/ai";
 import { MdOutlineLocationOn } from "react-icons/md";
+import {Link as RouterLink} from "react-router-dom"
 
 const Footer = () => {
   return (
@@ -55,37 +56,37 @@ const Footer = () => {
           <h3 className="footer__title">Quick Links</h3>
           <ul className="footer__links">
             <li>
-              <a href="#home" className="footer__link">
+              <a href="/#home" className="footer__link">
                 <FaCaretRight className="icon" /> Home
               </a>
             </li>
 
             <li>
-              <a href="#about" className="footer__link">
+              <a href="/#about" className="footer__link">
                 <FaCaretRight className="icon" /> About Us
               </a>
             </li>
 
             <li>
-              <a href="#menu" className="footer__link">
+              <a href="/#menu" className="footer__link">
                 <FaCaretRight className="icon" /> Menu
               </a>
             </li>
 
             <li>
-              <a href="#features" className="footer__link">
+              <a href="/#features" className="footer__link">
                 <FaCaretRight className="icon" /> Features
               </a>
             </li>
 
             <li>
-              <a href="#gallery" className="footer__link">
+              <a href="/#gallery" className="footer__link">
                 <FaCaretRight className="icon" /> Gallery
               </a>
             </li>
 
             <li>
-              <a href="#offer" className="footer__link">
+              <a href="/#offer" className="footer__link">
                 <FaCaretRight className="icon" /> Offer
               </a>
             </li>
