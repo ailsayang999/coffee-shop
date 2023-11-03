@@ -11,6 +11,7 @@ import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { Link as RouterLink } from "react-router-dom";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { AllProductDummyData } from "Data";
+import { AiFillStar } from "react-icons/ai";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -220,11 +221,8 @@ function ProductDetail() {
   // );
   /////////for Dummy Data (串接成功請刪掉)
 
-  const {
-    getItemQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-  } = useShoppingCart();
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } =
+    useShoppingCart();
 
   useEffect(() => {
     const getSingleProductByIdAsync = async () => {
@@ -260,8 +258,6 @@ function ProductDetail() {
 
   const productQuantity = getItemQuantity(singleProduct?.id, selectedOption);
 
-
-
   // 消費者選擇不同variant
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -285,7 +281,7 @@ function ProductDetail() {
       //     selectedOptionPrice * productQuantity
       //   }`
       // );
-      alert("加入購物車成功")
+      alert("加入購物車成功");
     }
   };
 
@@ -366,20 +362,28 @@ function ProductDetail() {
                   <p>{singleProduct.description}</p>
                   <ul>
                     {singleProduct.roast !== null && (
-                      <li>焙度: {singleProduct.roast}</li>
+                      <li>焙度:{singleProduct.roast}</li>
                     )}
 
                     {singleProduct.aroma !== null && (
-                      <li>香味: {singleProduct.aroma}</li>
+                      <li>
+                        香味: {Array(singleProduct.aroma).fill(<AiFillStar />)}
+                      </li>
                     )}
                     {singleProduct.sour !== null && (
-                      <li>酸味: {singleProduct.sour}</li>
+                      <li>
+                        酸味: {Array(singleProduct.sour).fill(<AiFillStar />)}
+                      </li>
                     )}
                     {singleProduct.sour !== null && (
-                      <li>苦味: {singleProduct.bitter}</li>
+                      <li>
+                        苦味: {Array(singleProduct.bitter).fill(<AiFillStar />)}
+                      </li>
                     )}
                     {singleProduct.thickness !== null && (
-                      <li>濃郁: {singleProduct.thickness}</li>
+                      <li>
+                        濃郁: {Array(singleProduct.thickness).fill(<AiFillStar />)}
+                      </li>
                     )}
                   </ul>
 
