@@ -49,8 +49,10 @@ const CartItem = ({
   );
 };
 
+
 const ShoppingCart = ({ isOpen }) => {
   const { cartItems, toggleCart } = useShoppingCart();
+  console.log(cartItems);
 
   return (
     <div className={`shopping-cart-modal ${isOpen ? "show-cart" : ""}`}>

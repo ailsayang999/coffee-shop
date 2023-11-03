@@ -133,10 +133,6 @@ const Checkout = () => {
     orders: payloadOrdersInfoArr,
   };
 
-  //按下確認下單後要做的事
-  // function handleSubmit() {
-  //   console.log("submit");
-  // }
 
   const navigate = useNavigate();
 
