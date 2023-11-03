@@ -9,6 +9,7 @@ import Gallery from "components/Gallery/Gallery";
 import Offer from "components/Offer/Offer";
 import Testimonial from "components/Testimonial/Testimonial";
 import Footer from "components/Footer/Footer";
+import ScrollToTopBtn from 'components/ScrollToTopBtn/ScrollToTopBtn';
 
 const HomePage = () => {
     return (
@@ -23,6 +24,7 @@ const HomePage = () => {
         <Offer />
         <Testimonial />
         <Footer />
+        <ScrollToTopBtn/>
       </div>
     );
 }

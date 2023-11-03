@@ -7,8 +7,8 @@ import {
   CartPage,
   CheckoutPage,
   OrderManageMent,
+  ProductDetailPage,
 } from "pages";
-import ProductBeanDetail from "components/ProductBeanDetail/ProductBeanDetail";
 
 //Context
 import { ShoppingCartProvider } from "contexts/ShoppingCartContext";
@@ -31,7 +31,7 @@ function App() {
                 <Route path="product_page" element={<ProductPage />} />
                 <Route
                   path="product_page/:productBeanId"
-                  element={<ProductBeanDetail />}
+                  element={<ProductDetailPage />}
                 />
                 <Route path="cart" element={<CartPage />} />
                 <Route path="checkout" element={<CheckoutPage />} />

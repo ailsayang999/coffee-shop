@@ -146,6 +146,17 @@ img {
   margin-bottom: 1rem;
 }
 
+.scroll-to-top-icon{
+  position:fixed;
+  right:60px;
+  bottom: 90px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  z-index: 10000;
+
+}
+
 @media screen and (max-width: 1200px) {
   .container {
     max-width: 960px;

@@ -12,6 +12,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { AllProductDummyData } from "Data";
 import { AiFillStar } from "react-icons/ai";
+import ScrollToTopBtn from "components/ScrollToTopBtn/ScrollToTopBtn";
+import { PiArrowCircleUpFill } from "react-icons/pi";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -224,6 +226,7 @@ function ProductDetail() {
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } =
     useShoppingCart();
 
+  //拿取資料
   useEffect(() => {
     const getSingleProductByIdAsync = async () => {
       try {
@@ -284,6 +287,12 @@ function ProductDetail() {
       alert("加入購物車成功");
     }
   };
+
+  //頁面置頂
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   // 咖啡種類array
   const [otherRelativeBeanArray, setOtherRelativeBeanArray] = useState([]);
@@ -382,7 +391,8 @@ function ProductDetail() {
                     )}
                     {singleProduct.thickness !== null && (
                       <li>
-                        濃郁: {Array(singleProduct.thickness).fill(<AiFillStar />)}
+                        濃郁:{" "}
+                        {Array(singleProduct.thickness).fill(<AiFillStar />)}
                       </li>
                     )}
                   </ul>
@@ -553,7 +563,6 @@ function ProductDetail() {
           </Link>
         </div>
       </div>
-
       <Footer />
     </>
   );

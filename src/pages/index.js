@@ -4,6 +4,7 @@ import ProductPage from "./ProductPage";
 import CartPage from "./CartPage";
 import CheckoutPage from "./CheckoutPage";
 import OrderManageMent from "./OrderManageMent";
+import ProductDetailPage from "./ProductDetailPage";
 
 export {
   HomePage,
@@ -12,4 +13,5 @@ export {
   CartPage,
   CheckoutPage,
   OrderManageMent,
+  ProductDetailPage,
 };

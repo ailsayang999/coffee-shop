@@ -3,6 +3,7 @@ import Headers from "components/Header/Header";
 import Products from "components/Products/Products";
 import Footer from "components/Footer/Footer";
 import Offer from "components/Offer/Offer";
+import ScrollToTopBtn from "components/ScrollToTopBtn/ScrollToTopBtn";
 
 const ProductPage = () => {
   return (
@@ -11,6 +12,7 @@ const ProductPage = () => {
       <Products />
       <Offer />
       <Footer />
+      <ScrollToTopBtn/>
     </div>
   );
 };
