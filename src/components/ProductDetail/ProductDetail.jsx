@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./productBeanDetail.scss";
+import "./productDetail.scss";
 import { Link, Router, useParams } from "react-router-dom";
 import { getBeansById, getAllProduct } from "api/product";
 import Footer from "components/Footer/Footer";

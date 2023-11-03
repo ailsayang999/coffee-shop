@@ -1,4 +1,4 @@
-import ProductDetail from "components/ProductBeanDetail/ProductBeanDetail";
+import ProductDetail from "components/ProductDetail/ProductDetail";
 import ScrollToTopBtn from "components/ScrollToTopBtn/ScrollToTopBtn";
 import React from "react";
 
