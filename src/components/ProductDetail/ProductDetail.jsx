@@ -391,7 +391,7 @@ function ProductDetail() {
                     )}
                     {singleProduct.thickness !== null && (
                       <li>
-                        濃郁:{" "}
+                        濃郁:
                         {Array(singleProduct.thickness).fill(<AiFillStar />)}
                       </li>
                     )}
@@ -454,6 +454,13 @@ function ProductDetail() {
                         />
                       </div>
                     </div>
+                  </div>
+                  <div style={{color:"salmon", marginBottom:"10px"}}>
+                    {
+                      singleProduct.Variants.find(
+                        (i) => i.variantName === selectedOption
+                      ).salesOfProduct[0].name
+                    }
                   </div>
                   <RouterLink to="/cart">
                     <button onClick={handleAddToCart} className="add-btn btn">
