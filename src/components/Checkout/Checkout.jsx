@@ -129,6 +129,7 @@ const Checkout = () => {
 
   const orderPayload = {
     email: formData.email,
+    shippingPrice: shippingFeeData,
     orders: payloadOrdersInfoArr,
   };
 
@@ -167,7 +168,7 @@ const Checkout = () => {
         setCartItems([]);
         setIsOpen(false);
         setTotalPrice(0);
-         navigate("/order-management");
+        navigate("/order-management");
       }
       if (res.data.status === "error") {
         alert(res.data.message);

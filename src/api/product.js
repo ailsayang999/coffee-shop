@@ -1,7 +1,9 @@
 // 串切開始
 import axios from "axios";
 
-const baseUrl = "https://a9e2-111-241-97-237.ngrok-free.app/api";
+const baseUrl = "https://coffeeshop-production-c884.up.railway.app/api";
+
+
 
 // const axiosInstance = axios.create({
 //   baseURL: baseUrl,

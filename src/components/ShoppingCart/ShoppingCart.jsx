@@ -61,9 +61,12 @@ const ShoppingCart = ({ isOpen }) => {
       </div>
       {/* 中間品項 */}
       <div className="shopping-cart-items-container">
-        {cartItems?.map((item, index) => (
-          <CartItem key={index} {...item} />
-        ))}
+        <div className="shopping-cart-item-container">
+          {cartItems?.map((item, index) => (
+            <CartItem key={index} {...item} />
+          ))}
+        </div>
+
         {/* 小計 Subtotal */}
         <div
           className="cart-subtotal-price"
