@@ -203,7 +203,7 @@ const Order = () => {
                               {orderItems.reduce(
                                 (total, orderItem) => {
                                   return (
-                                    total +
+                                    total + orderShippingPrice + 
                                     orderItem.discountedPrice *
                                       orderItem.productQuantity
                                   );
