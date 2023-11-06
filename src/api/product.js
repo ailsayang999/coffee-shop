@@ -3,8 +3,6 @@ import axios from "axios";
 
 const baseUrl = "https://coffeeshop-production-c884.up.railway.app/api";
 
-
-
 // const axiosInstance = axios.create({
 //   baseURL: baseUrl,
 // });
@@ -46,5 +44,15 @@ export const getBeansById = async (id) => {
     return res.data.data;
   } catch (error) {
     console.error("[Get Specific Product failed]");
+  }
+};
+
+// 取得Event Info
+export const getEvent = async () => {
+  try {
+    const res = await instance.get(`${baseUrl}/events`);
+    return res.data.data;
+  } catch (error) {
+    console.error("[Get Event Failed]");
   }
 };

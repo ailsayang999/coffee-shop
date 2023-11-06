@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./productDetail.scss";
 import { Link, Router, useParams } from "react-router-dom";
-import { getBeansById, getAllProduct } from "api/product";
+import { getBeansById, getAllProduct, getEvent } from "api/product";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
 import beanAndDrip from "assets/images/beanAndDrip.png";
@@ -210,6 +210,8 @@ function ProductDetail() {
   const [categoryNum, setCategoryNum] = useState(0);
   const [productCategory, setProductCategory] = useState(false);
 
+  const [event, setEvent] = useState(false);
+
   //const [productQuantity, setProductQuantity] = useState(0);
 
   /////////for Dummy Data (串接成功請刪掉)
@@ -255,8 +257,19 @@ function ProductDetail() {
       }
     };
 
+    const getEventAsync = async () => {
+      try {
+        const backendEvent = await getEvent();
+        setEvent(backendEvent);
+        console.log("backendEvent", backendEvent);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getSingleProductByIdAsync();
     getAllProductAsync();
+    getEventAsync();
   }, []);
 
   const productQuantity = getItemQuantity(singleProduct?.id, selectedOption);
@@ -455,7 +468,15 @@ function ProductDetail() {
                       </div>
                     </div>
                   </div>
-                  <div style={{color:"salmon", marginBottom:"10px"}}>
+                  {/* sales info */}
+                  <div style={{ color: "salmon", marginBottom: "10px" }}>
+                    {
+                      singleProduct.Variants.find(
+                        (i) => i.variantName === selectedOption
+                      ).salesOfProduct[0].name
+                    }
+                  </div>
+                  <div style={{ color: "salmon", marginBottom: "10px" }}>
                     {
                       singleProduct.Variants.find(
                         (i) => i.variantName === selectedOption
