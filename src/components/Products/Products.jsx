@@ -151,6 +151,12 @@ const Products = () => {
     getAllProductAsync();
   }, []);
 
+  //頁面置頂
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   // 左側刪選器元件 商品種類分類
   const productCategoryArray = [
     {

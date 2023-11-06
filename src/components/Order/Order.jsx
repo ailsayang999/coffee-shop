@@ -100,7 +100,6 @@ const Order = () => {
   return (
     <div className="order-management-page">
       <div className="order-management-container">
-
         {!orderItem && (
           <>
             <div className="check-in-email-container">
@@ -142,6 +141,7 @@ const Order = () => {
                   <th>單品金額</th>
                   <th>單品特價後金額</th>
                   <th>小計</th>
+                  <th>運費</th>
                   <th>應付總金</th>
                   <th>刪除此品項</th>
                 </tr>
@@ -149,72 +149,83 @@ const Order = () => {
 
               <tbody>
                 {orderItem &&
-                  orderItem.map(({ orderItem, orderId }, index) => {
-                    return (
-                      <>
-                        <tr key={index}>
-                          <td>{orderId}</td>
+                  orderItem.map(
+                    ({ orderItems, orderId, orderShippingPrice }, index) => {
+                      return (
+                        <>
+                          <tr key={index}>
+                            <td>{orderId}</td>
 
-                          <td className="product-td">
-                            {orderItem.map(({ productName }, index) => {
-                              return <div key={index}>{productName}</div>;
-                            })}
-                          </td>
+                            <td className="product-td">
+                              {orderItems.map(({ productName }, index) => {
+                                return <div key={index}>{productName}</div>;
+                              })}
+                            </td>
 
-                          <td className="product-td">
-                            {orderItem.map(({ productVariant }, index) => {
-                              return <div key={index}>{productVariant}</div>;
-                            })}
-                          </td>
-                          <td className="product-td">
-                            {orderItem.map(({ productQuantity }, index) => {
-                              return <div key={index}>{productQuantity}</div>;
-                            })}
-                          </td>
-                          <td className="product-td">
-                            {orderItem.map(({ productPrice }, index) => {
-                              return <div key={index}>{productPrice}</div>;
-                            })}
-                          </td>
-                          <td className="product-td">
-                            {orderItem.map(({ discountedPrice }, index) => {
-                              return <div key={index}>{discountedPrice}</div>;
-                            })}
-                          </td>
-                          <td className="product-td">
-                            {orderItem.map(
-                              ({ discountedPrice, productQuantity }, index) => {
-                                return (
-                                  <div key={index}>
-                                    {discountedPrice * productQuantity}
-                                  </div>
-                                );
-                              }
-                            )}
-                          </td>
-                          <td className="product-td">
-                            {orderItem.reduce((total, orderItem) => {
-                              return (
-                                total +
-                                orderItem.discountedPrice *
-                                  orderItem.productQuantity
-                              );
-                            }, 0)}
-                          </td>
-                          <td>
-                            <button
-                              className=""
-                              onClick={() => {
-                                handleDeleteOrderItem(orderId);
-                              }}
-                            >
-                              刪除
-                            </button>
-                          </td>
-                        </tr>
-                      </>
-                    );
-                  })}
+                            <td className="product-td">
+                              {orderItems.map(({ productVariant }, index) => {
+                                return <div key={index}>{productVariant}</div>;
+                              })}
+                            </td>
+                            <td className="product-td">
+                              {orderItems.map(({ productQuantity }, index) => {
+                                return <div key={index}>{productQuantity}</div>;
+                              })}
+                            </td>
+                            <td className="product-td">
+                              {orderItems.map(({ productPrice }, index) => {
+                                return <div key={index}>{productPrice}</div>;
+                              })}
+                            </td>
+                            <td className="product-td">
+                              {orderItems.map(({ discountedPrice }, index) => {
+                                return <div key={index}>{discountedPrice}</div>;
+                              })}
+                            </td>
+                            <td className="product-td">
+                              {orderItems.map(
+                                (
+                                  { discountedPrice, productQuantity },
+                                  index
+                                ) => {
+                                  return (
+                                    <div key={index}>
+                                      {discountedPrice * productQuantity}
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </td>
+                            <td className="product-td">
+                              <div key={index}>{orderShippingPrice}</div>
+                            </td>
+                            <td className="product-td">
+                              {orderItems.reduce(
+                                (total, orderItem) => {
+                                  return (
+                                    total + orderShippingPrice + 
+                                    orderItem.discountedPrice *
+                                      orderItem.productQuantity
+                                  );
+                                },
+                                0
+                              )}
+                            </td>
+                            <td>
+                              <button
+                                className=""
+                                onClick={() => {
+                                  handleDeleteOrderItem(orderId);
+                                }}
+                              >
+                                刪除
+                              </button>
+                            </td>
+                          </tr>
+                        </>
+                      );
+                    }
+                  )}
               </tbody>
             </table>
 

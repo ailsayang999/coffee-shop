@@ -129,13 +129,10 @@ const Checkout = () => {
 
   const orderPayload = {
     email: formData.email,
+    shippingPrice: shippingFeeData,
     orders: payloadOrdersInfoArr,
   };
 
-  //按下確認下單後要做的事
-  // function handleSubmit() {
-  //   console.log("submit");
-  // }
 
   const navigate = useNavigate();
 
@@ -167,7 +164,7 @@ const Checkout = () => {
         setCartItems([]);
         setIsOpen(false);
         setTotalPrice(0);
-         navigate("/order-management");
+        navigate("/order-management");
       }
       if (res.data.status === "error") {
         alert(res.data.message);

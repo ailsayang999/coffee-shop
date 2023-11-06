@@ -28,6 +28,7 @@ const Header = () => {
       setScrollHeader(false);
     }
   };
+
   const { productBeanId } = useParams();
 
   useEffect(() => {

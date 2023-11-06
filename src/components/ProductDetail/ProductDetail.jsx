@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./productBeanDetail.scss";
+import "./productDetail.scss";
 import { Link, Router, useParams } from "react-router-dom";
-import { getBeansById, getAllProduct } from "api/product";
+import { getBeansById, getAllProduct, getEvent } from "api/product";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
 import beanAndDrip from "assets/images/beanAndDrip.png";
@@ -11,6 +11,9 @@ import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { Link as RouterLink } from "react-router-dom";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { AllProductDummyData } from "Data";
+import { AiFillStar } from "react-icons/ai";
+import ScrollToTopBtn from "components/ScrollToTopBtn/ScrollToTopBtn";
+import { PiArrowCircleUpFill } from "react-icons/pi";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -207,6 +210,8 @@ function ProductDetail() {
   const [categoryNum, setCategoryNum] = useState(0);
   const [productCategory, setProductCategory] = useState(false);
 
+  const [event, setEvent] = useState(false);
+
   //const [productQuantity, setProductQuantity] = useState(0);
 
   /////////for Dummy Data (串接成功請刪掉)
@@ -220,12 +225,10 @@ function ProductDetail() {
   // );
   /////////for Dummy Data (串接成功請刪掉)
 
-  const {
-    getItemQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-  } = useShoppingCart();
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } =
+    useShoppingCart();
 
+  //拿取資料
   useEffect(() => {
     const getSingleProductByIdAsync = async () => {
       try {
@@ -254,13 +257,22 @@ function ProductDetail() {
       }
     };
 
+    const getEventAsync = async () => {
+      try {
+        const backendEvent = await getEvent();
+        setEvent(backendEvent);
+        console.log("backendEvent", backendEvent);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getSingleProductByIdAsync();
     getAllProductAsync();
+    getEventAsync();
   }, []);
 
   const productQuantity = getItemQuantity(singleProduct?.id, selectedOption);
-
-
 
   // 消費者選擇不同variant
   const handleSelectChange = (event) => {
@@ -285,9 +297,15 @@ function ProductDetail() {
       //     selectedOptionPrice * productQuantity
       //   }`
       // );
-      alert("加入購物車成功")
+      alert("加入購物車成功");
     }
   };
+
+  //頁面置頂
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   // 咖啡種類array
   const [otherRelativeBeanArray, setOtherRelativeBeanArray] = useState([]);
@@ -366,20 +384,29 @@ function ProductDetail() {
                   <p>{singleProduct.description}</p>
                   <ul>
                     {singleProduct.roast !== null && (
-                      <li>焙度: {singleProduct.roast}</li>
+                      <li>焙度:{singleProduct.roast}</li>
                     )}
 
                     {singleProduct.aroma !== null && (
-                      <li>香味: {singleProduct.aroma}</li>
+                      <li>
+                        香味: {Array(singleProduct.aroma).fill(<AiFillStar />)}
+                      </li>
                     )}
                     {singleProduct.sour !== null && (
-                      <li>酸味: {singleProduct.sour}</li>
+                      <li>
+                        酸味: {Array(singleProduct.sour).fill(<AiFillStar />)}
+                      </li>
                     )}
                     {singleProduct.sour !== null && (
-                      <li>苦味: {singleProduct.bitter}</li>
+                      <li>
+                        苦味: {Array(singleProduct.bitter).fill(<AiFillStar />)}
+                      </li>
                     )}
                     {singleProduct.thickness !== null && (
-                      <li>濃郁: {singleProduct.thickness}</li>
+                      <li>
+                        濃郁:
+                        {Array(singleProduct.thickness).fill(<AiFillStar />)}
+                      </li>
                     )}
                   </ul>
 
@@ -440,6 +467,21 @@ function ProductDetail() {
                         />
                       </div>
                     </div>
+                  </div>
+                  {/* sales info */}
+                  <div style={{ color: "salmon", marginBottom: "10px" }}>
+                    {
+                      singleProduct.Variants.find(
+                        (i) => i.variantName === selectedOption
+                      ).salesOfProduct[0].name
+                    }
+                  </div>
+                  <div style={{ color: "salmon", marginBottom: "10px" }}>
+                    {
+                      singleProduct.Variants.find(
+                        (i) => i.variantName === selectedOption
+                      ).salesOfProduct[0].name
+                    }
                   </div>
                   <RouterLink to="/cart">
                     <button onClick={handleAddToCart} className="add-btn btn">
@@ -549,7 +591,6 @@ function ProductDetail() {
           </Link>
         </div>
       </div>
-
       <Footer />
     </>
   );
