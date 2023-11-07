@@ -6,6 +6,8 @@ import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
 import { useShoppingCart } from "contexts/ShoppingCartContext";
 import { formatCurrency } from "utilities/formatCurrency";
 import { Link as RouterLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getEvent } from "api/product";
 
 const CartItem = ({
   id,
@@ -14,6 +16,9 @@ const CartItem = ({
   quantity,
   variantPrice,
   singleProductImg,
+  singleProductVariantArr,
+  variantDiscountedPrice,
+  event,
 }) => {
   const { increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
     useShoppingCart();
@@ -39,7 +44,14 @@ const CartItem = ({
           <AiFillMinusCircle
             className="amount-icon"
             onClick={() => {
-              decreaseCartQuantity(id, variantName);
+              decreaseCartQuantity(
+                id,
+                variantName,
+                variantPrice,
+                variantDiscountedPrice,
+                singleProductVariantArr,
+                event
+              );
             }}
           />
           <div className="cart-product-amount">{quantity}</div>
@@ -51,7 +63,10 @@ const CartItem = ({
                 name,
                 variantName,
                 variantPrice,
-                singleProductImg
+                variantDiscountedPrice,
+                singleProductImg,
+                singleProductVariantArr,
+                event
               );
             }}
           />
@@ -74,11 +89,27 @@ const CartItem = ({
 
 const Cart = () => {
   const { cartItems } = useShoppingCart();
+  const [event, setEvent] = useState(false);
   const totalPrice = formatCurrency(
     cartItems?.reduce((total, cartItem) => {
       return total + (cartItem.variantPrice || 0) * cartItem.quantity;
     }, 0)
   );
+
+  //拿取資料
+  useEffect(() => {
+    const getEventAsync = async () => {
+      try {
+        const backendEvent = await getEvent();
+        setEvent(backendEvent);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getEventAsync();
+  }, []);
+
   return (
     <>
       <Header />
@@ -94,7 +125,7 @@ const Cart = () => {
                   <div>您的購物車裡還沒有任何商品</div>
                 )}
                 {cartItems?.map((item, index) => (
-                  <CartItem key={index} {...item} />
+                  <CartItem key={index} {...item} event={event} />
                 ))}
               </div>
 

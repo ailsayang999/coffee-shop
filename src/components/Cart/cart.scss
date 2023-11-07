@@ -56,6 +56,7 @@
               display: flex;
               .cart-product-img-wrapper {
                 //outline: 5px solid rgb(146, 181, 192);
+                flex: 1;
                 height: 150px;
                 width: 150px;
                 .cart-product-img {
@@ -67,6 +68,7 @@
               }
 
               .cart-product-details {
+                flex: 2;
                 padding: 20px;
                 display: flex;
                 flex-direction: column;
