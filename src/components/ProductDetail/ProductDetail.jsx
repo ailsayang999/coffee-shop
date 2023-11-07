@@ -569,9 +569,9 @@ function ProductDetail() {
         </div>
 
         <div className="other-relative-product-container">
-          <h1>相關商品</h1>
+          {/* <h1>相關商品</h1> */}
           {/* Swiper Pagination */}
-          {!singleProduct && <ShowEmpty />}
+          {/* {!singleProduct && <ShowEmpty />}
           {singleProduct && (
             <Swiper
               // lazy={true}
@@ -616,7 +616,7 @@ function ProductDetail() {
                 );
               })}
             </Swiper>
-          )}
+          )} */}
 
           <Link to="/product_page" className="link-back-to-product-page">
             <BsArrowLeftCircleFill className="link-back-to-product-page-icon" />
