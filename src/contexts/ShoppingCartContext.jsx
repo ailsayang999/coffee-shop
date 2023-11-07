@@ -224,7 +224,7 @@ export function ShoppingCartProvider({ children }) {
                 return {
                   ...item,
                   quantity: item.quantity + 1,
-                  variantPrice: Math.round(
+                  variantPrice: Math.ceil(
                     item.variantPrice *
                       singleProductVariantArr?.find(
                         (i) => i.variantName === variantName
