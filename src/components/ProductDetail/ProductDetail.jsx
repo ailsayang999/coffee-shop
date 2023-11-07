@@ -495,12 +495,8 @@ function ProductDetail() {
                     </div>
                   </div>
                   {/* sales info */}
-                  <div style={{ color: "salmon", marginBottom: "10px" }}>
-                    {/* {singleProduct &&
-                      singleProduct.Variants.find(
-                        (i) => i.variantName === selectedOption
-                      ).salesOfProduct[0].name
-                    } */}
+                  {/* sales 還沒加入運算*/}
+                  {/* <div style={{ color: "salmon", marginBottom: "10px" }}>
                     {singleProduct?.Variants?.find(
                       (i) => i.variantName === selectedOption
                     )?.salesOfProduct.length > 0 &&
@@ -508,7 +504,7 @@ function ProductDetail() {
                       singleProduct.Variants.find(
                         (i) => i.variantName === selectedOption
                       ).salesOfProduct[0].name}
-                  </div>
+                  </div> */}
                   {/* event info */}
                   <div style={{ color: "salmon", marginBottom: "10px" }}>
                     {event &&
