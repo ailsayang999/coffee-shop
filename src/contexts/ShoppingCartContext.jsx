@@ -16,8 +16,6 @@ export function ShoppingCartProvider({ children }) {
   //setTotalPrice
   const [totalPrice, setTotalPrice] = useState(0);
 
-  console.log("cartItems", cartItems);
-
   const cartQuantity = cartItems.length;
 
   const toggleCart = () => setIsOpen(!isOpen);
@@ -277,7 +275,7 @@ export function ShoppingCartProvider({ children }) {
       (item) => item.variantName === variantName && item.id === id
     )?.quantity;
 
-    console.log("singleProductVariantArr", singleProductVariantArr);
+
 
     setCartItems((currItems) => {
       if (foundItemQuantity === 1) {

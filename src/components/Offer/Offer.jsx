@@ -45,7 +45,6 @@ const Offer = () => {
     const getEventAsync = async () => {
       try {
         const backendEvent = await getEvent();
-        console.log("backendEvent", backendEvent);
         setEvent(backendEvent);
       } catch (error) {
         console.error(error);

@@ -239,8 +239,6 @@ function ProductDetail() {
         // 更新 singleProduct
 
         setSingleProduct(backendSingleProduct);
-        console.log("backendSingleProduct", backendSingleProduct);
-        console.log(JSON.stringify(backendSingleProduct));
         //預設價格
         setSelectedOptionPrice(backendSingleProduct?.Variants[0].variantPrice);
         //預設event打折後價格

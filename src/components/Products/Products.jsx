@@ -128,7 +128,6 @@ const Products = () => {
       try {
         //拿到所有產品資訊
         const backendAllProduct = await getAllProduct();
-        //console.log("backendAllProduct", backendAllProduct);
 
         //分類商品
         //分出咖啡Arr
