@@ -49,7 +49,6 @@ const CartItem = ({
   );
 };
 
-
 const ShoppingCart = ({ isOpen }) => {
   const { cartItems, toggleCart } = useShoppingCart();
   console.log(cartItems);
@@ -63,11 +62,14 @@ const ShoppingCart = ({ isOpen }) => {
       </div>
       {/* 中間品項 */}
       <div className="shopping-cart-items-container">
-        <div className="shopping-cart-item-container">
-          {cartItems?.map((item, index) => (
-            <CartItem key={index} {...item} />
-          ))}
-        </div>
+        {cartItems.length === 0 && <div style={{color:"black"}}>尚無商品</div>}
+        {cartItems.length > 0 && (
+          <div className="shopping-cart-item-container">
+            {cartItems?.map((item, index) => (
+              <CartItem key={index} {...item} />
+            ))}
+          </div>
+        )}
 
         {/* 小計 Subtotal */}
         <div

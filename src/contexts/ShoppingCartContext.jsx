@@ -34,33 +34,54 @@ export function ShoppingCartProvider({ children }) {
     name,
     variantName,
     variantPrice,
+    variantDiscountedPrice,
     singleProductImg,
-    singleProductVariantArr
+    singleProductVariantArr,
+    event
   ) {
     const foundItem = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     );
 
     setCartItems((currItems) => {
+      //如果還沒出現在購物車過的商品：
       if (foundItem == null) {
         //找到所選的variantName所對應到的id
         const variantId = singleProductVariantArr.find(
           (item) => item.variantName === variantName
         ).id;
-        return [
-          ...currItems,
-          {
-            id,
-            name,
-            quantity: 1,
-            variantName,
-            variantPrice,
-            singleProductImg,
-            variantId,
-          },
-        ];
+        //如果是有活動的情況
+        if (event.length > 0) {
+          return [
+            ...currItems,
+            {
+              id,
+              name,
+              quantity: 1,
+              variantName,
+              variantPrice: variantDiscountedPrice, //用特價去算
+              singleProductImg,
+              variantId,
+            },
+          ];
+        }
+        //如果是沒活動的情況
+        if (event.length === 0) {
+          return [
+            ...currItems,
+            {
+              id,
+              name,
+              quantity: 1,
+              variantName,
+              variantPrice: variantPrice, //用原價去算
+              singleProductImg,
+              variantId,
+            },
+          ];
+        }
       } else if (foundItem) {
-        //更新同variant的quantity
+        //如果已經曾經有加入購物車的商品，只要更新同variant的quantity
         return currItems.map((item) => {
           if (item.variantName === variantName && item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
@@ -76,6 +97,7 @@ export function ShoppingCartProvider({ children }) {
     const foundItemQuantity = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     )?.quantity;
+    
     setCartItems((currItems) => {
       if (foundItemQuantity === 1) {
         return currItems.filter(

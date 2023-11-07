@@ -205,6 +205,8 @@ function ProductDetail() {
   const [allProduct, setAllProduct] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedOptionPrice, setSelectedOptionPrice] = useState(false);
+  const [selectedOptionDiscountPrice, setSelectedOptionDiscountPrice] =
+    useState(false);
 
   const [selectedVariantId, setSelectedVariantId] = useState(false);
   const [categoryNum, setCategoryNum] = useState(0);
@@ -234,12 +236,15 @@ function ProductDetail() {
       try {
         const backendSingleProduct = await getBeansById(productBeanId); //拿到特定產品資料
         //const stringEp = JSON.stringify(backendSingleProduct);
-        console.log("backendSingleProduct", backendSingleProduct);
         // 更新 singleProduct
 
         setSingleProduct(backendSingleProduct);
         //預設價格
         setSelectedOptionPrice(backendSingleProduct?.Variants[0].variantPrice);
+        //預設event打折後價格
+        setSelectedOptionDiscountPrice(
+          backendSingleProduct?.Variants[0].discountedPrice
+        );
         // 預設購買種類
         setSelectedOption(backendSingleProduct?.Variants[0].variantName);
       } catch (error) {
@@ -250,7 +255,6 @@ function ProductDetail() {
     const getAllProductAsync = async () => {
       try {
         const backendAllProduct = await getAllProduct(); //拿到所有產品資料
-        console.log("backendAllProduct", backendAllProduct);
         setAllProduct(backendAllProduct);
       } catch (error) {
         console.error(error);
@@ -261,7 +265,6 @@ function ProductDetail() {
       try {
         const backendEvent = await getEvent();
         setEvent(backendEvent);
-        console.log("backendEvent", backendEvent);
       } catch (error) {
         console.error(error);
       }
@@ -282,6 +285,7 @@ function ProductDetail() {
       (item) => item.variantName === event.target.value
     );
     setSelectedOptionPrice(price[0].variantPrice);
+    setSelectedOptionDiscountPrice(price[0].discountedPrice);
   };
 
   // 點擊加入購物車
@@ -409,8 +413,28 @@ function ProductDetail() {
                       </li>
                     )}
                   </ul>
+                  {event.length === 0 && (
+                    <>
+                      <p>價格: {selectedOptionPrice}</p>
+                    </>
+                  )}
 
-                  <p>價格: {selectedOptionPrice}</p>
+                  {event.length > 0 && (
+                    <>
+                      <p
+                        style={{
+                          color: "gray",
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        原價: {selectedOptionPrice}
+                      </p>
+                      <span style={{ color: "salmon" }}>
+                        活動特價: {selectedOptionDiscountPrice}
+                      </span>
+                    </>
+                  )}
+
                   <div className="buy-it-container">
                     <div className="selection-container">
                       <select
@@ -460,8 +484,10 @@ function ProductDetail() {
                               singleProduct.name,
                               selectedOption,
                               selectedOptionPrice,
+                              selectedOptionDiscountPrice,
                               singleProduct.Images[0].imgUrl,
-                              singleProduct.Variants
+                              singleProduct.Variants,
+                              event
                             );
                           }}
                         />
@@ -469,19 +495,26 @@ function ProductDetail() {
                     </div>
                   </div>
                   {/* sales info */}
-                  <div style={{ color: "salmon", marginBottom: "10px" }}>
-                    {
+                  {/* sales 還沒加入運算*/}
+                  {/* <div style={{ color: "salmon", marginBottom: "10px" }}>
+                    {singleProduct?.Variants?.find(
+                      (i) => i.variantName === selectedOption
+                    )?.salesOfProduct.length > 0 &&
+                      singleProduct &&
                       singleProduct.Variants.find(
                         (i) => i.variantName === selectedOption
-                      ).salesOfProduct[0].name
-                    }
-                  </div>
+                      ).salesOfProduct[0].name}
+                  </div> */}
+                  {/* event info */}
                   <div style={{ color: "salmon", marginBottom: "10px" }}>
-                    {
-                      singleProduct.Variants.find(
-                        (i) => i.variantName === selectedOption
-                      ).salesOfProduct[0].name
-                    }
+                    {event &&
+                      event?.map(({ name, discount }, index) => {
+                        return (
+                          <div key={index}>
+                            {name} {discount * 10}折
+                          </div>
+                        );
+                      })}
                   </div>
                   <RouterLink to="/cart">
                     <button onClick={handleAddToCart} className="add-btn btn">

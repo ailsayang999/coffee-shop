@@ -181,41 +181,41 @@ export const offer = [
     id: 1,
     img: offer1,
     title: "Cappuccino Arabica",
-    discount: "Get 40% Offer",
+    discount: "Get 40% Off",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Are you ready to enjoy the rich, aromatic delight of Cappuccino Arabica like never before? We're thrilled to offer you an exclusive 40% discount on our premium Cappuccino Arabica blend, ensuring your coffee experience is not only exceptional but also incredibly affordable.",
   },
   {
     id: 2,
     img: offer2,
-    title: "Cappuccino Arabica",
-    discount: "Get 60% Offer",
+    title: "Caffè Latte",
+    discount: "Get 60% Off",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Revitalize your mornings and savor the bold, pure flavor of our premium Caffè Latte while enjoying an incredible 60% discount. This is your golden opportunity to start your day with a burst of energy and flavor like never before.",
   },
   {
     id: 3,
     img: offer3,
-    title: "Cappuccino Arabica",
-    discount: "Get 50% Offer",
+    title: "Roasted Coffee",
+    discount: "Get 50% Off",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Indulge in the pure delight of freshly roasted coffee, now at an irresistible 50% discount! We're offering you the golden opportunity to elevate your coffee experience with the finest Roasted Coffee, all while enjoying unbeatable savings.",
   },
   {
     id: 4,
     img: offer4,
-    title: "Cappuccino Arabica",
-    discount: "Get 30% Offer",
+    title: "Thick Paper Filters",
+    discount: "Get 50% Off",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Elevate your brewing experience with our premium Thick Paper Filters, now available at an unbeatable 50% discount. This exclusive offer ensures that you can enjoy the highest quality filters while saving big.",
   },
   {
     id: 5,
     img: offer5,
-    title: "Cappuccino Arabica",
-    discount: "Get 20% Offer",
+    title: "Swan Neck Kettle",
+    discount: "Get 20% Off",
     description:
-      "It is a long established fact that a reader will be by the readable content of a page looking at its layout",
+      "Elevate your coffee and tea brewing game with the exceptional precision of our Swan Neck Kettle, now available at an enticing 20% discount. This exclusive offer ensures you can experience the perfect pour with style while saving.",
   },
 ];
 
