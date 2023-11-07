@@ -38,8 +38,7 @@ const Order = () => {
 
   const handleLogout = () => {
     setOrderItem(false);
-    setEmail("")
-
+    setEmail("");
   };
 
   const orderItemDummyData = [
@@ -154,34 +153,39 @@ const Order = () => {
                       return (
                         <>
                           <tr key={index}>
+                            {/* 訂單ID */}
                             <td>{orderId}</td>
-
+                            {/* 商品名稱 */}
                             <td className="product-td">
                               {orderItems.map(({ productName }, index) => {
                                 return <div key={index}>{productName}</div>;
                               })}
                             </td>
-
+                            {/* 規格 */}
                             <td className="product-td">
                               {orderItems.map(({ productVariant }, index) => {
                                 return <div key={index}>{productVariant}</div>;
                               })}
                             </td>
+                            {/* 數量 */}
                             <td className="product-td">
                               {orderItems.map(({ productQuantity }, index) => {
                                 return <div key={index}>{productQuantity}</div>;
                               })}
                             </td>
+                            {/* 單品金額 */}
                             <td className="product-td">
                               {orderItems.map(({ productPrice }, index) => {
                                 return <div key={index}>{productPrice}</div>;
                               })}
                             </td>
+                            {/* 單品特價後金額 */}
                             <td className="product-td">
                               {orderItems.map(({ discountedPrice }, index) => {
                                 return <div key={index}>{discountedPrice}</div>;
                               })}
                             </td>
+                            {/* 小計 */}
                             <td className="product-td">
                               {orderItems.map(
                                 (
@@ -196,21 +200,21 @@ const Order = () => {
                                 }
                               )}
                             </td>
+                            {/* 運費 */}
                             <td className="product-td">
                               <div key={index}>{orderShippingPrice}</div>
                             </td>
+                            {/* 應付總金 */}
                             <td className="product-td">
-                              {orderItems.reduce(
-                                (total, orderItem) => {
-                                  return (
-                                    total + orderShippingPrice + 
-                                    orderItem.discountedPrice *
-                                      orderItem.productQuantity
-                                  );
-                                },
-                                0
-                              )}
+                              {orderItems.reduce((total, orderItem) => {
+                                return (
+                                  total +
+                                  orderItem.discountedPrice *
+                                    orderItem.productQuantity
+                                );
+                              }, 0) + orderShippingPrice}
                             </td>
+                            {/* 刪除此筆訂單 */}
                             <td>
                               <button
                                 className="remove-order-button"
@@ -228,7 +232,7 @@ const Order = () => {
                   )}
               </tbody>
             </table>
-
+            {orderItem.length === 0 && <div style={{fontWeight:"bold",color:"white", marginBottom:"20px"}}>尚無訂單</div>}
             <button className="btn" onClick={handleLogout}>
               登出
             </button>
