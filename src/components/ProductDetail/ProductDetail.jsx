@@ -250,7 +250,6 @@ function ProductDetail() {
     const getAllProductAsync = async () => {
       try {
         const backendAllProduct = await getAllProduct(); //拿到所有產品資料
-        console.log("backendAllProduct", backendAllProduct);
         setAllProduct(backendAllProduct);
       } catch (error) {
         console.error(error);
@@ -261,7 +260,6 @@ function ProductDetail() {
       try {
         const backendEvent = await getEvent();
         setEvent(backendEvent);
-        console.log("backendEvent", backendEvent);
       } catch (error) {
         console.error(error);
       }
@@ -476,12 +474,11 @@ function ProductDetail() {
                       ).salesOfProduct[0].name
                     }
                   </div>
+                  {/* event info */}
                   <div style={{ color: "salmon", marginBottom: "10px" }}>
-                    {
-                      singleProduct.Variants.find(
-                        (i) => i.variantName === selectedOption
-                      ).salesOfProduct[0].name
-                    }
+                    {event?.map(({name},index)=>{
+                      return <div key={index}>{name}</div>;
+                    })}
                   </div>
                   <RouterLink to="/cart">
                     <button onClick={handleAddToCart} className="add-btn btn">
