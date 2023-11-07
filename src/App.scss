@@ -111,7 +111,7 @@ img {
   border: 2px solid var(--first-color);
   padding: 1rem 1.5rem;
   border-radius: var(--radius);
-  transition:0.3s var(--transition);
+  transition: 0.3s var(--transition);
 }
 
 .btn:hover {
@@ -146,15 +146,14 @@ img {
   margin-bottom: 1rem;
 }
 
-.scroll-to-top-icon{
-  position:fixed;
-  right:60px;
+.scroll-to-top-icon {
+  position: fixed;
+  right: 60px;
   bottom: 90px;
   height: 50px;
   width: 50px;
   cursor: pointer;
   z-index: 10000;
-
 }
 
 @media screen and (max-width: 1200px) {

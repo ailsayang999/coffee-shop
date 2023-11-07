@@ -282,6 +282,11 @@ function ProductDetail() {
     setSelectedOptionPrice(price[0].variantPrice);
   };
 
+  console.log(
+    singleProduct?.Variants?.find((i) => i.variantName === selectedOption)
+      ?.salesOfProduct.length
+  );
+
   // 點擊加入購物車
   const handleAddToCart = () => {
     if (productQuantity === 0) {
@@ -468,17 +473,25 @@ function ProductDetail() {
                   </div>
                   {/* sales info */}
                   <div style={{ color: "salmon", marginBottom: "10px" }}>
-                    {
+                    {/* {singleProduct &&
                       singleProduct.Variants.find(
                         (i) => i.variantName === selectedOption
                       ).salesOfProduct[0].name
-                    }
+                    } */}
+                    {singleProduct?.Variants?.find(
+                      (i) => i.variantName === selectedOption
+                    )?.salesOfProduct.length > 0 &&
+                      singleProduct &&
+                      singleProduct.Variants.find(
+                        (i) => i.variantName === selectedOption
+                      ).salesOfProduct[0].name}
                   </div>
                   {/* event info */}
                   <div style={{ color: "salmon", marginBottom: "10px" }}>
-                    {event?.map(({name},index)=>{
-                      return <div key={index}>{name}</div>;
-                    })}
+                    {event &&
+                      event?.map(({ name }, index) => {
+                        return <div key={index}>{name}</div>;
+                      })}
                   </div>
                   <RouterLink to="/cart">
                     <button onClick={handleAddToCart} className="add-btn btn">

@@ -38,8 +38,9 @@
     padding: 20px;
     .shopping-cart-item-container {
       //outline:1px solid red;
-      overflow:scroll;
-      height:400px;
+      overflow: scroll;
+      height: 400px;
+
       .shopping-cart-order-item {
         padding: 5px;
         display: flex;
@@ -95,6 +96,9 @@
           color: white;
         }
       }
+    }
+    .shopping-cart-item-container::-webkit-scrollbar {
+      display: none; /* for Chrome, Safari, and Opera */
     }
 
     .checkout-cart-button {
