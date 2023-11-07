@@ -2650,11 +2650,9 @@ const dummysingleProductInfo = {
   thickness: 2,
   isCoffee: true,
   viewCount: 0,
-  createdAt: "2023-10-25T08:06:35.000Z",
-  updatedAt: "2023-10-25T08:06:35.000Z",
-  Category: {
-    category: "耶加雪夫系列",
-  },
+  createdAt: "2023-11-03T04:17:37.000Z",
+  updatedAt: "2023-11-03T04:17:37.000Z",
+  Category: { category: "耶加雪夫系列" },
   Images: [
     {
       id: 1,
@@ -2669,7 +2667,10 @@ const dummysingleProductInfo = {
       variantPrice: 35,
       variantDescription:
         "最低購買量5包！\n新鮮的豆子磨成粉後，馬上進行真空包裝，拆開即可沖泡。適合尋求便利，想忙裡偷閒喝杯咖啡的你\n滿15包會用精美紙盒包裝\n最佳賞味期限為1個月",
-      discountedPrice: 9,
+      discountedPrice: 18,
+      salesOfProduct: [
+        { id: 1, name: "耶加雪夫系列 買三送一", discount: 0.75, threshold: 4 },
+      ],
     },
     {
       id: 2,
@@ -2677,7 +2678,104 @@ const dummysingleProductInfo = {
       variantPrice: 350,
       variantDescription:
         "看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。最佳賞味期限為2個月。",
-      discountedPrice: 88,
+      discountedPrice: 175,
+      salesOfProduct: [
+        { id: 1, name: "耶加雪夫系列 買三送一", discount: 0.75, threshold: 4 },
+      ],
+    },
+  ],
+};
+
+const dummysingleProductInfo2 = {
+  id: 7,
+  name: "馬拉威藝伎",
+  categoryId: 2,
+  description: "風味：水蜜桃、蜂蜜、奶油",
+  stock: 0,
+  roast: "淺焙",
+  aroma: 5,
+  sour: 3,
+  bitter: 3,
+  thickness: 4,
+  isCoffee: true,
+  viewCount: 0,
+  createdAt: "2023-11-03T04:17:44.000Z",
+  updatedAt: "2023-11-03T04:17:44.000Z",
+  Category: { category: "藝伎豆" },
+  Images: [
+    {
+      id: 7,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/馬拉威藝伎.png?fit=540%2C540&ssl=1",
+    },
+  ],
+  Variants: [
+    {
+      id: 13,
+      variantName: "濾掛",
+      variantPrice: 40,
+      variantDescription:
+        "最低購買量5包！\n新鮮的豆子磨成粉後，馬上進行真空包裝，拆開即可沖泡。適合尋求便利，想忙裡偷閒喝杯咖啡的你\n滿15包會用精美紙盒包裝\n最佳賞味期限為1個月",
+      discountedPrice: 20,
+      salesOfProduct: [
+        { id: 2, name: "藝伎豆 限時促銷 8折", discount: 0.8, threshold: 0 },
+      ],
+    },
+    {
+      id: 14,
+      variantName: "1/4磅裝",
+      variantPrice: 250,
+      variantDescription:
+        "看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。最佳賞味期限為2個月。",
+      discountedPrice: 125,
+      salesOfProduct: [
+        { id: 2, name: "藝伎豆 限時促銷 8折", discount: 0.8, threshold: 0 },
+      ],
+    },
+  ],
+};
+
+const dummysingleProductInfoNoSales = {
+  id: 9,
+  name: "曼特寧・巴西",
+  categoryId: 3,
+  description: "風味：成熟熱帶水果的香甜風味，剛好的苦味，奶油般的質感",
+  stock: 0,
+  roast: "中深焙",
+  aroma: 5,
+  sour: 2,
+  bitter: 2,
+  thickness: 3,
+  isCoffee: true,
+  viewCount: 0,
+  createdAt: "2023-11-03T04:17:47.000Z",
+  updatedAt: "2023-11-03T04:17:47.000Z",
+  Category: { category: "超值精選豆" },
+  Images: [
+    {
+      id: 9,
+      imgUrl:
+        "https://i0.wp.com/018-studio.com/wp-content/uploads/2022/06/曼特寧巴西.png?fit=540%2C540&ssl=1",
+    },
+  ],
+  Variants: [
+    {
+      id: 17,
+      variantName: "濾掛",
+      variantPrice: 22,
+      variantDescription:
+        "最低購買量5包！\n新鮮的豆子磨成粉後，馬上進行真空包裝，拆開即可沖泡。適合尋求便利，想忙裡偷閒喝杯咖啡的你\n滿15包會用精美紙盒包裝\n最佳賞味期限為1個月",
+      discountedPrice: 11,
+      salesOfProduct: [],
+    },
+    {
+      id: 18,
+      variantName: "半磅裝",
+      variantPrice: 225,
+      variantDescription:
+        "看得到咖啡豆的外觀及色澤，適合家裡有咖啡機或享受自己磨豆，手作咖啡的你。最佳賞味期限為2個月。",
+      discountedPrice: 113,
+      salesOfProduct: [],
     },
   ],
 };

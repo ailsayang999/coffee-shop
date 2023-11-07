@@ -239,6 +239,8 @@ function ProductDetail() {
         // 更新 singleProduct
 
         setSingleProduct(backendSingleProduct);
+        console.log("backendSingleProduct", backendSingleProduct);
+        console.log(JSON.stringify(backendSingleProduct));
         //預設價格
         setSelectedOptionPrice(backendSingleProduct?.Variants[0].variantPrice);
         //預設event打折後價格
@@ -413,12 +415,14 @@ function ProductDetail() {
                       </li>
                     )}
                   </ul>
+
+                  {/* 顯示原價 */}
                   {event.length === 0 && (
                     <>
                       <p>價格: {selectedOptionPrice}</p>
                     </>
                   )}
-
+                  {/* 顯示特價 */}
                   {event.length > 0 && (
                     <>
                       <p
@@ -463,12 +467,14 @@ function ProductDetail() {
                       <div className="quantity-container">
                         <AiFillMinusCircle
                           className="minus-icon"
-                          // onClick={handleDecrementQuantity}
                           onClick={() => {
-                            // handleIncrementQuantity();
                             decreaseCartQuantity(
                               singleProduct.id,
-                              selectedOption
+                              selectedOption,
+                              selectedOptionPrice,
+                              selectedOptionDiscountPrice,
+                              singleProduct.Variants,
+                              event
                             );
                           }}
                         />
@@ -478,13 +484,12 @@ function ProductDetail() {
                         <AiFillPlusCircle
                           className="plus-icon"
                           onClick={() => {
-                            // handleIncrementQuantity();
                             increaseCartQuantity(
                               singleProduct.id,
                               singleProduct.name,
                               selectedOption,
                               selectedOptionPrice,
-                              selectedOptionDiscountPrice,
+                              selectedOptionDiscountPrice, 
                               singleProduct.Images[0].imgUrl,
                               singleProduct.Variants,
                               event
@@ -496,15 +501,16 @@ function ProductDetail() {
                   </div>
                   {/* sales info */}
                   {/* sales 還沒加入運算*/}
-                  {/* <div style={{ color: "salmon", marginBottom: "10px" }}>
+                  <div style={{ color: "salmon", marginBottom: "5px" }}>
+                    {/* 先找到當前是什麼Variant，這個Variant是否有特價(>0) */}
                     {singleProduct?.Variants?.find(
                       (i) => i.variantName === selectedOption
-                    )?.salesOfProduct.length > 0 &&
-                      singleProduct &&
+                    )?.salesOfProduct?.length > 0 &&
                       singleProduct.Variants.find(
                         (i) => i.variantName === selectedOption
                       ).salesOfProduct[0].name}
-                  </div> */}
+                  </div>
+
                   {/* event info */}
                   <div style={{ color: "salmon", marginBottom: "10px" }}>
                     {event &&
