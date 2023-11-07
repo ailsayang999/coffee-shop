@@ -1,4 +1,5 @@
 .order-management-page {
+
   position: relative;
   min-height: calc(100vh + var(--header-height));
   background: url(../../assets/images/coffeeBeansBgBright.jpeg) center / cover
@@ -15,7 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 750px;
+    min-height: 750px;
     .check-in-email-container {
       //outline: 1px solid lightblue;
       display: flex;
@@ -32,8 +33,8 @@
     }
 
     .order-management-items-show {
-        overflow: hidden;
-        max-height: 900px;
+      overflow: hidden;
+      max-height: 900px;
       .content-table {
         border-collapse: collapse;
         margin: 25px 0;
@@ -62,14 +63,27 @@
         tbody tr:last-of-type {
           border-bottom: 3px solid var(--first-color);
         }
+        td .remove-order-button {
+          background: red;
+          color: white;
+          font-weight: bold;
+          border: none;
+          padding: 4px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s var(--transition);
+        }
+        td .remove-order-button:hover {
+          background: transparent;
+          border: 1px solid red;
+          color: red;
+        }
 
         // .product-td{
         //   display: flex;
         //   flex-direction: column;
         // }
       }
-
-     
     }
   }
 }

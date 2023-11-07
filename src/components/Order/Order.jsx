@@ -143,7 +143,7 @@ const Order = () => {
                   <th>小計</th>
                   <th>運費</th>
                   <th>應付總金</th>
-                  <th>刪除此品項</th>
+                  <th>刪除此筆訂單</th>
                 </tr>
               </thead>
 
@@ -213,7 +213,7 @@ const Order = () => {
                             </td>
                             <td>
                               <button
-                                className=""
+                                className="remove-order-button"
                                 onClick={() => {
                                   handleDeleteOrderItem(orderId);
                                 }}
