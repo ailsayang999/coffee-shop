@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Coffee Shop :coffee:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffee beans and coffee equipment. This React application is designed to provide users with a seamless shopping experience, allowing them to explore a variety of products, add items to their cart, and conveniently check out at the end of their shopping spree. With an intuitive interface and a focus on user satisfaction. :coffee:
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Project First Look
 
-### `npm start`
+<!-- ![Application Screen Shot in GIF](coffee-shop-1.gif) -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Project Demo Link](https://coffee-shop-eight-indol.vercel.app)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+|            Functions             | Detail                                                                                                                                                                                                                     | URL                          |
+| :------------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+|      Navigate to home page       | 1. User can view the home page                                                                                                                                                                                             | /\*                          |
+|        View all products         | 1. User can overview all the products in the product page <br>2.User can filter different categories of product through the left bar                                                                                       | /product_page                |
+|   View single product details    | 1. User can view single product by entering the product id number in the url <br>2.User can select different variant of product <br>3.User can add product item to cart <br>4.User can view all items in the shopping cart | /product_page/:productBeanId |
+| Check items in the Shopping Cart | 1. User can check all the products they added to the cart <br>2. User can remove product items in the shopping cart <br>3. User can increase or decrease the quantity of the item                                          | /cart                        |
+|             Checkout             | 1.User can checkout by filling all the information of the form <br>2.User can choose different ways of shipping                                                                                                            | /checkout                    |
+|           Manage order           | 1. User can manage their order by login with their email                                                                                                                                                                   | /order_management            |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run Coffee Shop locally on your machine, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Clone the repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ git clone https://github.com/ailsayang999/coffee-shop.git
+```
 
-### `npm run eject`
+### Navigate to the project directory:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+cd coffee-shop
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Install dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Start the development server
 
-## Learn More
+```
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Open your browser and go to http://localhost:3000 to view Coffee Shop.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Package           | version |
+| :---------------- | :------ |
+| react             | v18.2.0 |
+| react-dom         | v18.2.0 |
+| react-icons       | v4.11.0 |
+| react-router-dom  | v6.17.0 |
+| react-scroll      | v1.9.0  |
+| sass              | v1.69.4 |
+| styled-components | v6.1.0  |
+| swiper            | v10.3.1 |
 
-### Analyzing the Bundle Size
+## Contributors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Back end
 
-### Making a Progressive Web App
+[seangotjuice](https://github.com/seangotjuice) | [TinyMurky](https://github.com/TinyMurky)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Front end
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[ailsayang999](https://github.com/ailsayang999/coffee-shop)
