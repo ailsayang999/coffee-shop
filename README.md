@@ -6,16 +6,21 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 
 ## Project First Look
 
-<!-- ![Application Screen Shot in GIF](coffee-shop-1.gif) -->
+![HomePage pic](https://github.com/ailsayang999/coffee-shop/blob/version5/homePage.png)
+↳ [Project Link](https://coffee-shop-eight-indol.vercel.app)
 
-[Project Demo Link](https://coffee-shop-eight-indol.vercel.app)
+---
+
+<!-- ### HomePage Demo -->
+
+<!-- ![Application Screen Shot in GIF](https://github.com/ailsayang999/coffee-shop/blob/version5/coffee-shop-1.gif) -->
 
 ## Features
 
 |            Functions             | Detail                                                                                                                                                                                                                     | URL                          |
 | :------------------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 |      Navigate to home page       | 1. User can view the home page                                                                                                                                                                                             | /\*                          |
-|        View all products         | 1. User can overview all the products in the product page <br>2.User can filter different categories of product through the left bar                                                                                       | /product_page                |
+|        View all products         | 1. User can scan through all the products in the product page <br>2.User can filter different categories of product through the left bar                                                                                   | /product_page                |
 |   View single product details    | 1. User can view single product by entering the product id number in the url <br>2.User can select different variant of product <br>3.User can add product item to cart <br>4.User can view all items in the shopping cart | /product_page/:productBeanId |
 | Check items in the Shopping Cart | 1. User can check all the products they added to the cart <br>2. User can remove product items in the shopping cart <br>3. User can increase or decrease the quantity of the item                                          | /cart                        |
 |             Checkout             | 1.User can checkout by filling all the information of the form <br>2.User can choose different ways of shipping                                                                                                            | /checkout                    |
