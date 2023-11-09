@@ -5,7 +5,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ---
 
 ## Project First Look
-Test Pic
+![HomePage pic]()
 ![Application Screen Shot in GIF](https://github.com/ailsayang999/coffee-shop/blob/version5/coffee-shop-1.gif)
 
 [Project Demo Link](https://coffee-shop-eight-indol.vercel.app)
