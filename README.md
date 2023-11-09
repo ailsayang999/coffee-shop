@@ -9,7 +9,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 [Project Demo Link](https://coffee-shop-eight-indol.vercel.app)
 
 ### HomePage Demo
-![Application Screen Shot in GIF](https://imgur.com/a/e6hqpgO)
+![Application Screen Shot in GIF](https://imgur.com/karo4xF)
 
 
 
