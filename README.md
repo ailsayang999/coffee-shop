@@ -14,7 +14,7 @@ User can smoothly scroll through the page and browse the information of the coff
 
 
 ### Product Page & Product Detail Page
-[<img src="https://imgur.com/XCTdF8W.gif" width="600"/>](https://imgur.com/XCTdF8W)
+[<img src="https://imgur.com/0eD8d1y.gif" width="600"/>](https://imgur.com/0eD8d1y.gif)
 
 ### Cart Page
 [<img src="https://imgur.com/DAtOfV8.gif" width="600"/>](https://imgur.com/DAtOfV8.gif)
