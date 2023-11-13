@@ -8,11 +8,8 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ## Project First Look
 
 ### Home Page
-![](https://imgur.com/0y4YrB0.gif)
+![](https://imgur.com/0y4YrB0.gif){width=250px}
 
-```{r, out.width = "400px"}
-knitr::include_graphics("https://imgur.com/0y4YrB0.gif")
-```
 
 
 ---
