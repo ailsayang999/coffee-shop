@@ -20,7 +20,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 * User can add the product to the shopping cart (the cart icon will show the amount of product) by clicking on the plus button. 
 * User can decrease the amount of product in the cart by clicking on the minus button. 
 * User can instantly remove the product from the cart by clicking on the cross icon in the shopping cart.
-* The price of the product will change due to the monthly events or sales of the single product. 
+* The price of the product will change due to the monthly events or sales of each product. 
 
 
 ### Cart Page
