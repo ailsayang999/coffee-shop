@@ -9,10 +9,8 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 
 ### Home Page
 ![](https://imgur.com/0y4YrB0.gif){width=250px}
+![Image Title](https://imgur.com/0y4YrB0.gif){width=70%}
 
-<div style="width:300px; height:200px">
-![Image](https://imgur.com/0y4YrB0.gif)
-</div>
 
 ---
 
