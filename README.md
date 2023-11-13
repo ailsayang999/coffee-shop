@@ -8,11 +8,11 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ## Project First Look
 
 ### Home Page
-User can smoothly scroll through the page and browse the information of the coffee shop by clicking on the nav bar.
 [<img src="https://imgur.com/0y4YrB0.gif" width="600"/>](https://imgur.com/0y4YrB0.gif)
+User can smoothly scroll through the page and browse the information of the coffee shop by clicking on the nav bar.
+
 
 ### Product Page & Product Detail Page
-
 [<img src="https://imgur.com/XCTdF8W.gif" width="600"/>](https://imgur.com/XCTdF8W)
 
 ### Cart Page
