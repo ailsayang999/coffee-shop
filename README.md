@@ -11,28 +11,38 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 
 [<img src="https://imgur.com/0y4YrB0.gif" width="600"/>](https://imgur.com/0y4YrB0.gif)
 <br>
-User can smoothly scroll through the page and browse the information of the coffee shop by clicking on the header nav bar.
+* User can click on the header nav bar to smoothly scroll through the page and browse the information of the coffee shop such as About, Features, Products, Stats, Gallery, Offer, and Testimonial.
 
 ### Product Page & Product Detail Page
-
 [<img src="https://imgur.com/kCaMcJc.gif" width="600"/>](https://imgur.com/kCaMcJc.gif)
 <br>
+* User can use the left bar to filter product category and checkout product detail by clicking on the image. 
+* User can add the product to the shopping cart (the cart icon will show the amount of product) by clicking on the plus button. 
+* User can decrease the amount of product in the cart by clicking on the minus button. 
+* User can instantly remove the product from the cart by clicking on the cross icon in the shopping cart.
+* The price of the product will change due to the monthly events or sales of the single product. 
+
 
 ### Cart Page
-
 [<img src="https://imgur.com/TEynWmp.gif" width="600"/>](https://imgur.com/TEynWmp.gif)
 <br>
+* User can increase or decrease the amount of product in the cart.
+* User can also remove the product item in this page.
+* User can click on return to shop button to navigate back to product page.
+* User can click on the check out button to check out.
+
 
 ### Checkout Page
-
 [<img src="https://imgur.com/g69rpPA.gif" width="600"/>](https://imgur.com/g69rpPA.gif)
 <br>
+* User can choose the types of shipping in this page. 
 
 ### Order Management Page
 
 [<img src="https://imgur.com/jrBG46W.gif" width="600"/>](https://imgur.com/jrBG46W.gif)
 <br>
-
+* User can check the order by entering their email. 
+* User can delete the order by clicking on the delete button. 
 ---
 
 
