@@ -7,7 +7,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ## Project First Look
 
 ### Home Page
-![](https://imgur.com/a/l04VqUs.gif)
+![](https://imgur.com/0y4YrB0.gif)
 ↳ [Project Link](https://coffee-shop-eight-indol.vercel.app)
 
 ---
