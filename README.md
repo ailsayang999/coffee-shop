@@ -17,7 +17,7 @@ User can smoothly scroll through the page and browse the information of the coff
 [<img src="https://imgur.com/0eD8d1y.gif" width="600"/>](https://imgur.com/0eD8d1y.gif)
 
 ### Cart Page
-[<img src="https://imgur.com/DAtOfV8.gif" width="600"/>](https://imgur.com/DAtOfV8.gif)
+[<img src="https://imgur.com/4yi5to5.gif" width="600"/>](https://imgur.com/4yi5to5.gif)
 
 ### Order Management Page
 [<img src="https://imgur.com/0Oglp3H.gif" width="600"/>](https://imgur.com/0Oglp3H.gif)
