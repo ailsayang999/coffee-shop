@@ -9,7 +9,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 
 ### Home Page
 ![](https://imgur.com/0y4YrB0.gif)
-[<br>]
+<br>
 [<img src="1.gif" width="600"/>](1.gif)
 
 ---
