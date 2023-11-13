@@ -29,7 +29,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 * User can adjust the quantity of the product in the cart by increasing or decreasing it.
 * User can also remove the product item in this page.
 * User can return to the product page by clicking on the "Return to Shop" button.
-* Users can proceed to checkout by clicking on the checkout button.
+* User can proceed to checkout by clicking on the checkout button.
 
 
 ### Checkout Page
