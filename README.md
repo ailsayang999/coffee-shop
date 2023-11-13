@@ -8,19 +8,30 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ## Project First Look
 
 ### Home Page
+
 [<img src="https://imgur.com/0y4YrB0.gif" width="600"/>](https://imgur.com/0y4YrB0.gif)
 <br>
 User can smoothly scroll through the page and browse the information of the coffee shop by clicking on the nav bar.
 
-
 ### Product Page & Product Detail Page
-[<img src="https://imgur.com/0eD8d1y.gif" width="600"/>](https://imgur.com/0eD8d1y.gif)
+
+[<img src="https://imgur.com/kCaMcJc.gif" width="600"/>](https://imgur.com/kCaMcJc.gif)
+<br>
 
 ### Cart Page
-[<img src="https://imgur.com/4yi5to5.gif" width="600"/>](https://imgur.com/4yi5to5.gif)
+
+[<img src="https://imgur.com/TEynWmp.gif" width="600"/>](https://imgur.com/TEynWmp.gif)
+<br>
+
+### Checkout Page
+
+[<img src="https://imgur.com/g69rpPA.gif" width="600"/>](https://imgur.com/g69rpPA.gif)
+<br>
 
 ### Order Management Page
-[<img src="https://imgur.com/0Oglp3H.gif" width="600"/>](https://imgur.com/0Oglp3H.gif)
+
+[<img src="https://imgur.com/fM6bRiI.gif" width="600"/>](https://imgur.com/fM6bRiI.gif)
+<br>
 
 ---
 
