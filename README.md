@@ -11,7 +11,7 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 
 [<img src="https://imgur.com/0y4YrB0.gif" width="600"/>](https://imgur.com/0y4YrB0.gif)
 <br>
-User can smoothly scroll through the page and browse the information of the coffee shop by clicking on the nav bar.
+User can smoothly scroll through the page and browse the information of the coffee shop by clicking on the header nav bar.
 
 ### Product Page & Product Detail Page
 
@@ -30,14 +30,11 @@ User can smoothly scroll through the page and browse the information of the coff
 
 ### Order Management Page
 
-[<img src="https://imgur.com/fM6bRiI.gif" width="600"/>](https://imgur.com/fM6bRiI.gif)
+[<img src="https://imgur.com/jrBG46W.gif" width="600"/>](https://imgur.com/jrBG46W.gif)
 <br>
 
 ---
 
-<!-- ### HomePage Demo -->
-
-<!-- ![Application Screen Shot in GIF](https://github.com/ailsayang999/coffee-shop/blob/version5/coffee-shop-1.gif) -->
 
 ## Features
 
