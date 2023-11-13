@@ -16,33 +16,35 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ### Product Page & Product Detail Page
 [<img src="https://imgur.com/kCaMcJc.gif" width="600"/>](https://imgur.com/kCaMcJc.gif)
 <br>
-* User can use the left bar to filter product category and checkout product detail by clicking on the image. 
-* User can add the product to the shopping cart (the cart icon will show the amount of product) by clicking on the plus button. 
-* User can decrease the amount of product in the cart by clicking on the minus button. 
-* User can instantly remove the product from the cart by clicking on the cross icon in the shopping cart.
-* The price of the product will change due to the monthly events or sales of each product. 
+* User can utilize the left sidebar to filter product categories and examine product details by clicking on the image. 
+* User can add the product in the shopping cart (the cart icon will display the quantity) by clicking on the plus button. 
+* User can reduce the quantity of a product in the cart by clicking on the minus button.
+* User can instantly remove the product from the cart by clicking on the cross icon within the shopping cart..
+* The product price may vary based on monthly events or sales promotions for each item. 
 
 
 ### Cart Page
 [<img src="https://imgur.com/TEynWmp.gif" width="600"/>](https://imgur.com/TEynWmp.gif)
 <br>
-* User can increase or decrease the amount of product in the cart.
+* User can adjust the quantity of the product in the cart by increasing or decreasing it.
 * User can also remove the product item in this page.
-* User can click on return to shop button to navigate back to product page.
-* User can click on the check out button to check out.
+* User can return to the product page by clicking on the "Return to Shop" button.
+* Users can proceed to checkout by clicking on the checkout button.
 
 
 ### Checkout Page
 [<img src="https://imgur.com/g69rpPA.gif" width="600"/>](https://imgur.com/g69rpPA.gif)
 <br>
-* User can choose the types of shipping in this page. 
+* User has the option to select their preferred shipping methods on this page.
+* The user can review the summary of each product, including subtotal price, shipping fee, product amount, and total price, displayed on the right sidebar during checkout.
+* To proceed with the checkout, the user is required to complete all the fields in the form.
 
 ### Order Management Page
 
 [<img src="https://imgur.com/jrBG46W.gif" width="600"/>](https://imgur.com/jrBG46W.gif)
 <br>
-* User can check the order by entering their email. 
-* User can delete the order by clicking on the delete button. 
+* User can view their previous orders by entering their email address. 
+* User can remove a previous order by clicking on the delete button.
 ---
 
 
