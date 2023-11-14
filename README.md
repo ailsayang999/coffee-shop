@@ -3,6 +3,7 @@
 Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffee beans and coffee equipment. This React application is designed to provide users with a seamless shopping experience, allowing them to explore a variety of products, add items to their cart, and conveniently check out at the end of their shopping spree. With an intuitive interface and a focus on user satisfaction. :coffee:
 <br>
 ↳ [Project Link](https://coffee-shop-eight-indol.vercel.app)
+↳ [Demo Link](https://drive.google.com/file/d/1c5yeMKHUyz7yD4jCFOOnSe7u_S2gxxcF/view?usp=sharing)
 
 ---
 
