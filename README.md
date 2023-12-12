@@ -12,6 +12,10 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 ### Home Page
 
 [<img src="https://imgur.com/0y4YrB0.gif" width="600"/>](https://imgur.com/0y4YrB0.gif)
+
+[<img src="https://imgur.com/vuGrwCO.gif" width="600"/>](https://imgur.com/vuGrwCO.gif)
+
+
 <br>
 * User can click on the header nav bar to smoothly scroll through the page and browse the information of the coffee shop such as About, Features, Products, Stats, Gallery, Offer, and Testimonial.
 
