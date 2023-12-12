@@ -13,7 +13,6 @@ Welcome to Coffee Shop, your go-to destination for purchasing high-quality coffe
 
 [<img src="https://imgur.com/0y4YrB0.gif" width="600"/>](https://imgur.com/0y4YrB0.gif)
 
-[<img src="https://imgur.com/vuGrwCO.gif" width="600"/>](https://imgur.com/vuGrwCO.gif)
 
 
 <br>
