@@ -271,6 +271,9 @@ export function ShoppingCartProvider({ children }) {
     singleProductVariantArr,
     event
   ) {
+    if (cartItems.length === 0){
+      return
+    }
     const foundItemQuantity = cartItems.find(
       (item) => item.variantName === variantName && item.id === id
     )?.quantity;
