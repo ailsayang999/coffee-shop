@@ -278,8 +278,6 @@ export function ShoppingCartProvider({ children }) {
       (item) => item.variantName === variantName && item.id === id
     )?.quantity;
 
-
-
     setCartItems((currItems) => {
       if (foundItemQuantity === 1) {
         return currItems.filter(
